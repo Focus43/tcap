@@ -37,7 +37,7 @@ class Controller extends Package {
      * @link http://www.concrete5.org/community/forums/5-7-discussion/a-few-questions-about-porting-packages-and-themes-to-5.7/#654225
      */
     public function on_start(){
-        Route::register('/__data__', '\Concrete\Package\Focal\Ajax\Data::handler');
+        Route::register('/__data', '\Concrete\Package\Focal\Ajax\Data::handler');
     }
 
 
@@ -58,7 +58,6 @@ class Controller extends Package {
     public function upgrade(){
         parent::upgrade();
         $this->installOrUpdate();
-
     }
 
 
@@ -68,22 +67,21 @@ class Controller extends Package {
      * @return void
      */
     protected function installOrUpdate(){
-        $this->pkgThemes( $this->packageObject() )
-             ->pkgTemplates( $this->packageObject() )
-             ->pkgPageTypes( $this->packageObject() )
-             ->pkgCollectionAttributes( $this->packageObject() );
+        $this->pkgThemes()
+             ->pkgTemplates()
+             ->pkgPageTypes()
+             ->pkgCollectionAttributes();
     }
 
 
     /**
-     * @param Package $packageObj
-     * @return Controller $this
+     * @return Controller
      */
-    protected function pkgThemes( Package $packageObj ){
+    protected function pkgThemes(){
         try {
             if( ! is_object(PageTheme::getByHandle('focalize')) ){
                 /** @var $theme \Concrete\Core\Page\Theme\Theme */
-                $theme = PageTheme::add('focalize', $packageObj);
+                $theme = PageTheme::add('focalize', $this->packageObject());
                 $theme->applyToSite();
             }
         }catch(Exception $e){ /* All good, fail silently */ }
@@ -93,12 +91,11 @@ class Controller extends Package {
 
 
     /**
-     * @param Package $packageObj
-     * @return Controller $this
+     * @return Controller
      */
-    protected function pkgTemplates( Package $packageObj ){
+    protected function pkgTemplates(){
         if( ! PageTemplate::getByHandle('article') ){
-            PageTemplate::add('article', t('Article'), 'full.png', $packageObj);
+            PageTemplate::add('article', t('Article'), 'full.png', $this->packageObject());
         }
 
         return $this;
@@ -106,10 +103,10 @@ class Controller extends Package {
 
 
     /**
-     * @param Package $packageObj
-     * @return Controller $this
+     * @return Controller
      */
-    protected function pkgPageTypes( Package $packageObj ){
+    protected function pkgPageTypes(){
+        // Setup Article Page Type, if not defined yet
         if( !(PageType::getByHandle('article')) ){
             /** @var $ptArticle \Concrete\Core\Page\Type\Type */
             $ptArticle = PageType::add(array(
@@ -118,7 +115,7 @@ class Controller extends Package {
                 'defaultTemplate'       => PageTemplate::getByHandle('article'),
                 'ptIsFrequentlyAdded'   => 1,
                 'ptLaunchInComposer'    => 1
-            ), $packageObj);
+            ), $this->packageObject());
 
             // Set configured publish target
             $ptArticle->setConfiguredPageTypePublishTargetObject(
@@ -149,18 +146,33 @@ class Controller extends Package {
 
 
     /**
-     * @param Package $packageObj
-     * @return Controller $this
+     * @return Controller
      */
-    protected function pkgCollectionAttributes( Package $packageObj ){
+    protected function pkgCollectionAttributes(){
         if( ! is_object(CollectionAttributeKey::getByHandle(self::COLLECTION_ATTRIBUTE_SECTIONS)) ){
-            CollectionAttributeKey::add(\Concrete\Core\Attribute\Type::getByHandle('number'), array(
+            CollectionAttributeKey::add($this->attributeType('number'), array(
                 'akHandle' =>  self::COLLECTION_ATTRIBUTE_SECTIONS,
                 'akName'    => 'Page Sections'
-            ), $packageObj);
+            ), $this->packageObject());
         }
 
         return $this;
+    }
+
+
+    /**
+     * Memoize attribute types.
+     * @param string $handle
+     * @return \Concrete\Core\Attribute\Type || Null
+     */
+    private function attributeType( $handle ){
+        if( is_null($this->{"at_{$handle}"}) ){
+            $attributeType = \Concrete\Core\Attribute\Type::getByHandle($handle);
+            if( is_object($attributeType) && $attributeType->getAttributeTypeID() >= 1 ){
+                $this->{"at_{$handle}"} = $attributeType;
+            }
+        }
+        return $this->{"at_{$handle}"};
     }
 
 

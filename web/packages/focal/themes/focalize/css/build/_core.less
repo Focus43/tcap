@@ -52,7 +52,18 @@
 // Concrete5 Style Customizer Preset Defaults
 @import "../presets/defaults";
 
-html, body {font-size:@font-size-base;}
+// Custom variable defaults
+@theme-font-sans-serif: 'Titillium Web', sans-serif;
+@theme-color-blue: #005696;
+@theme-color-green: #419644;
+@theme-color-purple: #701471;
+@theme-color-red: #EE3124;
+
+// Bootstrap customizations
+@font-size-base: 16px;
+@font-family-base: @theme-font-sans-serif;
+
+html, body {font-size:@font-size-base;-webkit-font-smoothing:antialiased;}
 a, a:hover, a:active {text-decoration:none;cursor:pointer;}
 img {
   &:extend(.img-responsive);
@@ -62,4 +73,10 @@ img {
   @import "header";
   @import "main";
   @import "footer";
+}
+
+.cms-editing #page-body {
+  main {
+    [class*="ccm-custom-style"] {margin:0;}
+  }
 }

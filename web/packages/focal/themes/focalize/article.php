@@ -1,6 +1,6 @@
 <?php defined('C5_EXECUTE') or die("Access Denied."); ?>
 <!DOCTYPE html>
-<html lang="<?php echo Localization::activeLanguage(); ?>">
+<html lang="<?php echo Localization::activeLanguage(); ?>" class="<?php echo Page::getCurrentPage()->isEditMode() ? 'cms-editing' : 'false'; ?>">
 <head>
 <?php $this->inc('elements/head.php'); ?>
 </head>
@@ -8,10 +8,16 @@
 <body>
 
     <div id="page-body" class="<?php echo $c->getPageWrapperClass()?>">
-        <main style="padding:1rem;">
+        <?php $this->inc('elements/header.php'); ?>
+        <main>
             <?php for($i = 1; $i <= (int)$areaCount; $i++): ?>
-                <section style="padding:2rem;">
-                    <?php $a = new Area("Main {$i}"); $a->enableGridContainer(); $a->display($c); ?>
+                <section>
+                    <?php
+                    /** @var $a \Concrete\Core\Area\Area */
+                    $a = new Area("Main {$i}");
+                    $a->enableGridContainer();
+                    $a->display($c);
+                    ?>
                 </section>
             <?php endfor; ?>
         </main>

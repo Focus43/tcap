@@ -1,18 +1,13 @@
-main {width:100%;color:black;height:500px;
-  .background-green {background:@theme-green;}
-  .background-blue {background:@theme-blue;}
-  .background-red {background:@theme-red;}
+@spacing: @grid-gutter-width * 3;
 
-  // Grid updates
-  .padless-grid {
-    [class*="col-"]{padding:0;}
+main {
+  [class*="ccm-custom-style"]{margin:-(@spacing) 0;padding:@spacing 0;
+    [class*="ccm-custom-style"]{margin:0;padding:0;}
+    .box-padding {padding:1rem;}
   }
-
-  // Parallax
-  .parallax {position:relative;height:300px;overflow:hidden;
-    .backdrop {position:absolute;width:100%;height:160%;top:0;right:0;left:0;background:transparent no-repeat 50% 50%;background-size:cover;z-index:-1;}
-    // CMS edit mode
-    .ccm-area {height:100%;}
-  }
-  .parallax .backdrop {background-image:url('/packages/focal/themes/focalize/images/factory_bg.jpg');}
+  h2 {text-align:center;margin:0;padding:2rem 1rem 3rem;}
+  .fluid-width {width:100%;}
+  .parallax {background-size:cover;background-position:50% 50%;background-attachment:fixed;}
+  .box-padding {padding:1rem;}
+  section {position:relative;padding:@spacing 0;overflow:hidden;}
 }

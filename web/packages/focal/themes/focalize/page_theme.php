@@ -8,7 +8,8 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
     protected static $_backgroundClasses = array(
         'background-green',
         'background-blue',
-        'background-red'
+        'background-red',
+        'box-padding'
     );
 
     /**
@@ -16,25 +17,21 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme {
      */
     public function getThemeAreaClasses(){
         return array(
-            'Main 0' => array(
-                'parallaxer',
-                'otherwise'
+            'Main 1' => array(
+                'parallax'
             ),
-            'Main' => array(
-                'padless-grid'
+            'Main 2' => array(
+                'parallax'
+            ),
+            'Main 3' => array(
+                'parallax'
             ),
             'Main 4' => array(
-                'dist',
-                'mk'
+                'parallax'
             ),
-            'Main Stuff' => array(
-                'asdiofew',
-                'asdioewre34sdf'
+            'Main 5' => array(
+                'parallax'
             ),
-            'Otro' => array(
-                'something',
-                'fancy'
-            )
         );
     }
 
