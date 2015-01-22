@@ -26,8 +26,8 @@ composer.phar
 /web/updates/*
 
 # ignore packages folder
-/web/packages/*
-/web/concrete/packages/*
+#/web/packages/*
+#/web/concrete/packages/*
 
 # more stuff
 /web/application/languages/*
