@@ -14,7 +14,6 @@ module.exports = function( gulp ){
         uglify  = require('gulp-uglify'),
         less    = require('gulp-less'),
         jshint  = require('gulp-jshint');
-//        livereload = require('gulp-livereload');
 
 
     var sourcePaths = {
@@ -93,8 +92,6 @@ module.exports = function( gulp ){
      */
     gulp.task('less:core:dev', function(){ return runLess(sourcePaths.less.core); });
     gulp.task('less:core:prod', function(){ return runLess(sourcePaths.less.core, true); });
-    //gulp.task('less:app:dev', function(){ return runLess(sourcePaths.less.app); });
-    //gulp.task('less:app:prod', function(){ return runLess(sourcePaths.less.app, true); });
     gulp.task('jshint', function(){ return runJsHint(sourcePaths.js.app); });
     gulp.task('js:core:dev', function(){ return runJs(sourcePaths.js.core, 'core.js') });
     gulp.task('js:core:prod', function(){ return runJs(sourcePaths.js.core, 'core.js', true) });
@@ -118,14 +115,8 @@ module.exports = function( gulp ){
      * Watch tasks
      */
     gulp.task('watch', function(){
-        //livereload.listen();
         gulp.watch(_packagePath('themes/focalize/css/build/**/*.less'), {interval:1000}, ['less:core:dev']);
         gulp.watch(_packagePath('themes/focalize/js/build/**/*.js'), {interval:1000}, ['js:app:dev']);
-
-        // Livereload only on *.css (NOT .scss) file changes!
-//        gulp.watch(_packagePath('css/*.css')).on('change', function(file){
-//            livereload.changed(file.path);
-//        });
     });
 
 };

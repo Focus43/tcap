@@ -3,10 +3,6 @@
 <html lang="<?php echo Localization::activeLanguage(); ?>">
 <head>
 <?php $this->inc('elements/head.php'); ?>
-    <style type="text/css">
-        html, body, #page-body {height:100%;}
-        .parallaxer {background-size:cover;background-attachment: fixed;}
-    </style>
 </head>
 
 <body>
