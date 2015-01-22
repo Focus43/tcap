@@ -1,26 +1,21 @@
 <?php defined('C5_EXECUTE') or die("Access Denied."); ?>
 <!DOCTYPE html>
-<html lang="<?php echo Localization::activeLanguage(); ?>">
+<html lang="<?php echo Localization::activeLanguage(); ?>" class="<?php echo Page::getCurrentPage()->isEditMode() ? 'cms-editing' : 'false'; ?>">
 <head>
-<?php $this->inc('elements/head.php'); ?>
+    <?php $this->inc('elements/head.php'); ?>
 </head>
 
 <body>
 
     <div id="page-body" class="<?php echo $c->getPageWrapperClass()?>">
         <?php $this->inc('elements/header.php'); ?>
-
-        <section id="masthead">
-            <img src="<?php echo $this->getThemePath(); ?>/images/masthead.jpg" />
-        </section>
-
         <main>
             <div class="container-fluid">
-                <div class="row padless-grid">
+                <div class="row">
                     <div class="col-sm-4">
                         <?php
-                            $a = new Area('Main 1'); /* @var $a \Concrete\Core\Area\Area */ //$a->setAreaGridMaximumColumns(12);
-                            $a->display($c);
+                        $a = new Area('Main 1'); /* @var $a \Concrete\Core\Area\Area */
+                        $a->display($c);
                         ?>
                     </div>
                     <div class="col-sm-4">
@@ -37,28 +32,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-10 col-sm-offset-1">
                         <?php
                         $a = new Area('Main 4'); /* @var $a \Concrete\Core\Area\Area */
+                        $a->setAreaGridMaximumColumns(2);
                         $a->display($c);
                         ?>
-                    </div>
-                    <div class="col-sm-7">
-                        <?php
-                        $a = new Area('Main 5'); /* @var $a \Concrete\Core\Area\Area */
-                        $a->display($c);
-                        ?>
-                    </div>
-                </div>
-                <div class="row padless-grid">
-                    <div class="col-sm-12">
-                        <div class="parallax">
-                            <div class="layer backdrop"></div>
-                            <?php
-                            $a = new Area('Main 6'); /* @var $a \Concrete\Core\Area\Area */
-                            $a->display($c);
-                            ?>
-                        </div>
                     </div>
                 </div>
             </div>
