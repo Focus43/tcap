@@ -1,0 +1,65 @@
+// Core variables and mixins
+@import "bootstrap3.3.1/variables";
+@import "bootstrap3.3.1/mixins";
+
+// Reset and dependencies
+@import "bootstrap3.3.1/normalize";
+@import "bootstrap3.3.1/print";
+@import "bootstrap3.3.1/glyphicons";
+
+// Core CSS
+@import "bootstrap3.3.1/scaffolding";
+@import "bootstrap3.3.1/type";
+@import "bootstrap3.3.1/code";
+@import "bootstrap3.3.1/grid";
+@import "bootstrap3.3.1/tables";
+@import "bootstrap3.3.1/forms";
+@import "bootstrap3.3.1/buttons";
+
+// Components
+@import "bootstrap3.3.1/component-animations";
+@import "bootstrap3.3.1/dropdowns";
+@import "bootstrap3.3.1/button-groups";
+@import "bootstrap3.3.1/input-groups";
+@import "bootstrap3.3.1/navs";
+@import "bootstrap3.3.1/navbar";
+@import "bootstrap3.3.1/breadcrumbs";
+@import "bootstrap3.3.1/pagination";
+@import "bootstrap3.3.1/pager";
+@import "bootstrap3.3.1/labels";
+@import "bootstrap3.3.1/badges";
+@import "bootstrap3.3.1/jumbotron";
+@import "bootstrap3.3.1/thumbnails";
+@import "bootstrap3.3.1/alerts";
+@import "bootstrap3.3.1/progress-bars";
+@import "bootstrap3.3.1/media";
+@import "bootstrap3.3.1/list-group";
+@import "bootstrap3.3.1/panels";
+@import "bootstrap3.3.1/responsive-embed";
+@import "bootstrap3.3.1/wells";
+@import "bootstrap3.3.1/close";
+
+// Components w/ JavaScript
+@import "bootstrap3.3.1/modals";
+@import "bootstrap3.3.1/tooltip";
+@import "bootstrap3.3.1/popovers";
+@import "bootstrap3.3.1/carousel";
+
+// Utility classes
+@import "bootstrap3.3.1/utilities";
+@import "bootstrap3.3.1/responsive-utilities";
+
+// Concrete5 Style Customizer Preset Defaults
+@import "../presets/defaults";
+
+html, body {font-size:@font-size-base;}
+a, a:hover, a:active {text-decoration:none;cursor:pointer;}
+img {
+  &:extend(.img-responsive);
+}
+
+#page-body {
+  @import "header";
+  @import "main";
+  @import "footer";
+}
