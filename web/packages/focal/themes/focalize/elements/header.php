@@ -1,12 +1,12 @@
 <header>
     <nav>
+        <?php //$a = new GlobalArea('Header Right'); $a->display($c); ?>
         <ul class="list-inline">
-            <li><a><span>Lorem</span></a></li>
-            <li><a><span>Ipsum</span></a></li>
-            <li><a><span>Dolor</span></a></li>
-            <li><a><span>Sit Ametet</span></a></li>
+            <?php for($i = 1; $i <= (int)$areaCount; $i++): ?>
+                <li><a><span><?php echo "Section {$i}"; ?></span></a></li>
+            <?php endfor; ?>
         </ul>
     </nav>
 
-    <h1 class="logo">Lorem Ipsum</h1>
+    <h1 class="logo"><?php echo Config::get('concrete.site'); ?></h1>
 </header>

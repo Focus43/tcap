@@ -1,29 +1,21 @@
 <?php defined('C5_EXECUTE') or die("Access Denied."); ?>
 <!DOCTYPE html>
-<html lang="<?php echo Localization::activeLanguage(); ?>">
+<html lang="<?php echo Localization::activeLanguage(); ?>" class="<?php echo Page::getCurrentPage()->isEditMode() ? 'cms-editing' : 'false'; ?>">
 <head>
-<?php $this->inc('elements/head.php'); ?>
+    <?php $this->inc('elements/head.php'); ?>
 </head>
 
 <body>
 
     <div id="page-body" class="<?php echo $c->getPageWrapperClass()?>">
-        <header>
-            <nav>
-                <ul>
-                    <li>Manufacturing</li>
-                    <li>Mission</li>
-                    <li>Services</li>
-                    <li>Contact</li>
-                </ul>
-            </nav>
-        </header>
-
+        <?php $this->inc('elements/header.php'); ?>
         <main>
-            <?php
-                Loader::element('system_errors', array('error' => $error));
-                print $innerContent;
-            ?>
+            <section>
+                <?php
+                    Loader::element('system_errors', array('error' => $error));
+                    print $innerContent;
+                ?>
+            </section>
         </main>
         <?php $this->inc('elements/footer.php'); ?>
     </div>

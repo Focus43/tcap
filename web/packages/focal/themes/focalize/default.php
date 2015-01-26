@@ -7,43 +7,22 @@
 
 <body>
 
-    <div id="page-body" class="<?php echo $c->getPageWrapperClass()?>">
-        <?php $this->inc('elements/header.php'); ?>
-        <main>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <?php
-                        $a = new Area('Main 1'); /* @var $a \Concrete\Core\Area\Area */
-                        $a->display($c);
-                        ?>
-                    </div>
-                    <div class="col-sm-4">
-                        <?php
-                        $a = new Area('Main 2'); /* @var $a \Concrete\Core\Area\Area */
-                        $a->display($c);
-                        ?>
-                    </div>
-                    <div class="col-sm-4">
-                        <?php
-                        $a = new Area('Main 3'); /* @var $a \Concrete\Core\Area\Area */
-                        $a->display($c);
-                        ?>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1">
-                        <?php
-                        $a = new Area('Main 4'); /* @var $a \Concrete\Core\Area\Area */
-                        $a->setAreaGridMaximumColumns(2);
-                        $a->display($c);
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <?php $this->inc('elements/footer.php'); ?>
-    </div>
+<div id="page-body" class="<?php echo $c->getPageWrapperClass()?>">
+    <?php $this->inc('elements/header.php'); ?>
+    <main>
+        <?php for($i = 1; $i <= (int)$areaCount; $i++): ?>
+            <section>
+                <?php
+                /** @var $a \Concrete\Core\Area\Area */
+                $a = new Area("Main {$i}");
+                $a->enableGridContainer();
+                $a->display($c);
+                ?>
+            </section>
+        <?php endfor; ?>
+    </main>
+    <?php $this->inc('elements/footer.php'); ?>
+</div>
 
 <?php Loader::element('footer_required'); ?>
 <script type="text/javascript" src="<?php echo $this->getThemePath(); ?>/js/theme.js"></script>

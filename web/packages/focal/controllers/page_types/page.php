@@ -12,7 +12,7 @@ namespace Concrete\Package\Focal\Controller\PageType {
      * Class Article
      * @package Concrete\Package\Focal\Controller\PageType
      */
-    class Article extends \Concrete\Package\Focal\Libraries\Base {
+    class Page extends \Concrete\Package\Focal\Libraries\Base {
 
         public function on_start(){
             parent::on_start();

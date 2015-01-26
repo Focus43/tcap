@@ -18,7 +18,7 @@ class Controller extends Package {
 
     protected $pkgHandle            = 'focal';
     protected $appVersionRequired   = '5.7';
-    protected $pkgVersion           = '0.14';
+    protected $pkgVersion           = '0.04';
 
 
     /** @return string */
@@ -94,8 +94,8 @@ class Controller extends Package {
      * @return Controller
      */
     protected function pkgTemplates(){
-        if( ! PageTemplate::getByHandle('article') ){
-            PageTemplate::add('article', t('Article'), 'full.png', $this->packageObject());
+        if( ! PageTemplate::getByHandle('default') ){
+            PageTemplate::add('default', t('Default'), 'full.png', $this->packageObject());
         }
 
         return $this;
@@ -106,26 +106,33 @@ class Controller extends Package {
      * @return Controller
      */
     protected function pkgPageTypes(){
-        // Setup Article Page Type, if not defined yet
-        if( !(PageType::getByHandle('article')) ){
-            /** @var $ptArticle \Concrete\Core\Page\Type\Type */
-            $ptArticle = PageType::add(array(
-                'handle'                => 'article',
-                'name'                  => t('Article'),
-                'defaultTemplate'       => PageTemplate::getByHandle('article'),
+        /** @var $pageType \Concrete\Core\Page\Type\Type */
+        $pageType = PageType::getByHandle('page');
+
+        // Delete it?
+        if( is_object($pageType) && !((int)$pageType->getPackageID() >= 1) ){
+            $pageType->delete();
+        }
+
+        if( !is_object(PageType::getByHandle('page')) ){
+            /** @var $ptPage \Concrete\Core\Page\Type\Type */
+            $ptPage = PageType::add(array(
+                'handle'                => 'page',
+                'name'                  => t('Page'),
+                'defaultTemplate'       => PageTemplate::getByHandle('default'),
                 'ptIsFrequentlyAdded'   => 1,
                 'ptLaunchInComposer'    => 1
             ), $this->packageObject());
 
             // Set configured publish target
-            $ptArticle->setConfiguredPageTypePublishTargetObject(
-                PublishTargetType::getByHandle('all')->configurePageTypePublishTarget($ptArticle, array(
-                    'ptID' => $ptArticle->getPageTypeID()
+            $ptPage->setConfiguredPageTypePublishTargetObject(
+                PublishTargetType::getByHandle('all')->configurePageTypePublishTarget($ptPage, array(
+                    'ptID' => $ptPage->getPageTypeID()
                 ))
             );
 
             /** @var $layoutSet \Concrete\Core\Page\Type\Composer\FormLayoutSet */
-            $layoutSet = $ptArticle->addPageTypeComposerFormLayoutSet('Basics', 'Basics');
+            $layoutSet = $ptPage->addPageTypeComposerFormLayoutSet('Basics', 'Basics');
 
             /** @var $controlTypeCorePageProperty \Concrete\Core\Page\Type\Composer\Control\Type\CorePagePropertyType */
             $controlTypeCorePageProperty = \Concrete\Core\Page\Type\Composer\Control\Type\Type::getByHandle('core_page_property');
@@ -133,12 +140,12 @@ class Controller extends Package {
             /** @var $controlTypeName \Concrete\Core\Page\Type\Composer\Control\CorePageProperty\NameCorePageProperty */
             $controlTypeName = $controlTypeCorePageProperty->getPageTypeComposerControlByIdentifier('name');
             $controlTypeName->addToPageTypeComposerFormLayoutSet($layoutSet)
-                            ->updateFormLayoutSetControlRequired(true);
+                ->updateFormLayoutSetControlRequired(true);
 
             /** @var $controlTypePublishTarget \Concrete\Core\Page\Type\Composer\Control\CorePageProperty\PublishTargetCorePageProperty */
             $controlTypePublishTarget = $controlTypeCorePageProperty->getPageTypeComposerControlByIdentifier('publish_target');
             $controlTypePublishTarget->addToPageTypeComposerFormLayoutSet($layoutSet)
-                                     ->updateFormLayoutSetControlRequired(true);
+                ->updateFormLayoutSetControlRequired(true);
         }
 
         return $this;
