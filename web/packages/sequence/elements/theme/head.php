@@ -1,4 +1,4 @@
-<head data-image-path="<?php echo SEQUENCE_IMAGE_PATH; ?>" data-tools-path="<?php echo SEQUENCE_TOOLS_PATH; ?>">
+<head data-image-path="<?php echo SEQUENCE_IMAGE_PATH; ?>">
 <base href="/" />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />

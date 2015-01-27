@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="<?php echo ($photoFileObj instanceof File) ? $photoFileObj->getRelativePath() : ''; ?>" />
+        </div>
+        <div class="col-sm-8">
+            <div class="gutter-pad anglified">
+                <h3><?php echo $fullName; ?><br/><span class="text-orange"><?php echo $title; ?></span></h3>
+                <?php echo $description; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="modal-nav prev icn-angle-left" modal-reload=""></a>
+<a class="modal-nav next icn-angle-right" modal-reload=""></a>

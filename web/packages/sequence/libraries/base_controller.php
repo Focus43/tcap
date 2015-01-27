@@ -8,7 +8,7 @@
      * Class BaseController
      * @package Concrete\Package\Sequence\Libraries
      */
-    class BaseController extends \Concrete\Core\Page\Controller\PageController {
+    abstract class BaseController extends \Concrete\Core\Page\Controller\PageController {
 
         /** @property $_includeThemeAssets bool */
         protected $_includeThemeAssets = false;

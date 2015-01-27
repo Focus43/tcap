@@ -306,24 +306,19 @@
                     <ul class="list-inline text-center" isotope-filters>
                         <li><a class="active" data-filter="*">Show All</a></li>
                         <?php
-                        //                        $groupSetObj = GroupSet::getByName(TitlecardPackage::USER_GROUP_SET_ALL);
-                        //                        $groups      = $groupSetObj->getGroups();
-                        //                        $textHelper  = Loader::helper('text');
-                        //                        foreach($groups AS $groupObj){ /** @var $groupObj Group */
-                        //                            echo '<li><a data-filter="['.$textHelper->handle($groupObj->getGroupName()).']">'.$groupObj->getGroupName().'</a></li>' . "\n";
-                        //                        }
+                            foreach($userGroupFilters AS $groupObj){ /** @var $groupObj Group */
+                                echo '<li><a data-filter="['.$textHelper->handle($groupObj->getGroupName()).']">'.$groupObj->getGroupName().'</a></li>' . "\n";
+                            }
                         ?>
                     </ul>
                     <div class="grid-wrapper">
                         <div isotope-grid>
                             <?php
-                            //                            $userListObj = new UserList();
-                            //                            $userList    = $userListObj->get();
-                            //                            foreach($userList AS $userInfoObj){
-                            //                                Loader::packageElement('partials/person_grid', TitlecardPackage::PACKAGE_HANDLE, array(
-                            //                                    'userInfoObj' => $userInfoObj
-                            //                                ));
-                            //                            }
+                                foreach($userList AS $userInfoObj){
+                                    Loader::packageElement('partials/person_grid', \Concrete\Package\Sequence\Controller::PACKAGE_HANDLE, array(
+                                        'userInfoObj' => $userInfoObj
+                                    ));
+                                }
                             ?>
                         </div>
                     </div>

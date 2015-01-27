@@ -1,9 +1,11 @@
 @import 'required';
 @import '3rd_party/icomoon';
+@import 'elements/modal-window';
 
 * {-webkit-font-smoothing:antialiased;}
 html, body {height:100%;font-size:$font-size-base;}
 html.no-scroll {overflow:hidden;}
+img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 
 // Page wrapper
 #c-level-1 {height:100%;
@@ -13,7 +15,6 @@ html.no-scroll {overflow:hidden;}
   h3,h4,h5 {
     &:first-of-type {margin-top:0;}
   }
-  img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   .tabular {width:100%;height:100%;display:table;
     .cellular {width:100%;height:100%;display:table-cell;vertical-align:middle;text-align:center;
       &.text-left {text-align:left;}
@@ -65,7 +66,6 @@ html.no-scroll {overflow:hidden;}
   @import 'elements/header_and_nav';
   @import 'elements/accordion';
   @import 'elements/masthead';
-  @import 'elements/modal-window';
   @import 'elements/quote-cycle';
   @import 'elements/isotope';
 
@@ -81,6 +81,15 @@ html.no-scroll {overflow:hidden;}
     }
   }
 
+}
+
+@media screen and (max-width:$screen-sm){
+  html.sidebar-nav {
+    #c-level-1 {
+      [slideable]{@include transform(translateX(-$nav-sidebar-width));}
+      nav::after {visibility:visible;opacity:1;z-index:3;}
+    }
+  }
 }
 
 /**

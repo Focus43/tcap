@@ -1,28 +1,22 @@
-<?php
-namespace Concrete\Package\Sequence\Block\Accordion;
-use \Concrete\Core\Block\BlockController;
-use Loader;
+<?php namespace Concrete\Package\Sequence\Block\Accordion;
+
+    use Loader;
+    use \Concrete\Core\Editor\LinkAbstractor;
 
     /**
      * Accordion
      */
-    class Controller extends BlockController {
+    class Controller extends \Concrete\Core\Block\BlockController {
 
         protected $btTable 									= 'btAccordion';
-        protected $btInterfaceWidth 						= '460';
+        protected $btInterfaceWidth 						= '580';
         protected $btInterfaceHeight						= '400';
-        protected $btWrapperClass                           = 'ccm-ui';
         protected $btDefaultSet                             = 'sequence';
-//        protected $btIgnorePageThemeGridFrameworkContainer  = true;
-//        protected $btCacheBlockRecord 						= true;
-//        protected $btCacheBlockOutput 						= true;
-//        protected $btCacheBlockOutputOnPost 				= true;
-//        protected $btCacheBlockOutputForRegisteredUsers 	= true;
-//        protected $btCacheBlockOutputLifetime 				= CACHE_LIFETIME;
-
-        // database fields
-        //public $dataFields;
-
+        protected $btCacheBlockRecord 						= true;
+        protected $btCacheBlockOutput 						= true;
+        protected $btCacheBlockOutputOnPost 				= true;
+        protected $btCacheBlockOutputForRegisteredUsers 	= false;
+        protected $btCacheBlockOutputLifetime 				= 0;
 
         public function getBlockTypeDescription(){
             return t("Create an accordion");
@@ -39,16 +33,14 @@ use Loader;
         }
 
 
-        public function edit(){
-            // Pass helpers
-            $this->set('textHelper', Loader::helper('text'));
-            $this->set('contentHelper', Loader::helper('content'));
+        public function composer(){
+            $this->edit();
+        }
 
-            // Get themeCSS
-            $currentTheme = Page::getCurrentPage()->getCollectionThemeObject();
-            if( is_object($currentTheme) ){
-                $this->set('contentCSSPath', $currentTheme->getThemeEditorCSS());
-            }
+
+        public function edit(){
+            $this->requireAsset('redactor');
+            $this->requireAsset('core/file-manager');
 
             // Pass data
             $this->set('dataFields', (array) Loader::helper('json')->decode($this->dataFields));
@@ -56,19 +48,27 @@ use Loader;
 
 
         public function view(){
-            $this->set('contentHelper', Loader::helper('content'));
             $this->set('dataFields', (array) Loader::helper('json')->decode($this->dataFields));
+        }
+
+
+        public function _translateFromEditMode( $content ){
+            return LinkAbstractor::translateFromEditMode($content);
+        }
+
+
+        public function _translateFrom( $content ){
+            return LinkAbstractor::translateFrom($content);
         }
 
 
         public function save( $args ){
             $data = array();
-            $contentHelper = Loader::helper('content');
-            foreach($args['heading'] AS $key => $heading){
+            foreach((array)$args['heading'] AS $index => $heading){
                 if( !empty($heading) ){
                     array_push($data, (object)array(
                         'heading' => $heading,
-                        'body'    => $contentHelper->translateTo($args['body'][$key])
+                        'body'    => LinkAbstractor::translateTo($args['body'][$index])
                     ));
                 }
             }

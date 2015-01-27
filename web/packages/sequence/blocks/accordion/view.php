@@ -4,7 +4,7 @@
             <div class="accordion-header"><?php echo $pair->heading; ?></div>
             <div class="accordion-body">
                 <div class="accordion-content">
-                    <?php echo $contentHelper->translateFrom($pair->body); ?>
+                    <?php echo $this->controller->_translateFrom($pair->body); ?>
                 </div>
             </div>
         </div>

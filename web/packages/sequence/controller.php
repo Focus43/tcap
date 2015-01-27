@@ -1,10 +1,10 @@
-<?php
-namespace Concrete\Package\Sequence {
+<?php namespace Concrete\Package\Sequence {
     defined('C5_EXECUTE') or die(_("Access Denied."));
 
     /** @link https://github.com/concrete5/concrete5-5.7.0/blob/develop/web/concrete/config/app.php#L10-L90 Aliases */
     use Loader; /** @see \Concrete\Core\Legacy\Loader */
-    use Route; /** @see \Concrete\Core\Routing\Router */
+    use Router; /** @see \Concrete\Core\Routing\Router */
+    use Route; /** @see \Concrete\Core\Support\Facade\Route */
     use Package; /** @see \Concrete\Core\Package\Package */
     use BlockType; /** @see \Concrete\Core\Block\BlockType\BlockType */
     use BlockTypeSet; /** @see \Concrete\Core\Block\BlockType\Set */
@@ -46,17 +46,6 @@ namespace Concrete\Package\Sequence {
 
 
         /**
-         * Easy + consistent way to generate paths to tool files
-         * @param $string
-         * @param array $args
-         * @return string
-         */
-        public static final function ToolPath( $string, array $args = array() ){
-            return SEQUENCE_TOOLS_PATH . vsprintf($string, $args);
-        }
-
-
-        /**
          * @return string
          */
         public function getPackageName(){
@@ -77,10 +66,12 @@ namespace Concrete\Package\Sequence {
          * @return void
          */
         public function on_start(){
-            define('SEQUENCE_TOOLS_PATH', '/_tools');
             define('SEQUENCE_IMAGE_PATH', DIR_REL . '/packages/' . $this->pkgHandle . '/images/');
 
-            Route::register('/_tools', '\Concrete\Package\Sequence\Tools\Handler::dispatch');
+            Route::register(
+                Router::route(array('/modal_info/{id}', 'sequence')),
+                '\Concrete\Package\Sequence\Controller\Tools\ModalInfo::view'
+            );
         }
 
 

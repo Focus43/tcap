@@ -17,8 +17,7 @@
                 // Applications paths
                 (function( head ){
                     $provide.value('ApplicationPaths', {
-                        images  : head.getAttribute('data-image-path'),
-                        tools   : head.getAttribute('data-tools-path')
+                        images  : head.getAttribute('data-image-path')
                     });
                 })( document.querySelector('head') );
 
