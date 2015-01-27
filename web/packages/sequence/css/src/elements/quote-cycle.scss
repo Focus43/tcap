@@ -1,0 +1,9 @@
+[quote-cycle]{position:relative;text-transform:uppercase;font-size:115%;line-height:1.2;
+  .group {position:absolute;top:0;left:0;visibility:hidden;opacity:0;
+    &:first-of-type {position:relative;visibility:visible;opacity:1;}
+    q {display:block;font-style:italic;padding-bottom:1rem;
+      &::before, &::after {font-size:150%;line-height:0;position:relative;top:6px;}
+    }
+    cite {display:block;color:$theme-orange;}
+  }
+}

@@ -1,0 +1,41 @@
+// Custom
+$icomoon-font-path:             '/packages/titlecard/fonts/icomoon';
+$image-path:                    '/packages/titlecard/images';
+$theme-orange:                  #f58220;
+$theme-gray-light:              #959595;
+$theme-gray-dark:               #222222;
+$theme-form-elements-color:     #4e4e4e;
+$font-family-ropa-sans:         'Ropa Sans', sans-serif;
+$font-family-icomoon:           'icomoon';
+
+$nav-sidebar-width:             320px;
+$mask-animate-time:             0.5s;
+
+// Bootstrap
+$body-bg:                       #000000;
+$text-color:                    $theme-gray-light;
+$font-family-base:              $font-family-ropa-sans;
+$font-size-base:                16px;
+
+$border-radius-base:            0;
+$border-radius-large:           0;
+$border-radius-small:           0;
+
+$btn-default-color:             #fff;
+$btn-default-bg:                $theme-form-elements-color;
+$btn-default-border:            $theme-form-elements-color;
+
+$input-bg:                      $theme-form-elements-color;
+$input-border:                  $theme-form-elements-color;
+$input-color:                   #fff;
+$input-border-focus:            #fff;
+
+// Imports
+@import 'compass';
+@import '../../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/variables';
+@import '../../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins';
+
+// Mixins
+@mixin scrollOverflow {
+  overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;
+}

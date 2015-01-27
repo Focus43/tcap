@@ -1,0 +1,20 @@
+$accordion-header-padding: 0.5rem;
+[accordion]{position:relative;top:-($accordion-header-padding);
+  .group {overflow:hidden;position:relative;border-bottom:1px solid #000;
+    .accordion-header {display:block;padding:$accordion-header-padding 0;color:$theme-orange;cursor:pointer;line-height:1;
+      &::after {font-size:14px;content:"\f067";font-family:'icomoon';display:inline-block;position:absolute;right:0;top:9px;line-height:1;}
+    }
+    .accordion-body {height:0;overflow:hidden;
+      .accordion-content {}
+      p {margin:0;padding:0 0 0.5rem;}
+    }
+
+    &:first-child {
+      .accordion-body {height:auto;}
+    }
+
+    &.active {
+      .accordion-header::after {content:'\f068';}
+    }
+  }
+}

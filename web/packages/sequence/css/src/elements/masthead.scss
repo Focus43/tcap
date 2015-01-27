@@ -1,0 +1,32 @@
+[masthead]{width:100%;height:100%;position:relative;overflow:hidden;
+  .node {visibility:hidden;opacity:0;position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:70% 50%;
+    &:first-of-type {visibility:visible;opacity:1;}
+    .node-content {font-size:1.3rem;color:#fff;display:inline-block;max-width:55%;padding-left:7rem;
+      a {color:#fff;
+        &:hover {text-decoration:underline;}
+      }
+      ul {list-style:none;padding:0 0 0 18px;
+        li {position:relative;
+          &::before {content: "\e684";font-family:'icomoon';position:absolute;right:100%;top:50%;display:inline-block;color:$theme-orange;font-size:150%;@include transform(translateY(-50%));}
+        }
+      }
+    }
+  }
+
+  // Navigation arrows
+  .arrows {color:$theme-gray-light;position:absolute;top:50%;font-size:5rem;padding:0;line-height:1;@include transform(translateY(-100%));@include transition(all 0.25s ease);
+    &:hover {color:lighten($theme-gray-light, 12%);}
+    &[class*="left"]{left:0;
+      &:hover {padding-left:0.25rem;}
+    }
+    &[class*="right"]{right:0;
+      &:hover {padding-right:0.25rem;}
+    }
+  }
+  // Markers
+  .markers {position:absolute;left:0;right:0;bottom:0;width:100%;text-align:center;padding:1rem;font-size:0;line-height:0;
+    a {color:$theme-gray-light;display:inline-block;padding:0.25rem;font-size:14px;line-height:1;
+      &:hover, &.active {color:$theme-gray-dark;}
+    }
+  }
+}
