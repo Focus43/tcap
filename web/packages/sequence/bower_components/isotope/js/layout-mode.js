@@ -140,7 +140,7 @@ if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( [
       'get-size/get-size',
-      'outlayer/outlayer'
+      '../../outlayer/outlayer'
     ],
     layoutModeDefinition );
 } else if ( typeof exports === 'object' ) {

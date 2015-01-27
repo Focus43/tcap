@@ -1,4 +1,4 @@
-angular.module('titlecard.common').
+angular.module('sequence.common').
 
     /**
      * @description Generic body controller

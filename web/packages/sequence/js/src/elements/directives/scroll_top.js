@@ -1,5 +1,5 @@
 /* global Power2 */
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     directive('scrollTop', ['$window', 'Tween',
         function( $window, Tween ){

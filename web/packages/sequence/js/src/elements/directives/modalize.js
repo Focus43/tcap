@@ -1,4 +1,4 @@
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     factory('ModalData', [function(){
         return {

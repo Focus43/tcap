@@ -987,7 +987,7 @@ return Outlayer;
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( [
-      'eventie/eventie',
+      '../eventie/eventie',
       'doc-ready/doc-ready',
       'eventEmitter/EventEmitter',
       'get-size/get-size',

@@ -507,7 +507,7 @@ if ( typeof define === 'function' && define.amd ) {
   define( [
       'eventEmitter/EventEmitter',
       'get-size/get-size',
-      'get-style-property/get-style-property'
+      '../get-style-property/get-style-property'
     ],
     outlayerItemDefinition );
 } else if (typeof exports === 'object') {

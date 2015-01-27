@@ -1,6 +1,7 @@
 // Custom
-$icomoon-font-path:             '/packages/titlecard/fonts/icomoon';
-$image-path:                    '/packages/titlecard/images';
+$package-path:                  '/packages/sequence/';
+$icomoon-font-path:             '#{$package-path}fonts/icomoon';
+$image-path:                    '#{$package-path}images';
 $theme-orange:                  #f58220;
 $theme-gray-light:              #959595;
 $theme-gray-dark:               #222222;

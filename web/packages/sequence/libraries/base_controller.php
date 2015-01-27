@@ -1,6 +1,8 @@
-<?php
-namespace Concrete\Package\Sequence\Libraries {
+<?php namespace Concrete\Package\Sequence\Libraries {
     defined('C5_EXECUTE') or die(_("Access Denied."));
+
+    use Loader;
+    use Concrete\Package\Sequence\Controller AS PackageController;
 
     /**
      * Class BaseController
@@ -8,94 +10,57 @@ namespace Concrete\Package\Sequence\Libraries {
      */
     class BaseController extends \Concrete\Core\Page\Controller\PageController {
 
+        /** @property $_includeThemeAssets bool */
+        protected $_includeThemeAssets = false;
+
+        /**
+         *
+         */
         public function on_start(){
 
         }
 
+
+        /**
+         * Base controller's view method.
+         * @return void
+         */
+        public function view(){
+            if( $this->_includeThemeAssets === true ){
+                $this->attachThemeAssets( $this );
+            }
+        }
+
+
+        /**
+         * Include css/js assets in page output.
+         * @param $pageController Controller : Forces the page controller to be injected!
+         * @return void
+         */
+        public function attachThemeAssets( \Concrete\Core\Page\Controller\PageController $pageController ){
+            // CSS
+            $pageController->addHeaderItem('<link href="http://fonts.googleapis.com/css?family=Ropa+Sans:400,400italic" rel="stylesheet" type="text/css">');
+            $pageController->addHeaderItem( $this->getHelper('helper/html')->css('core.css', PackageController::PACKAGE_HANDLE) );
+            $pageController->addHeaderItem( $this->getHelper('helper/html')->css('app.css', PackageController::PACKAGE_HANDLE) );
+            // JS
+            $pageController->addFooterItem( $this->getHelper('helper/html')->javascript('core.js', PackageController::PACKAGE_HANDLE) );
+            $pageController->addFooterItem( $this->getHelper('helper/html')->javascript('app.js', PackageController::PACKAGE_HANDLE) );
+        }
+
+
+        /**
+         * Memoize helpers (beware, once loaded its always the same instance).
+         * @param string $handle Handle of the helper to load
+         * @param bool | Package $pkg Package to get the helper from
+         * @return ...Helper class of some sort
+         */
+        public function getHelper( $handle ){
+            $helper = '_helper_' . preg_replace("/[^a-zA-Z0-9]+/", "", $handle);
+            if( $this->{$helper} === null ){
+                $this->{$helper} = \Core::make($handle);
+            }
+            return $this->{$helper};
+        }
+
     }
 }
-
-//    class TitlecardPageController extends Controller {
-//
-//        protected $supportsPageCache = true;
-//
-//        /** @property $_includeThemeAssets bool */
-//        protected $_includeThemeAssets = false;
-//
-//        /** @property $_canEdit bool : Set in on_start method */
-//        protected $_canEdit = false;
-//
-//        /** @property $_isEditMode bool : Set in on_start method */
-//        protected $_isEditMode = false;
-//
-//        /**
-//         * Base controller's view method.
-//         * @return void
-//         */
-//        public function view(){
-//            if( $this->_includeThemeAssets === true ){
-//                $this->attachThemeAssets( $this );
-//            }
-//        }
-//
-//
-//        /**
-//         * @return void
-//         */
-//        public function on_start(){
-//            $this->_canEdit     = $this->pagePermissionObject()->canWrite();
-//            $this->_isEditMode  = $this->getCollectionObject()->isEditMode();
-//
-//            $this->set('canEdit', $this->_canEdit);
-//            $this->set('isEditMode', $this->_isEditMode);
-//
-//            $classes = array();
-//            if( $this->_canEdit ){ array_push($classes, 'cms-admin'); }
-//            if( $this->_isEditMode ){ array_push($classes, 'cms-editing'); }
-//            $this->set('cmsClasses', join(' ', $classes));
-//        }
-//
-//
-//        /**
-//         * Include css/js assets in page output.
-//         * @param $pageController Controller : Forces the page controller to be injected!
-//         * @return void
-//         */
-//        public function attachThemeAssets( Controller $pageController ){
-//            // CSS
-//            $pageController->addHeaderItem('<link href="http://fonts.googleapis.com/css?family=Ropa+Sans:400,400italic" rel="stylesheet" type="text/css">');
-//            $pageController->addHeaderItem( $this->getHelper('html')->css('core.css', TitlecardPackage::PACKAGE_HANDLE) );
-//            $pageController->addHeaderItem( $this->getHelper('html')->css('app.css', TitlecardPackage::PACKAGE_HANDLE) );
-//            // JS
-//            $pageController->addFooterItem( $this->getHelper('html')->javascript('core.js', TitlecardPackage::PACKAGE_HANDLE) );
-//            $pageController->addFooterItem( $this->getHelper('html')->javascript('app.js', TitlecardPackage::PACKAGE_HANDLE) );
-//        }
-//
-//
-//        /**
-//         * Memoize helpers (beware, once loaded its always the same instance).
-//         * @param string $handle Handle of the helper to load
-//         * @param bool | Package $pkg Package to get the helper from
-//         * @return ...Helper class of some sort
-//         */
-//        public function getHelper( $handle, $pkg = false ){
-//            $helper = '_helper_' . preg_replace("/[^a-zA-Z0-9]+/", "", $handle);
-//            if( $this->{$helper} === null ){
-//                $this->{$helper} = Loader::helper($handle, $pkg);
-//            }
-//            return $this->{$helper};
-//        }
-//
-//
-//        /**
-//         * Get the Concrete5 permission object for the given page.
-//         * @return Permissions
-//         */
-//        protected function pagePermissionObject(){
-//            if( $this->_pagePermissionObj === null ){
-//                $this->_pagePermissionObj = new Permissions( $this->getCollectionObject() );
-//            }
-//            return $this->_pagePermissionObj;
-//        }
-//
-//    }

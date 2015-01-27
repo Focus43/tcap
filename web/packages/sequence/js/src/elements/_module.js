@@ -1,1 +1,1 @@
-angular.module('titlecard.elements', []);
+angular.module('sequence.elements', []);

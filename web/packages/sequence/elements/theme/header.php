@@ -12,8 +12,9 @@
     </nav>
 
     <figure slideable>
-        <a class="logo" href="#intro">
-            <img src="<?php echo SEQUENCE_IMAGE_PATH; ?>titlecard-logo.svg" />
-        </a>
+        <?php $a = new GlobalArea('Header Left'); $a->display($c); ?>
+<!--        <a class="logo" href="#intro">-->
+<!--            <img src="--><?php //echo SEQUENCE_IMAGE_PATH; ?><!--titlecard-logo.svg" />-->
+<!--        </a>-->
     </figure>
 </header>

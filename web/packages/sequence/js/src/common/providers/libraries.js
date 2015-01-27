@@ -1,6 +1,6 @@
 /* global Modernizr */
 /* global FastClick */
-angular.module('titlecard.common').
+angular.module('sequence.common').
 
     /**
      * @description Modernizr provider

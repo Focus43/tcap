@@ -610,7 +610,7 @@ function isotopeDefinition( Outlayer, getSize, matchesSelector, Item, LayoutMode
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( [
-      'outlayer/outlayer',
+      '../../outlayer/outlayer',
       'get-size/get-size',
       'matches-selector/matches-selector',
       './item',

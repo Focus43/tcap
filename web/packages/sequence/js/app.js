@@ -1,9 +1,9 @@
 /* global FastClick */
 ;(function( window, angular, undefined ){ 'use strict';
 
-    angular.module('titlecard', [
-            'titlecard.common',
-            'titlecard.elements'
+    angular.module('sequence', [
+            'sequence.common',
+            'sequence.elements'
         ]).
 
         /**
@@ -33,9 +33,9 @@
         ]);
 
 })(window, window.angular);
-angular.module('titlecard.common', []);
-angular.module('titlecard.elements', []);
-angular.module('titlecard.common').
+angular.module('sequence.common', []);
+angular.module('sequence.elements', []);
+angular.module('sequence.common').
 
     /**
      * @description Generic body controller
@@ -55,7 +55,7 @@ angular.module('titlecard.common').
     ]);
 /* global Modernizr */
 /* global FastClick */
-angular.module('titlecard.common').
+angular.module('sequence.common').
 
     /**
      * @description Modernizr provider
@@ -112,7 +112,7 @@ angular.module('titlecard.common').
             }
         ];
     });
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     directive('accordion', ['Tween',
         function( Tween ){
@@ -144,7 +144,7 @@ angular.module('titlecard.elements').
             };
         }
     ]);
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     directive('countable', ['Tween',
         function( Tween ){
@@ -268,7 +268,7 @@ angular.module('titlecard.elements').
         }
     ]);
 /* global Power2 */
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     directive('header', ['$window', 'Tween',
         function( $window, Tween ){
@@ -305,7 +305,7 @@ angular.module('titlecard.elements').
             };
         }
     ]);
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     directive('isotope', ['Isotope',
         function( Isotope ){
@@ -344,7 +344,7 @@ angular.module('titlecard.elements').
             };
         }
     ]);
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     directive('masthead', ['Tween',
         function( Tween ){
@@ -416,7 +416,7 @@ angular.module('titlecard.elements').
             };
         }
     ]);
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     factory('ModalData', [function(){
         return {
@@ -544,7 +544,7 @@ angular.module('titlecard.elements').
             }]
         };
     }]);
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     directive('quoteCycle', ['Tween',
         function( Tween ){
@@ -586,7 +586,7 @@ angular.module('titlecard.elements').
         }
     ]);
 /* global Power2 */
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     directive('scrollTop', ['$window', 'Tween',
         function( $window, Tween ){

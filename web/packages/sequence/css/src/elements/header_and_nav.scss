@@ -28,8 +28,8 @@ header {text-transform:uppercase;
 
 @media screen and (min-width:$screen-sm){
   header {background:rgba($theme-gray-dark,0.9);position:fixed;top:0;left:0;right:0;width:100%;z-index:4;
-    figure {padding:0 2rem;
-      .logo {padding:0.75rem 0;display:block;max-width:180px;}
+    figure {padding:0 2rem;max-width:35%;
+      a[href] {padding:0.75rem 0;display:block;max-width:180px;}
     }
     nav {position:absolute;left:auto;right:2rem;width:auto;background:transparent;
       .trigger {display:none;}

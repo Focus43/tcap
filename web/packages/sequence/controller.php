@@ -80,7 +80,7 @@ namespace Concrete\Package\Sequence {
             define('SEQUENCE_TOOLS_PATH', '/_tools');
             define('SEQUENCE_IMAGE_PATH', DIR_REL . '/packages/' . $this->pkgHandle . '/images/');
 
-            Route::register('/_tools', '\Concrete\Package\Sequence\Tools\Handler::dispatch')
+            Route::register('/_tools', '\Concrete\Package\Sequence\Tools\Handler::dispatch');
         }
 
 
@@ -284,7 +284,7 @@ namespace Concrete\Package\Sequence {
             try {
                 if( ! is_object(PageTheme::getByHandle('sequence')) ){
                     /** @var $theme \Concrete\Core\Page\Theme\Theme */
-                    $theme = PageTheme::add('focalize', $this->packageObject());
+                    $theme = PageTheme::add('sequence', $this->packageObject());
                     $theme->applyToSite();
                 }
             }catch(Exception $e){ /* fail gracefully */ }

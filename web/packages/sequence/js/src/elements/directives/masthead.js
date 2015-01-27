@@ -1,4 +1,4 @@
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     directive('masthead', ['Tween',
         function( Tween ){

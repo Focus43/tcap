@@ -61,7 +61,7 @@ return Item;
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( [
-      'outlayer/outlayer'
+      '../../outlayer/outlayer'
     ],
     itemDefinition );
 } else if ( typeof exports === 'object' ) {

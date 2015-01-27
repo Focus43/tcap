@@ -298,7 +298,7 @@ function defineDocReady( eventie ) {
 // transport
 if ( typeof define === 'function' && define.amd ) {
   // AMD
-  define( 'doc-ready/doc-ready',[ 'eventie/eventie' ], defineDocReady );
+  define( 'doc-ready/doc-ready',[ '../../eventie/eventie' ], defineDocReady );
 } else if ( typeof exports === 'object' ) {
   module.exports = defineDocReady( require('eventie') );
 } else {
@@ -1075,7 +1075,7 @@ return getSize;
 // transport
 if ( typeof define === 'function' && define.amd ) {
   // AMD for RequireJS
-  define( 'get-size/get-size',[ 'get-style-property/get-style-property' ], defineGetSize );
+  define( 'get-size/get-size',[ '../../get-style-property/get-style-property' ], defineGetSize );
 } else if ( typeof exports === 'object' ) {
   // CommonJS for Component
   module.exports = defineGetSize( require('desandro-get-style-property') );
@@ -1699,7 +1699,7 @@ if ( typeof define === 'function' && define.amd ) {
   define( 'outlayer/item',[
       'eventEmitter/EventEmitter',
       'get-size/get-size',
-      'get-style-property/get-style-property'
+      '../../get-style-property/get-style-property'
     ],
     outlayerItemDefinition );
 } else if (typeof exports === 'object') {
@@ -2710,7 +2710,7 @@ return Outlayer;
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( 'outlayer/outlayer',[
-      'eventie/eventie',
+      '../../eventie/eventie',
       'doc-ready/doc-ready',
       'eventEmitter/EventEmitter',
       'get-size/get-size',
@@ -2805,7 +2805,7 @@ return Item;
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( 'isotope/js/item',[
-      'outlayer/outlayer'
+      '../../outlayer/outlayer'
     ],
     itemDefinition );
 } else if ( typeof exports === 'object' ) {
@@ -2965,7 +2965,7 @@ if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( 'isotope/js/layout-mode',[
       'get-size/get-size',
-      'outlayer/outlayer'
+      '../../outlayer/outlayer'
     ],
     layoutModeDefinition );
 } else if ( typeof exports === 'object' ) {
@@ -3178,7 +3178,7 @@ function masonryDefinition( Outlayer, getSize ) {
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( 'masonry/masonry',[
-      'outlayer/outlayer',
+      '../../outlayer/outlayer',
       'get-size/get-size'
     ],
     masonryDefinition );
@@ -4008,7 +4008,7 @@ function isotopeDefinition( Outlayer, getSize, matchesSelector, Item, LayoutMode
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( [
-      'outlayer/outlayer',
+      '../../outlayer/outlayer',
       'get-size/get-size',
       'matches-selector/matches-selector',
       'isotope/js/item',

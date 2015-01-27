@@ -1,4 +1,4 @@
-angular.module('titlecard.elements').
+angular.module('sequence.elements').
 
     directive('accordion', ['Tween',
         function( Tween ){

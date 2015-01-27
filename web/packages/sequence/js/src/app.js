@@ -1,9 +1,9 @@
 /* global FastClick */
 ;(function( window, angular, undefined ){ 'use strict';
 
-    angular.module('titlecard', [
-            'titlecard.common',
-            'titlecard.elements'
+    angular.module('sequence', [
+            'sequence.common',
+            'sequence.elements'
         ]).
 
         /**

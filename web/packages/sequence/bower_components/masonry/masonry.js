@@ -190,7 +190,7 @@ function masonryDefinition( Outlayer, getSize ) {
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( [
-      'outlayer/outlayer',
+      '../outlayer/outlayer',
       'get-size/get-size'
     ],
     masonryDefinition );
