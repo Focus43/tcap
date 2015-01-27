@@ -4,20 +4,22 @@
 
         protected $pThemeGridFrameworkHandle = 'bootstrap3';
 
-        protected static $_blockClasses = array(
+        protected static $contentBlockClasses = array(
             'iconified',
-            'anglified'
+            'anglified',
+            'countable'
         );
 
-        protected static $_sectionClasses = array(
-            'parallax',
-            'boxd-orange',
-            'boxd-gray'
+        protected static $sectionClasses = array(
+            'wrap-parallax',
+            'wrap-orange',
+            'wrap-gray'
         );
 
         public function getThemeEditorClasses(){
             return array(
-                array('title' => t('Text:Orange'), 'menuClass' => '', 'spanClass' => 'text-orange')
+                array('title' => t('Text:Orange'), 'menuClass' => '', 'spanClass' => 'text-orange'),
+                array('title' => t('Incrementable'), 'menuClass' => '', 'spanClass' => 'incrementable')
             );
         }
 
@@ -26,18 +28,18 @@
          */
         public function getThemeAreaClasses(){
             return array(
-                'Main 1' => self::$_sectionClasses,
-                'Main 2' => self::$_sectionClasses,
-                'Main 3' => self::$_sectionClasses,
-                'Main 4' => self::$_sectionClasses,
-                'Main 5' => self::$_sectionClasses
+                'Main 1' => self::$sectionClasses,
+                'Main 2' => self::$sectionClasses,
+                'Main 3' => self::$sectionClasses,
+                'Main 4' => self::$sectionClasses,
+                'Main 5' => self::$sectionClasses
             );
         }
 
 
         public function getThemeBlockClasses(){
             return array(
-                'content'   => self::$_blockClasses
+                'content'   => self::$contentBlockClasses
             );
         }
 

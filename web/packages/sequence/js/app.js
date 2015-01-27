@@ -145,7 +145,7 @@ angular.module('sequence.elements').
     ]);
 angular.module('sequence.elements').
 
-    directive('countable', ['Tween',
+    directive('incrementable', ['Tween',
         function( Tween ){
 
             var _completedCount     = 0,
@@ -261,7 +261,7 @@ angular.module('sequence.elements').
 
 
             return {
-                restrict: 'A',
+                restrict: 'C',
                 link:     _link
             };
         }

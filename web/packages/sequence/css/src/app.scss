@@ -33,8 +33,8 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     h4 {color:$theme-orange;margin:0 0 0.3rem;}
   }
 
-  .statistic {text-align:center;
-    b {font-size:420%;display:block;font-weight:100;line-height:1;letter-spacing:-1px;}
+  .countable {text-align:center;
+    p:first-of-type {font-size:420%;display:block;font-weight:100;line-height:1;letter-spacing:-1px;}
   }
 
   aside[scroll-top]{color:#fff;font-size:2rem;position:fixed;bottom:-100%;right:10px;display:inline-block;line-height:1;background:rgba(0,0,0,0.45);cursor:pointer;z-index:9;@include transition(bottom 0.25s ease);
@@ -54,12 +54,10 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     //&:first-of-type {padding-top:$section-vertical-spacing * 2;}
     //&:first-of-type {padding:0;height:100%;width:100%;position:relative;}
     h2 {text-align:center;margin:0;padding:2rem 1rem 3rem;text-transform:uppercase;}
-    .parallax {background-size:cover;background-position:50% 100%;background-attachment:fixed;}
-    //&[parallax] {background-size:cover;background-position:50% 100%;background-attachment:fixed;}
-    .boxd-orange {background:$theme-orange;color:#000;}
-    .boxd-gray {background:$theme-gray-dark;color:$theme-gray-light;}
-
-    .parallax, .boxd-orange, .boxd-gray {margin:-$section-vertical-spacing 0;padding:$section-vertical-spacing 0;}
+    [class*="wrap-"]{margin:-$section-vertical-spacing 0;padding:$section-vertical-spacing 0;}
+    .wrap-parallax {background-size:cover;background-position:50% 100%;background-attachment:fixed;}
+    .wrap-orange {background:$theme-orange;color:#000;}
+    .wrap-gray {background:$theme-gray-dark;color:$theme-gray-light;}
   }
 
   footer {font-size:14px;display:block;text-align:center;padding:0.5rem;}

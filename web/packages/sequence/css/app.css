@@ -233,9 +233,9 @@ img {
     #c-level-1 .iconified h4 {
       color: #f58220;
       margin: 0 0 0.3rem; }
-  #c-level-1 .statistic {
+  #c-level-1 .countable {
     text-align: center; }
-    #c-level-1 .statistic b {
+    #c-level-1 .countable p:first-of-type {
       font-size: 420%;
       display: block;
       font-weight: 100;
@@ -279,19 +279,19 @@ img {
       margin: 0;
       padding: 2rem 1rem 3rem;
       text-transform: uppercase; }
-    #c-level-1 section .parallax {
+    #c-level-1 section [class*="wrap-"] {
+      margin: -90px 0;
+      padding: 90px 0; }
+    #c-level-1 section .wrap-parallax {
       background-size: cover;
       background-position: 50% 100%;
       background-attachment: fixed; }
-    #c-level-1 section .boxd-orange {
+    #c-level-1 section .wrap-orange {
       background: #f58220;
       color: #000; }
-    #c-level-1 section .boxd-gray {
+    #c-level-1 section .wrap-gray {
       background: #222222;
       color: #959595; }
-    #c-level-1 section .parallax, #c-level-1 section .boxd-orange, #c-level-1 section .boxd-gray {
-      margin: -90px 0;
-      padding: 90px 0; }
   #c-level-1 footer {
     font-size: 14px;
     display: block;
