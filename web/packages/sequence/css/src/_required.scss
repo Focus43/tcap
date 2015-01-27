@@ -31,6 +31,12 @@ $input-border:                  $theme-form-elements-color;
 $input-color:                   #fff;
 $input-border-focus:            #fff;
 
+$grid-gutter-width:             60px;
+$container-sm:                  100%;
+
+// More declarations after bootstrap overrides
+$section-vertical-spacing:      $grid-gutter-width * 1.5;
+
 // Imports
 @import 'compass';
 @import '../../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/variables';

@@ -114,7 +114,7 @@
   width: 100%;
   max-width: 80%;
   max-height: 80%;
-  padding: 60px 30px;
+  padding: 90px 45px;
   background: rgba(0, 0, 0, 0.85);
   z-index: -1;
   overflow-x: hidden;
@@ -215,18 +215,21 @@ img {
   #c-level-1 .iconified {
     position: relative;
     padding-bottom: 2rem;
-    margin-left: 1rem; }
+    padding-left: 15px; }
     #c-level-1 .iconified::before {
       content: "\f140";
       font-family: "icomoon";
       position: absolute;
-      right: 100%;
+      left: 0;
       top: 0;
-      margin-right: 5px;
       display: inline-block;
       color: #f58220;
       font-size: 150%;
-      line-height: 1; }
+      line-height: 1;
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%); }
     #c-level-1 .iconified h4 {
       color: #f58220;
       margin: 0 0 0.3rem; }
@@ -256,9 +259,6 @@ img {
       background: rgba(245, 130, 32, 0.85); }
     #c-level-1 aside[scroll-top].visible {
       bottom: 10px; }
-  #c-level-1 .gutter-pad,
-  #c-level-1 .gutter-pad-2x {
-    padding: 0 15px; }
   #c-level-1 [slideable] {
     -moz-transform: translateX(0);
     -ms-transform: translateX(0);
@@ -272,28 +272,26 @@ img {
     width: 100%;
     position: relative; }
   #c-level-1 section {
-    padding: 60px 0;
+    padding: 90px 0;
     overflow: hidden; }
-    #c-level-1 section:first-of-type {
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      position: relative; }
     #c-level-1 section h2 {
       text-align: center;
       margin: 0;
       padding: 2rem 1rem 3rem;
       text-transform: uppercase; }
-    #c-level-1 section[parallax] {
+    #c-level-1 section .parallax {
       background-size: cover;
       background-position: 50% 100%;
       background-attachment: fixed; }
-    #c-level-1 section.boxd-orange {
+    #c-level-1 section .boxd-orange {
       background: #f58220;
       color: #000; }
-    #c-level-1 section.boxd-gray {
+    #c-level-1 section .boxd-gray {
       background: #222222;
       color: #959595; }
+    #c-level-1 section .parallax, #c-level-1 section .boxd-orange, #c-level-1 section .boxd-gray {
+      margin: -90px 0;
+      padding: 90px 0; }
   #c-level-1 footer {
     font-size: 14px;
     display: block;
@@ -563,7 +561,7 @@ img {
         display: block;
         color: #f58220; }
   #c-level-1 [isotope] {
-    margin-bottom: -60px; }
+    margin-bottom: -90px; }
   #c-level-1 [isotope-filters] {
     margin-bottom: 1rem; }
     #c-level-1 [isotope-filters] li {
@@ -654,16 +652,16 @@ img {
     #c-level-1 [isotope-grid] .isotope-node {
       width: 25%;
       padding-bottom: 16.66667%; } }
-  @media screen and (min-width: 768px) {
-    #c-level-1 .gutter-pad-2x {
-      padding: 0 30px; }
-    #c-level-1 .iconified {
-      margin-left: 0; }
-    #c-level-1 form .col-sm-6:nth-child(1) {
-      padding-right: 7.5px; }
-    #c-level-1 form .col-sm-6:nth-child(2) {
-      padding-left: 7.5px; } }
 
+@media screen and (min-width: 768px) {
+  #c-level-1 form .col-sm-6:nth-child(1) {
+    padding-right: 15px; }
+  #c-level-1 form .col-sm-6:nth-child(2) {
+    padding-left: 15px; } }
+@media screen and (min-width: 992px) {
+  #c-level-1 .iconified {
+    margin-left: 15px;
+    padding-right: 15px; } }
 @media screen and (max-width: 768px) {
   html.sidebar-nav #c-level-1 [slideable] {
     -moz-transform: translateX(-320px);
@@ -679,5 +677,16 @@ img {
  */
 .ccm-toolbar-visible #c-level-1 header {
   top: 49px; }
+
+html.cms-edit-mode #c-level-1 section {
+  overflow: visible; }
+  html.cms-edit-mode #c-level-1 section [data-area-handle*="Main"]:not([data-area-handle*=":"]) {
+    margin: -90px 0;
+    padding: 90px 0; }
+  html.cms-edit-mode #c-level-1 section .ccm-block-edit-layout {
+    padding: 15px; }
+    html.cms-edit-mode #c-level-1 section .ccm-block-edit-layout [class*="col-"] {
+      padding-left: 30px !important;
+      padding-right: 30px !important; }
 
 /*# sourceMappingURL=app.css.map */

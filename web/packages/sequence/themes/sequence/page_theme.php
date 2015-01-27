@@ -4,11 +4,15 @@
 
         protected $pThemeGridFrameworkHandle = 'bootstrap3';
 
-        protected static $_backgroundClasses = array(
-            'background-green',
-            'background-blue',
-            'background-red',
-            'box-padding'
+        protected static $_blockClasses = array(
+            'iconified',
+            'anglified'
+        );
+
+        protected static $_sectionClasses = array(
+            'parallax',
+            'boxd-orange',
+            'boxd-gray'
         );
 
         public function getThemeEditorClasses(){
@@ -22,29 +26,18 @@
          */
         public function getThemeAreaClasses(){
             return array(
-                'Main 1' => array(
-                    'parallax'
-                ),
-                'Main 2' => array(
-                    'parallax'
-                ),
-                'Main 3' => array(
-                    'parallax'
-                ),
-                'Main 4' => array(
-                    'parallax'
-                ),
-                'Main 5' => array(
-                    'parallax'
-                ),
+                'Main 1' => self::$_sectionClasses,
+                'Main 2' => self::$_sectionClasses,
+                'Main 3' => self::$_sectionClasses,
+                'Main 4' => self::$_sectionClasses,
+                'Main 5' => self::$_sectionClasses
             );
         }
 
 
         public function getThemeBlockClasses(){
             return array(
-//            'content'   => self::$_backgroundClasses,
-//            'image'     => self::$_backgroundClasses
+                'content'   => self::$_blockClasses
             );
         }
 

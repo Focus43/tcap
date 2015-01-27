@@ -28,8 +28,8 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     p::before {content:'>\0000a0';color:$theme-orange;}
   }
 
-  .iconified {position:relative;padding-bottom:2rem;margin-left:1rem;
-    &::before {content: "\f140";font-family:$font-family-icomoon;position:absolute;right:100%;top:0;margin-right:5px;display:inline-block;color:$theme-orange;font-size:150%;line-height:1;}
+  .iconified {position:relative;padding-bottom:2rem;padding-left:($grid-gutter-width / 4);
+    &::before {content: "\f140";font-family:$font-family-icomoon;position:absolute;left:0;top:0;display:inline-block;color:$theme-orange;font-size:150%;line-height:1;@include transform(translateX(-50%));}
     h4 {color:$theme-orange;margin:0 0 0.3rem;}
   }
 
@@ -42,9 +42,6 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     &.visible {bottom:10px;}
   }
 
-  .gutter-pad,
-  .gutter-pad-2x {padding:0 ($grid-gutter-width/2);}
-
   // For sidebar navigation on mobile
   [slideable]{@include transform(translateX(0));@include transition(all 0.25s ease);}
 
@@ -53,12 +50,16 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   /**********************************************************************
   Page Sections!
   **********************************************************************/
-  section {padding:($grid-gutter-width * 2) 0;overflow:hidden;
-    &:first-of-type {padding:0;height:100%;width:100%;position:relative;}
+  section {padding:$section-vertical-spacing 0;overflow:hidden;
+    //&:first-of-type {padding-top:$section-vertical-spacing * 2;}
+    //&:first-of-type {padding:0;height:100%;width:100%;position:relative;}
     h2 {text-align:center;margin:0;padding:2rem 1rem 3rem;text-transform:uppercase;}
-    &[parallax] {background-size:cover;background-position:50% 100%;background-attachment:fixed;}
-    &.boxd-orange {background:$theme-orange;color:#000;}
-    &.boxd-gray {background:$theme-gray-dark;color:$theme-gray-light;}
+    .parallax {background-size:cover;background-position:50% 100%;background-attachment:fixed;}
+    //&[parallax] {background-size:cover;background-position:50% 100%;background-attachment:fixed;}
+    .boxd-orange {background:$theme-orange;color:#000;}
+    .boxd-gray {background:$theme-gray-dark;color:$theme-gray-light;}
+
+    .parallax, .boxd-orange, .boxd-gray {margin:-$section-vertical-spacing 0;padding:$section-vertical-spacing 0;}
   }
 
   footer {font-size:14px;display:block;text-align:center;padding:0.5rem;}
@@ -69,10 +70,10 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   @import 'elements/quote-cycle';
   @import 'elements/isotope';
 
-  @media screen and (min-width:$screen-sm){
-    .gutter-pad-2x {padding:0 $grid-gutter-width;}
-    .iconified {margin-left:0;}
+}
 
+@media screen and (min-width:$screen-sm){
+  #c-level-1 {
     form {
       .col-sm-6 {
         &:nth-child(1){padding-right:($grid-gutter-width/4);}
@@ -80,7 +81,12 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
       }
     }
   }
+}
 
+@media screen and (min-width:$screen-md){
+  #c-level-1 {
+    .iconified {margin-left:($grid-gutter-width / 4);padding-right:($grid-gutter-width / 4);}
+  }
 }
 
 @media screen and (max-width:$screen-sm){
@@ -98,5 +104,16 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 .ccm-toolbar-visible {
   #c-level-1 {
     header {top:49px;}
+  }
+}
+
+html.cms-edit-mode {
+  #c-level-1 {
+    section {overflow:visible;
+      [data-area-handle*="Main"]:not([data-area-handle*=":"]) {margin:-$section-vertical-spacing 0;padding:$section-vertical-spacing 0;}
+      .ccm-block-edit-layout {padding:($grid-gutter-width/4);
+        [class*="col-"]{padding-left:$grid-gutter-width/2 !important;padding-right:$grid-gutter-width/2 !important;}
+      }
+    }
   }
 }
