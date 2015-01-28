@@ -39,7 +39,7 @@
                 </section>
             <?php endfor; ?>
 
-            <section>
+            <section id="people">
                 <div class="wrap-gray">
                     <div class="container">
                         <div class="row">
