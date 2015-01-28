@@ -133,7 +133,8 @@
                 //->assignPageTypes()
                 ->setupSinglePages()
                 ->setupBlockTypeSets()
-                ->setupBlocks();
+                ->setupBlocks()
+                ->modifyExistingPageTypes();
         }
 
 
@@ -392,8 +393,18 @@
 
 
         /**
+         * @return Controller
+         */
+        private function modifyExistingPageTypes(){
+            Loader::db()->Execute('UPDATE Pages set pkgID = ? WHERE cID = 1', array(
+                (int) $this->packageObject()->getPackageID()
+            ));
+        }
+
+
+        /**
          * Get the package object; if it hasn't been instantiated yet, load it.
-         * @return Package
+         * @return \Concrete\Core\Package\Package
          */
         private function packageObject(){
             if( $this->_packageObj === null ){
