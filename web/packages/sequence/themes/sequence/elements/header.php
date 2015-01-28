@@ -3,11 +3,16 @@
         <a class="trigger icn-layers"></a>
         <div class="inner">
             <ul>
-                <li><a href="#the-fund"><span>Fund</span></a></li>
-                <li><a href="#strategy"><span>Strategy</span></a></li>
-                <li><a href="#people"><span>People</span></a></li>
-                <li><a href="#contact"><span>Contact</span></a></li>
+                <?php for($i = 1; $i <= (int)$areaCount; $i++): ?>
+                    <li><a href="#<?php echo "section-{$i}"; ?>"><span><?php echo "Section {$i}"; ?></span></a></li>
+                <?php endfor; ?>
             </ul>
+<!--            <ul>-->
+<!--                <li><a href="#the-fund"><span>Fund</span></a></li>-->
+<!--                <li><a href="#strategy"><span>Strategy</span></a></li>-->
+<!--                <li><a href="#people"><span>People</span></a></li>-->
+<!--                <li><a href="#contact"><span>Contact</span></a></li>-->
+<!--            </ul>-->
         </div>
     </nav>
 

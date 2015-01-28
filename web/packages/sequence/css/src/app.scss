@@ -117,7 +117,9 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
  */
 html.cms-edit-mode {
   #c-level-1 {
-    header figure {max-width:50%;}
+    header {
+      figure {max-width:50%;}
+    }
 
     [masthead] .node .node-content {max-width:85%;min-width:500px;width:auto;}
 
