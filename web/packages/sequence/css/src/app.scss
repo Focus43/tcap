@@ -50,13 +50,18 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   Page Sections!
   **********************************************************************/
   section {padding:$section-vertical-spacing 0;overflow:hidden;
-    &:first-of-type {padding:0;height:100%;width:100%;position:relative;}
+    //&:first-of-type {padding:0;height:100%;width:100%;position:relative;}
     h2 {text-align:center;margin:0;padding:2rem 1rem 3rem;text-transform:uppercase;}
     [class*="wrap-"]{margin:-$section-vertical-spacing 0;padding:$section-vertical-spacing 0;}
     .wrap-unstyled {/* no styles; handled via the CMS! */}
-    .wrap-parallax {/*color:#fff;*/background-size:cover;background-position:50% 100%;background-attachment:fixed;}
     .wrap-orange {/*color:#000;*/background:$theme-orange;}
     .wrap-gray {/*color:$theme-gray-light;*/background:$theme-gray-dark;}
+    .wrap-parallax {/*color:#fff;*/background-size:cover;background-position:50% 100%;background-attachment:fixed;}
+//    .wrap-parallax {position:relative;
+//      &::before {display:block;content:'';position:absolute;top:0;right:0;bottom:0;left:0;background-image:inherit;background-size:cover;background-attachment:fixed;@include transform(scale(0.6,0.6));}
+//    }
+
+    #intro {padding:0;height:100%;width:100%;position:relative;}
   }
 
   footer {font-size:14px;display:block;text-align:center;padding:1rem;}

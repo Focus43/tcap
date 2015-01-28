@@ -8,9 +8,10 @@
         <?php $this->inc('elements/header.php'); ?>
 
         <main slideable>
+            <?php if(!empty($mastheadImages)): ?>
             <section id="intro">
-                <div masthead data-transition-speed="0.5"<?php if(!$isEditMode){echo ' data-loop-timing="10"';} ?>>
-                    <?php foreach((array)$mastheadImages AS $index => $fileObj): ?>
+                <div masthead data-transition-speed="0.5"<?php if(!$isEditMode){echo ' data-loop-timing="12"';} ?>>
+                    <?php foreach($mastheadImages AS $index => $fileObj): ?>
                         <div class="node tabular" style="background-image:url('<?php echo $fileObj->getRelativePath(); ?>');">
                             <div class="cellular text-left">
                                 <div class="node-content">
@@ -29,6 +30,7 @@
                     </div>
                 </div>
             </section>
+            <?php endif; ?>
 
             <?php for($i = 1; $i <= (int)$areaCount; $i++): ?>
                 <section id="<?php echo "section-{$i}"; ?>">
