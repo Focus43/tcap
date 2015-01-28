@@ -11,7 +11,7 @@
 
         public function on_start(){
             parent::on_start();
-            $this->set('isEditMode', $this->getPageObject()->isEditMode() ? 'cms-edit-mode' : '');
+            $this->set('isEditMode', $this->getPageObject()->isEditMode());
             $this->set('areaCount', $this->getPageObject()->getAttribute(PackageController::COLLECTION_ATTR_SECTIONS));
             $this->set('textHelper', $this->getHelper('helper/text'));
             $this->set('mastheadImages', $this->getMastheadImages());

@@ -241,6 +241,50 @@ img {
       font-weight: 100;
       line-height: 1;
       letter-spacing: -1px; }
+  #c-level-1 [slideable] {
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease; }
+  #c-level-1 main {
+    height: 100%;
+    width: 100%;
+    position: relative; }
+  #c-level-1 section {
+    padding: 90px 0;
+    overflow: hidden; }
+    #c-level-1 section:first-of-type {
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      position: relative; }
+    #c-level-1 section h2 {
+      text-align: center;
+      margin: 0;
+      padding: 2rem 1rem 3rem;
+      text-transform: uppercase; }
+    #c-level-1 section [class*="wrap-"] {
+      margin: -90px 0;
+      padding: 90px 0; }
+    #c-level-1 section .wrap-parallax {
+      color: #fff;
+      background-size: cover;
+      background-position: 50% 100%;
+      background-attachment: fixed; }
+    #c-level-1 section .wrap-orange {
+      color: #000;
+      background: #f58220; }
+    #c-level-1 section .wrap-gray {
+      color: #959595;
+      background: #222222; }
+  #c-level-1 footer {
+    font-size: 14px;
+    display: block;
+    text-align: center;
+    padding: 0.5rem; }
   #c-level-1 aside[scroll-top] {
     color: #fff;
     font-size: 2rem;
@@ -259,44 +303,6 @@ img {
       background: rgba(245, 130, 32, 0.85); }
     #c-level-1 aside[scroll-top].visible {
       bottom: 10px; }
-  #c-level-1 [slideable] {
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-    -webkit-transition: all 0.25s ease;
-    -o-transition: all 0.25s ease;
-    transition: all 0.25s ease; }
-  #c-level-1 main {
-    height: 100%;
-    width: 100%;
-    position: relative; }
-  #c-level-1 section {
-    padding: 90px 0;
-    overflow: hidden; }
-    #c-level-1 section h2 {
-      text-align: center;
-      margin: 0;
-      padding: 2rem 1rem 3rem;
-      text-transform: uppercase; }
-    #c-level-1 section [class*="wrap-"] {
-      margin: -90px 0;
-      padding: 90px 0; }
-    #c-level-1 section .wrap-parallax {
-      background-size: cover;
-      background-position: 50% 100%;
-      background-attachment: fixed; }
-    #c-level-1 section .wrap-orange {
-      background: #f58220;
-      color: #000; }
-    #c-level-1 section .wrap-gray {
-      background: #222222;
-      color: #959595; }
-  #c-level-1 footer {
-    font-size: 14px;
-    display: block;
-    text-align: center;
-    padding: 0.5rem; }
   #c-level-1 header {
     text-transform: uppercase; }
     #c-level-1 header a {
@@ -655,9 +661,9 @@ img {
 
 @media screen and (min-width: 768px) {
   #c-level-1 form .col-sm-6:nth-child(1) {
-    padding-right: 15px; }
+    padding-right: 7.5px; }
   #c-level-1 form .col-sm-6:nth-child(2) {
-    padding-left: 15px; } }
+    padding-left: 7.5px; } }
 @media screen and (min-width: 992px) {
   #c-level-1 .iconified {
     margin-left: 15px;
@@ -673,11 +679,18 @@ img {
     opacity: 1;
     z-index: 3; } }
 /**
- * Edit mode
+ * When Logged In
  */
 .ccm-toolbar-visible #c-level-1 header {
   top: 49px; }
 
+/**
+ * When In Edit Mode
+ */
+html.cms-edit-mode #c-level-1 [masthead] .node .node-content {
+  max-width: 85%;
+  min-width: 500px;
+  width: auto; }
 html.cms-edit-mode #c-level-1 section {
   overflow: visible; }
   html.cms-edit-mode #c-level-1 section [data-area-handle*="Main"]:not([data-area-handle*=":"]) {

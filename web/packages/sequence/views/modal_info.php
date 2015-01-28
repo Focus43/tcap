@@ -4,7 +4,7 @@
             <img src="<?php echo ($photoFileObj instanceof File) ? $photoFileObj->getRelativePath() : ''; ?>" />
         </div>
         <div class="col-sm-8">
-            <div class="gutter-pad anglified">
+            <div class="anglified">
                 <h3><?php echo $fullName; ?><br/><span class="text-orange"><?php echo $title; ?></span></h3>
                 <?php echo $description; ?>
             </div>
