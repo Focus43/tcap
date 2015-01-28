@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html ng-app="sequence" ng-controller="CtrlRoot" ng-class="rootClasses" lang="<?php echo LANGUAGE; ?>" class="<?php echo $isEditMode ? 'cms-edit-mode' : ''; ?>">
-<?php Loader::packageElement('theme/head', \Concrete\Package\Sequence\Controller::PACKAGE_HANDLE); ?>
+<?php $this->inc('elements/head.php'); ?>
 
 <body>
 
     <div id="c-level-1" class="<?php echo $c->getPageWrapperClass(); ?>">
-        <?php Loader::packageElement('theme/header', \Concrete\Package\Sequence\Controller::PACKAGE_HANDLE); ?>
+        <?php $this->inc('elements/header.php'); ?>
 
         <main slideable>
             <section id="intro">

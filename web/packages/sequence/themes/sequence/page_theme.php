@@ -11,6 +11,7 @@
         );
 
         protected static $sectionClasses = array(
+            'wrap-unstyled',
             'wrap-parallax',
             'wrap-orange',
             'wrap-gray'
@@ -18,7 +19,7 @@
 
         public function getThemeEditorClasses(){
             return array(
-                array('title' => t('Text:Orange'), 'menuClass' => '', 'spanClass' => 'text-orange'),
+                array('title' => t('Highlight Color'), 'menuClass' => '', 'spanClass' => 'highlight-color'),
                 array('title' => t('Incrementable'), 'menuClass' => '', 'spanClass' => 'incrementable')
             );
         }

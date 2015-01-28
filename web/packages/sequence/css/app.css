@@ -207,8 +207,6 @@ img {
         text-align: left; }
       #c-level-1 .tabular .cellular.text-right {
         text-align: right; }
-  #c-level-1 .text-orange {
-    color: #f58220; }
   #c-level-1 .anglified p::before {
     content: '>\0000a0';
     color: #f58220; }
@@ -230,9 +228,8 @@ img {
       -ms-transform: translateX(-50%);
       -webkit-transform: translateX(-50%);
       transform: translateX(-50%); }
-    #c-level-1 .iconified h4 {
-      color: #f58220;
-      margin: 0 0 0.3rem; }
+    #c-level-1 .iconified h2, #c-level-1 .iconified h3, #c-level-1 .iconified h4, #c-level-1 .iconified h5 {
+      margin: 0 0 0.5rem; }
   #c-level-1 .countable {
     text-align: center; }
     #c-level-1 .countable p:first-of-type {
@@ -269,16 +266,18 @@ img {
     #c-level-1 section [class*="wrap-"] {
       margin: -90px 0;
       padding: 90px 0; }
+    #c-level-1 section .wrap-unstyled {
+      /* no styles; handled via the CMS! */ }
     #c-level-1 section .wrap-parallax {
-      color: #fff;
+      /*color:#fff;*/
       background-size: cover;
       background-position: 50% 100%;
       background-attachment: fixed; }
     #c-level-1 section .wrap-orange {
-      color: #000;
+      /*color:#000;*/
       background: #f58220; }
     #c-level-1 section .wrap-gray {
-      color: #959595;
+      /*color:$theme-gray-light;*/
       background: #222222; }
   #c-level-1 footer {
     font-size: 14px;
@@ -471,12 +470,13 @@ img {
         opacity: 1; }
       #c-level-1 [masthead] .node .node-content {
         font-size: 1.3rem;
-        color: #fff;
+        /*color:#fff;*/
         display: inline-block;
         max-width: 55%;
         padding-left: 7rem; }
         #c-level-1 [masthead] .node .node-content a {
-          color: #fff; }
+          color: inherit;
+          /*color:#fff;*/ }
           #c-level-1 [masthead] .node .node-content a:hover {
             text-decoration: underline; }
         #c-level-1 [masthead] .node .node-content ul {

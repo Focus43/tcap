@@ -19,13 +19,6 @@ header {text-transform:uppercase;
   }
 }
 
-//@media screen and (max-width:$screen-sm){
-//  html.sidebar-nav {
-//    [slideable]{@include transform(translateX(-$nav-sidebar-width));}
-//    nav::after {visibility:visible;opacity:1;z-index:3;}
-//  }
-//}
-
 @media screen and (min-width:$screen-sm){
   header {background:rgba($theme-gray-dark,0.9);position:fixed;top:0;left:0;right:0;width:100%;z-index:4;
     figure {padding:0 2rem;max-width:35%;

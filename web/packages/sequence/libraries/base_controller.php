@@ -39,7 +39,7 @@
          */
         public function attachThemeAssets( \Concrete\Core\Page\Controller\PageController $pageController ){
             // CSS
-            $pageController->addHeaderItem('<link href="http://fonts.googleapis.com/css?family=Ropa+Sans:400,400italic" rel="stylesheet" type="text/css">');
+            //$pageController->addHeaderItem('<link href="http://fonts.googleapis.com/css?family=Ropa+Sans:400,400italic" rel="stylesheet" type="text/css">');
             $pageController->addHeaderItem( $this->getHelper('helper/html')->css('core.css', PackageController::PACKAGE_HANDLE) );
             $pageController->addHeaderItem( $this->getHelper('helper/html')->css('app.css', PackageController::PACKAGE_HANDLE) );
             // JS

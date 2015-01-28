@@ -1,0 +1,79 @@
+// Theme variables
+@import 'presets/defaults.less';
+
+// Fonts file
+@import ~"@{preset-fonts-file}";
+
+body {
+  color:@body-type-type-color;
+  font-size:@body-type-type-font-size;
+  font-family:@body-type-type-font-family;
+  font-weight:@body-type-type-font-weight;
+  text-transform:@body-type-type-text-transform;
+  font-style:@body-type-type-font-style;
+  background-color:@body-background-color;
+
+  #c-level-1 {
+    // Inputs
+    input, textarea {
+      background-color:@button-background-color;
+      border-color:@input-border-color;
+    }
+
+    // Buttons
+    button, .btn, .btn-default {
+      background-color:@button-background-color;
+      border-color:@button-border-color;
+    }
+
+    // Header Tags
+    h1,h2,h3,h4,h5,h6 {
+      color:@header-tags-color;
+    }
+
+    // Header
+    header {
+      font-family:@header-type-type-font-family;
+      font-weight:@header-type-type-font-weight;
+      font-size:@header-type-type-font-size;
+      text-transform:@header-type-type-text-transform;
+      font-style:@header-type-type-font-style;
+      color:@header-type-type-color;
+
+      a {
+        color:inherit;
+      }
+    }
+
+    // Sections
+    section {
+      padding:@section-spacing-size 0;
+
+      [class*="wrap-"] {
+        margin:-@section-spacing-size 0;
+        padding:@section-spacing-size 0;
+      }
+    }
+
+    // Accordions
+    [accordion] .group .accordion-header {
+      color:@accordion-header-color;
+    }
+
+    // Generic Classes
+    .highlight-color {
+      color:@highlight-color;
+    }
+  }
+}
+
+@media screen and (min-width:768px){
+  #c-level-1 {
+    // Header
+    header {background:@header-background-color;
+      nav ul li {
+        font-size:@header-type-type-font-size;
+      }
+    }
+  }
+}
