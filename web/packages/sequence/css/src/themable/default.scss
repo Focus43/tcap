@@ -3,21 +3,21 @@
 $theme-body-bg-color:           #000;
 
 $theme-font-family:             'Ropa Sans', sans-serif;
-$theme-font-weight:             300;
-$theme-font-style:              'normal';
-$theme-font-color:              #fff;
+$theme-font-color:              #959595;
 $theme-font-size:               16px;
+$theme-font-weight:             300;
 
 $theme-highlight-color:         #f58220;
-$theme-dark-color:              #222222;
 $theme-light-color:             #959595;
+$theme-dark-color:              #222222;
+
+$theme-header-bg-color:         rgba(#222222, 0.85);
 
 $theme-input-bg-color:          #4e4e4e;
 $theme-input-font-color:        #fff;
-$theme-input-focus-color:       #fff;
-$theme-button-bg-color:         $theme-input-bg-color;
-$theme-button-font-color:       $theme-input-font-color;
+$theme-button-bg-color:         #4e4e4e;
+$theme-button-font-color:       #fff;
 
-$theme-accordion-header-color:  $theme-highlight-color;
+$theme-accordion-header-color:  #f58220;
 
-$theme-section-spacing-size:    90px;
+$theme-section-spacing:         90px;

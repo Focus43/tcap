@@ -5,6 +5,6 @@
       p {display:inline;}
       &::before, &::after {font-size:150%;line-height:0;position:relative;top:6px;}
     }
-    cite {display:block;color:$theme-orange;}
+    cite {display:block;color:$theme-highlight-color;}
   }
 }

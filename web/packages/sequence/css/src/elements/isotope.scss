@@ -1,12 +1,12 @@
-[isotope]{margin-bottom:-$section-vertical-spacing;}
+[isotope]{margin-bottom:-$theme-section-spacing;}
 
 [isotope-filters]{margin-bottom:1rem;
   li {padding:0.5rem 0.75rem;
     a {color:#fff;display:block;padding:0.25rem 0.75rem;border:1px solid #fff;
-      &.active {color:$theme-orange;border-color:$theme-orange;}
+      &.active {color:$theme-highlight-color;border-color:$theme-highlight-color;}
     }
     &:hover, &.active {
-      a {color:$theme-orange;border-color:$theme-orange;}
+      a {color:$theme-highlight-color;border-color:$theme-highlight-color;}
     }
   }
 }
@@ -19,7 +19,7 @@ $node-spacing: 3px;
     .isotope-box::before {padding:$node-spacing;position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:50% 50%;background-clip:content-box;overflow:hidden;}
 
     .isotope-box {width:100%;height:100%;
-      &::before {content:'';visibility:hidden;opacity:0;display:block;background-color:rgba($theme-orange,0.85);min-width:100%;min-height:100%;@include transition(all 0.25s ease);}
+      &::before {content:'';visibility:hidden;opacity:0;display:block;background-color:rgba($theme-highlight-color,0.85);min-width:100%;min-height:100%;@include transition(all 0.25s ease);}
       .isotope-content {visibility:hidden;opacity:0;position:absolute;bottom:15%;left:$node-spacing;right:$node-spacing;padding:1rem;@include transition(all 0.25s ease);
         h5 {text-transform:uppercase;font-size:130%;margin:0;}
         p {margin-bottom:0;font-size:90%;}

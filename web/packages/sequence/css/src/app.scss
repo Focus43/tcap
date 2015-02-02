@@ -23,14 +23,16 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     }
   }
 
-  //.text-orange {color:$theme-orange;} "highlight-color"
+  .theme-highlight-color {color:$theme-highlight-color;}
+  .theme-light-color {color:$theme-light-color;}
+  .theme-dark-color {color:$theme-dark-color;}
 
   .anglified {
-    p::before {content:'>\0000a0';color:$theme-orange;}
+    p::before {content:'>\0000a0';color:$theme-highlight-color;}
   }
 
   .iconified {position:relative;padding-bottom:2rem;padding-left:($grid-gutter-width / 4);
-    &::before {content: "\f140";font-family:$font-family-icomoon;position:absolute;left:0;top:0;display:inline-block;color:$theme-orange;font-size:150%;line-height:1;@include transform(translateX(-50%));}
+    &::before {content: "\f140";font-family:$font-family-icomoon;position:absolute;left:0;top:0;display:inline-block;color:$theme-highlight-color;font-size:150%;line-height:1;@include transform(translateX(-50%));}
     h2,h3,h4,h5 {margin:0 0 0.5rem;}
   }
 
@@ -45,22 +47,19 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 
   // Temporary; override in the CMS w/ custom CSS to show
   //#people, #contact {display:none;}
-  #contact {height:100%;background:$theme-gray-dark;}
+  #contact {height:100%;background:$theme-dark-color;}
 
   /**********************************************************************
   Page Sections!
   **********************************************************************/
-  section {padding:$section-vertical-spacing 0;overflow:hidden;
+  section {padding:$theme-section-spacing 0;overflow:hidden;background-size:cover;background-position:50% 100%;background-attachment:fixed;
     //&:first-of-type {padding:0;height:100%;width:100%;position:relative;}
     h2 {text-align:center;margin:0;padding:2rem 1rem 3rem;text-transform:uppercase;}
-    [class*="wrap-"]{margin:-$section-vertical-spacing 0;padding:$section-vertical-spacing 0;}
-    .wrap-unstyled {/* no styles; handled via the CMS! */}
-    .wrap-orange {/*color:#000;*/background:$theme-orange;}
-    .wrap-gray {/*color:$theme-gray-light;*/background:$theme-gray-dark;}
-    .wrap-parallax {/*color:#fff;*/background-size:cover;background-position:50% 100%;background-attachment:fixed;}
-//    .wrap-parallax {position:relative;
-//      &::before {display:block;content:'';position:absolute;top:0;right:0;bottom:0;left:0;background-image:inherit;background-size:cover;background-attachment:fixed;@include transform(scale(0.6,0.6));}
-//    }
+    [class*="wrap-"]{margin:-$theme-section-spacing 0;padding:$theme-section-spacing 0;}
+    .wrap-custom {/* unstyled; either parallax or custom color */}
+    .wrap-theme-highlight {background:$theme-highlight-color;}
+    .wrap-theme-light {background:$theme-light-color;}
+    .wrap-theme-dark {background:$theme-light-color;}
 
     &#intro {padding:0;height:100%;width:100%;position:relative;}
   }
@@ -68,7 +67,7 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   footer {font-size:14px;display:block;text-align:center;padding:1rem;}
 
   aside[scroll-top]{color:#fff;font-size:2rem;position:fixed;bottom:-100%;right:10px;display:inline-block;line-height:1;background:rgba(0,0,0,0.45);cursor:pointer;z-index:9;@include transition(bottom 0.25s ease);
-    &:hover {background:rgba($theme-orange,0.85);}
+    &:hover {background:rgba($theme-highlight-color,0.85);}
     &.visible {bottom:10px;}
   }
 
@@ -130,7 +129,7 @@ html.cms-edit-mode {
     [masthead] .node .node-content {max-width:85%;min-width:500px;width:auto;}
 
     section {overflow:visible;
-      [data-area-handle*="Main"]:not([data-area-handle*=":"]) {margin:-$section-vertical-spacing 0;padding:$section-vertical-spacing 0;}
+      [data-area-handle*="Main"]:not([data-area-handle*=":"]) {margin:-$theme-section-spacing 0;padding:$theme-section-spacing 0;}
       .ccm-block-edit-layout {padding:($grid-gutter-width/4);
         [class*="col-"]{padding-left:$grid-gutter-width/2 !important;padding-right:$grid-gutter-width/2 !important;}
       }

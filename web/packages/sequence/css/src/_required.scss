@@ -1,41 +1,35 @@
+@import 'themable/default';
+
 // Custom
 $package-path:                  '/packages/sequence/';
 $icomoon-font-path:             '#{$package-path}fonts/icomoon';
 $image-path:                    '#{$package-path}images';
-$theme-orange:                  #f58220;
-$theme-gray-light:              #959595;
-$theme-gray-dark:               #222222;
-$theme-form-elements-color:     #4e4e4e;
-$font-family-ropa-sans:         'Ropa Sans', sans-serif;
 $font-family-icomoon:           'icomoon';
-
 $nav-sidebar-width:             320px;
 $mask-animate-time:             0.5s;
 
 // Bootstrap
-$body-bg:                       #000000;
-$text-color:                    $theme-gray-light;
-$font-family-base:              $font-family-ropa-sans;
-$font-size-base:                16px;
+$body-bg:                       $theme-body-bg-color;
+
+$text-color:                    $theme-font-color;
+$font-family-base:              $theme-font-family;
+$font-size-base:                $theme-font-size;
 
 $border-radius-base:            0;
 $border-radius-large:           0;
 $border-radius-small:           0;
 
-$btn-default-color:             #fff;
-$btn-default-bg:                $theme-form-elements-color;
-$btn-default-border:            $theme-form-elements-color;
+$btn-default-color:             $theme-button-font-color;
+$btn-default-bg:                $theme-button-bg-color;
+$btn-default-border:            $theme-button-bg-color;
 
-$input-bg:                      $theme-form-elements-color;
-$input-border:                  $theme-form-elements-color;
-$input-color:                   #fff;
-$input-border-focus:            #fff;
+$input-bg:                      $theme-input-bg-color;
+$input-border:                  $theme-input-bg-color;
+$input-color:                   $theme-input-font-color;
+$input-border-focus:            $theme-input-font-color;
 
 $grid-gutter-width:             60px;
 $container-sm:                  100%;
-
-// More declarations after bootstrap overrides
-$section-vertical-spacing:      $grid-gutter-width * 1.5;
 
 // Imports
 @import 'compass';

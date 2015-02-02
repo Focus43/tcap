@@ -35,7 +35,7 @@
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.04';
+        protected $pkgVersion 			= '0.05';
 
 
         /**
@@ -120,15 +120,13 @@
                 ->setupCollectionAttributes()
                 ->setupFileAttributes()
                 ->setupFileSets()
-                //->setupUserGroups()
                 ->setupTheme()
                 ->setupTemplates()
                 ->setupPageTypes()
-                //->assignPageTypes()
+                ->assignPageTypes()
                 ->setupSinglePages()
                 ->setupBlockTypeSets()
-                ->setupBlocks()
-                ->modifyExistingPageTypes();
+                ->setupBlocks();
         }
 
 
@@ -217,39 +215,6 @@
         /**
          * @return Controller
          */
-//        private function setupUserGroups(){
-//            if( !(Group::getByName(self::USER_GROUP_GENERAL_PARTNERS) instanceof Group ) ){
-//                Group::add(self::USER_GROUP_GENERAL_PARTNERS, self::USER_GROUP_GENERAL_PARTNERS);
-//            }
-//
-//            if( !(Group::getByName(self::USER_GROUP_FUND_MANAGERS) instanceof Group ) ){
-//                Group::add(self::USER_GROUP_FUND_MANAGERS, self::USER_GROUP_FUND_MANAGERS);
-//            }
-//
-//            if( !(Group::getByName(self::USER_GROUP_COMPANY_LEADERS) instanceof Group ) ){
-//                Group::add(self::USER_GROUP_COMPANY_LEADERS, self::USER_GROUP_COMPANY_LEADERS);
-//            }
-//
-//            if( !(Group::getByName(self::USER_GROUP_STRATEGIC_PARTNERS) instanceof Group ) ){
-//                Group::add(self::USER_GROUP_STRATEGIC_PARTNERS, self::USER_GROUP_STRATEGIC_PARTNERS);
-//            }
-//
-//            // Group Sets
-//            if( !(GroupSet::getByName(self::USER_GROUP_SET_ALL) instanceof GroupSet) ){
-//                $groupSetAll = GroupSet::add(self::USER_GROUP_SET_ALL, $this->packageObject());
-//                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_GENERAL_PARTNERS));
-//                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_FUND_MANAGERS));
-//                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_COMPANY_LEADERS));
-//                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_STRATEGIC_PARTNERS));
-//            }
-//
-//            return $this;
-//        }
-
-
-        /**
-         * @return Controller
-         */
         private function setupTheme(){
             try {
                 if( ! is_object(PageTheme::getByHandle('sequence')) ){
@@ -329,10 +294,16 @@
          * @return Controller
          */
         function assignPageTypes(){
-            // Assign Home to CollectionType 'Home'
-//            Page::getByID(1)->update(array(
-//                'ctID' => $this->pageType('home')->getCollectionTypeID()
-//            ));
+            Loader::db()->Execute('UPDATE Pages set pkgID = ? WHERE cID = 1', array(
+                (int) $this->packageObject()->getPackageID()
+            ));
+
+            // Things available through the API
+            $homePageCollection = \Concrete\Core\Page\Page::getByID(1)->getVersionToModify();
+            $homePageCollection->update(array(
+                'pTemplateID' => PageTemplate::getByHandle('default')->getPageTemplateID()
+            ));
+            $homePageCollection->setPageType(PageType::getByHandle('page'));
 
             return $this;
         }
@@ -371,16 +342,6 @@
             }
 
             return $this;
-        }
-
-
-        /**
-         * @return Controller
-         */
-        private function modifyExistingPageTypes(){
-            Loader::db()->Execute('UPDATE Pages set pkgID = ? WHERE cID = 1', array(
-                (int) $this->packageObject()->getPackageID()
-            ));
         }
 
 

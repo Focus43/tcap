@@ -1,12 +1,12 @@
-[modal-window]{visibility:hidden;opacity:0;display:block;position:fixed;top:50%;left:50%;width:100%;max-width:80%;max-height:80%;padding:($section-vertical-spacing / 2);background:rgba(0,0,0,0.85);z-index:-1;@include scrollOverflow;@include transform(translate(-50%, 0));@include transition(all 0.35s ease);
+[modal-window]{visibility:hidden;opacity:0;display:block;position:fixed;top:50%;left:50%;width:100%;max-width:80%;max-height:80%;padding:($theme-section-spacing / 2);background:rgba(0,0,0,0.85);z-index:-1;@include scrollOverflow;@include transform(translate(-50%, 0));@include transition(all 0.35s ease);
   &.open {visibility:visible;opacity:1;z-index:9;@include transform(translate(-50%,-50%));}
   .icn-close {position:absolute;top:0;right:0;font-size:4rem;line-height:1;padding:0;z-index:2;cursor:pointer;
-    &:hover {color:$theme-orange;}
+    &:hover {color:$theme-highlight-color;}
   }
 }
 
 .modal-nav {color:#fff;font-size:4rem;position:absolute;top:50%;display:inline-block;line-height:1;@include transform(translateY(-50%));
-  &:hover {color:$theme-orange;text-decoration:none;}
+  &:hover {color:$theme-highlight-color;text-decoration:none;}
   &.prev {left:0;}
   &.next {right:0;}
 }

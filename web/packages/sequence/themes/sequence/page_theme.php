@@ -11,15 +11,17 @@
         );
 
         protected static $sectionClasses = array(
-            'wrap-unstyled',
-            'wrap-parallax',
-            'wrap-orange',
-            'wrap-gray'
+            'wrap-custom',
+            'wrap-theme-highlight',
+            'wrap-theme-light',
+            'wrap-theme-dark'
         );
 
         public function getThemeEditorClasses(){
             return array(
-                array('title' => t('Highlight Color'), 'menuClass' => '', 'spanClass' => 'highlight-color'),
+                array('title' => t('Theme Highlight Color'), 'menuClass' => '', 'spanClass' => 'theme-highlight-color'),
+                array('title' => t('Theme Light Color'), 'menuClass' => '', 'spanClass' => 'theme-light-color'),
+                array('title' => t('Theme Dark Color'), 'menuClass' => '', 'spanClass' => 'theme-dark-color'),
                 array('title' => t('Incrementable'), 'menuClass' => '', 'spanClass' => 'incrementable')
             );
         }

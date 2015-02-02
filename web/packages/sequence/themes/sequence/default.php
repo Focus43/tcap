@@ -79,7 +79,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h2><span class="text-orange">Contact:</span> Get In Touch With The Team.</h2>
+                        <?php $a = new Area('Contact Top'); $a->display($c); ?>
                     </div>
                 </div>
                 <div class="row">

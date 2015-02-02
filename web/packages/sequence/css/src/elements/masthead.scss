@@ -7,15 +7,15 @@
       }
       ul {list-style:none;padding:0 0 0 18px;
         li {position:relative;
-          &::before {content: "\e684";font-family:'icomoon';position:absolute;right:100%;top:50%;display:inline-block;color:$theme-orange;font-size:150%;@include transform(translateY(-50%));}
+          &::before {content: "\e684";font-family:'icomoon';position:absolute;right:100%;top:50%;display:inline-block;color:$theme-highlight-color;font-size:150%;@include transform(translateY(-50%));}
         }
       }
     }
   }
 
   // Navigation arrows
-  .arrows {color:$theme-gray-light;position:absolute;top:50%;font-size:5rem;padding:0;line-height:1;@include transform(translateY(-100%));@include transition(all 0.25s ease);
-    &:hover {color:lighten($theme-gray-light, 12%);}
+  .arrows {color:$theme-light-color;position:absolute;top:50%;font-size:5rem;padding:0;line-height:1;@include transform(translateY(-100%));@include transition(all 0.25s ease);
+    &:hover {color:lighten($theme-light-color, 12%);}
     &[class*="left"]{left:0;
       &:hover {padding-left:0.25rem;}
     }
@@ -25,8 +25,8 @@
   }
   // Markers
   .markers {position:absolute;left:0;right:0;bottom:0;width:100%;text-align:center;padding:1rem;font-size:0;line-height:0;
-    a {color:$theme-gray-light;display:inline-block;padding:0.25rem;font-size:14px;line-height:1;
-      &:hover, &.active {color:$theme-gray-dark;}
+    a {color:$theme-light-color;display:inline-block;padding:0.25rem;font-size:14px;line-height:1;
+      &:hover, &.active {color:$theme-dark-color;}
     }
   }
 }
