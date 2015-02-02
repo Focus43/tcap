@@ -14,6 +14,7 @@
     use FileSet; /** @see \Concrete\Core\File\Set\Set */
     use CollectionAttributeKey; /** @see \Concrete\Core\Attribute\Key\CollectionKey */
     use UserAttributeKey; /** @see \Concrete\Core\Attribute\Key\UserKey */
+    use FileAttributeKey; /** @see \Concrete\Core\Attribute\Key\FileKey */
     use Group; /** @see \Concrete\Core\User\Group\Group */
     use GroupSet; /** @see \Concrete\Core\User\Group\GroupSet */
     use Concrete\Core\Page\Type\PublishTarget\Type\Type as PublishTargetType;
@@ -24,25 +25,17 @@
             // Collection Attributes
             COLLECTION_ATTR_SECTIONS        = 'page_sections',
             // User Attributes
-            USER_ATTR_FIRST_NAME            = 'first_name',
-            USER_ATTR_LAST_NAME             = 'last_name',
-            USER_ATTR_TITLE                 = 'title',
-            USER_ATTR_DESCRIPTION           = 'description',
-            USER_ATTR_PHOTO                 = 'photo',
-            USER_ATTR_SECONDARY_PHOTO       = 'secondary_photo',
-            // File Sets
+            FILE_ATTR_BIO                   = 'bio',
+            FILE_ATTR_SECONDARY_PHOTO       = 'secondary_photo',
+            FILE_ATTR_INVOLVEMENT_LEVEL     = 'involvement_level',
+            // File Set
             FILE_SET_MASTHEAD               = 'Masthead Slider',
-            // User Groups
-            USER_GROUP_SET_ALL              = 'All',
-            USER_GROUP_GENERAL_PARTNERS     = 'General Partners',
-            USER_GROUP_FUND_MANAGERS        = 'Fund Managers',
-            USER_GROUP_COMPANY_LEADERS      = 'Company Leaders',
-            USER_GROUP_STRATEGIC_PARTNERS   = 'Strategic Partners';
+            FILE_SET_PEOPLE                 = 'People';
 
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.01';
+        protected $pkgVersion 			= '0.04';
 
 
         /**
@@ -123,10 +116,11 @@
          * @return void
          */
         private function installAndUpdate(){
-            $this->setupCollectionAttributes()
-                ->setupUserAttributes()
+            $this->setupAttributeTypeAssociations()
+                ->setupCollectionAttributes()
+                ->setupFileAttributes()
                 ->setupFileSets()
-                ->setupUserGroups()
+                //->setupUserGroups()
                 ->setupTheme()
                 ->setupTemplates()
                 ->setupPageTypes()
@@ -135,6 +129,19 @@
                 ->setupBlockTypeSets()
                 ->setupBlocks()
                 ->modifyExistingPageTypes();
+        }
+
+
+        /**
+         * @return Controller
+         */
+        private function setupAttributeTypeAssociations(){
+            $fileAKC = \Concrete\Core\Attribute\Key\Category::getByHandle('file');
+            if( is_object($fileAKC) ){
+                $fileAKC->associateAttributeKeyType($this->attributeType('image_file'));
+            }
+
+            return $this;
         }
 
 
@@ -156,44 +163,11 @@
         /**
          * @return Controller
          */
-        private function setupUserAttributes(){
-            if( !(is_object(UserAttributeKey::getByHandle(self::USER_ATTR_FIRST_NAME))) ){
-                UserAttributeKey::add($this->attributeType('text'), array(
-                    'akHandle'					=> self::USER_ATTR_FIRST_NAME,
-                    'akName'					=> t('First Name'),
-                    'uakRegisterEdit'			=> 1,
-                    'uakRegisterEditRequired' 	=> 0,
-                    'akIsSearchable'            => 1,
-                    'akIsSearchableIndexed'     => 1
-                ), $this->packageObject());
-            }
-
-            if( !(is_object(UserAttributeKey::getByHandle(self::USER_ATTR_LAST_NAME))) ){
-                UserAttributeKey::add($this->attributeType('text'), array(
-                    'akHandle'					=> self::USER_ATTR_LAST_NAME,
-                    'akName'					=> t('Last Name'),
-                    'uakRegisterEdit'			=> 1,
-                    'uakRegisterEditRequired' 	=> 0,
-                    'akIsSearchable'            => 1,
-                    'akIsSearchableIndexed'     => 1
-                ), $this->packageObject());
-            }
-
-            if( !(is_object(UserAttributeKey::getByHandle(self::USER_ATTR_TITLE))) ){
-                UserAttributeKey::add($this->attributeType('text'), array(
-                    'akHandle'					=> self::USER_ATTR_TITLE,
-                    'akName'					=> t('Title'),
-                    'uakRegisterEdit'			=> 1,
-                    'uakRegisterEditRequired' 	=> 0,
-                    'akIsSearchable'            => 1,
-                    'akIsSearchableIndexed'     => 1
-                ), $this->packageObject());
-            }
-
-            if( !(is_object(UserAttributeKey::getByHandle(self::USER_ATTR_DESCRIPTION))) ){
-                UserAttributeKey::add($this->attributeType('textarea'), array(
-                    'akHandle'					=> self::USER_ATTR_DESCRIPTION,
-                    'akName'					=> t('Description'),
+        private function setupFileAttributes(){
+            if( !(is_object(FileAttributeKey::getByHandle(self::FILE_ATTR_BIO))) ){
+                FileAttributeKey::add($this->attributeType('textarea'), array(
+                    'akHandle'					=> self::FILE_ATTR_BIO,
+                    'akName'					=> t('Bio'),
                     'uakRegisterEdit'			=> 1,
                     'uakRegisterEditRequired' 	=> 0,
                     'akIsSearchable'            => 1,
@@ -202,21 +176,21 @@
                 ), $this->packageObject());
             }
 
-            if( !(is_object(UserAttributeKey::getByHandle(self::USER_ATTR_PHOTO))) ){
-                UserAttributeKey::add($this->attributeType('image_file'), array(
-                    'akHandle'					=> self::USER_ATTR_PHOTO,
-                    'akName'					=> t('Photo'),
+            if( !(is_object(FileAttributeKey::getByHandle(self::FILE_ATTR_SECONDARY_PHOTO))) ){
+                FileAttributeKey::add($this->attributeType('image_file'), array(
+                    'akHandle'					=> self::FILE_ATTR_SECONDARY_PHOTO,
+                    'akName'					=> t('Secondary Photo'),
                     'uakRegisterEdit'			=> 1,
                     'uakRegisterEditRequired' 	=> 0
                 ), $this->packageObject());
             }
 
-            if( !(is_object(UserAttributeKey::getByHandle(self::USER_ATTR_SECONDARY_PHOTO))) ){
-                UserAttributeKey::add($this->attributeType('image_file'), array(
-                    'akHandle'					=> self::USER_ATTR_SECONDARY_PHOTO,
-                    'akName'					=> t('Secondary Photo'),
-                    'uakRegisterEdit'			=> 1,
-                    'uakRegisterEditRequired' 	=> 0
+            if( !(is_object(FileAttributeKey::getByHandle(self::FILE_ATTR_INVOLVEMENT_LEVEL))) ){
+                FileAttributeKey::add($this->attributeType('select'), array(
+                    'akHandle'                  => self::FILE_ATTR_INVOLVEMENT_LEVEL,
+                    'akName'                    => t('Involvement Level'),
+                    'uakRegisterEdit'           => 1,
+                    'uakRegisterEditRequired'   => 0
                 ), $this->packageObject());
             }
 
@@ -232,6 +206,10 @@
                 FileSet::createAndGetSet(self::FILE_SET_MASTHEAD, FileSet::TYPE_PUBLIC);
             }
 
+            if( ! is_object(FileSet::getByName(self::FILE_SET_PEOPLE)) ){
+                FileSet::createAndGetSet(self::FILE_SET_PEOPLE, FileSet::TYPE_PUBLIC);
+            }
+
             return $this;
         }
 
@@ -239,34 +217,34 @@
         /**
          * @return Controller
          */
-        private function setupUserGroups(){
-            if( !(Group::getByName(self::USER_GROUP_GENERAL_PARTNERS) instanceof Group ) ){
-                Group::add(self::USER_GROUP_GENERAL_PARTNERS, self::USER_GROUP_GENERAL_PARTNERS);
-            }
-
-            if( !(Group::getByName(self::USER_GROUP_FUND_MANAGERS) instanceof Group ) ){
-                Group::add(self::USER_GROUP_FUND_MANAGERS, self::USER_GROUP_FUND_MANAGERS);
-            }
-
-            if( !(Group::getByName(self::USER_GROUP_COMPANY_LEADERS) instanceof Group ) ){
-                Group::add(self::USER_GROUP_COMPANY_LEADERS, self::USER_GROUP_COMPANY_LEADERS);
-            }
-
-            if( !(Group::getByName(self::USER_GROUP_STRATEGIC_PARTNERS) instanceof Group ) ){
-                Group::add(self::USER_GROUP_STRATEGIC_PARTNERS, self::USER_GROUP_STRATEGIC_PARTNERS);
-            }
-
-            // Group Sets
-            if( !(GroupSet::getByName(self::USER_GROUP_SET_ALL) instanceof GroupSet) ){
-                $groupSetAll = GroupSet::add(self::USER_GROUP_SET_ALL, $this->packageObject());
-                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_GENERAL_PARTNERS));
-                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_FUND_MANAGERS));
-                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_COMPANY_LEADERS));
-                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_STRATEGIC_PARTNERS));
-            }
-
-            return $this;
-        }
+//        private function setupUserGroups(){
+//            if( !(Group::getByName(self::USER_GROUP_GENERAL_PARTNERS) instanceof Group ) ){
+//                Group::add(self::USER_GROUP_GENERAL_PARTNERS, self::USER_GROUP_GENERAL_PARTNERS);
+//            }
+//
+//            if( !(Group::getByName(self::USER_GROUP_FUND_MANAGERS) instanceof Group ) ){
+//                Group::add(self::USER_GROUP_FUND_MANAGERS, self::USER_GROUP_FUND_MANAGERS);
+//            }
+//
+//            if( !(Group::getByName(self::USER_GROUP_COMPANY_LEADERS) instanceof Group ) ){
+//                Group::add(self::USER_GROUP_COMPANY_LEADERS, self::USER_GROUP_COMPANY_LEADERS);
+//            }
+//
+//            if( !(Group::getByName(self::USER_GROUP_STRATEGIC_PARTNERS) instanceof Group ) ){
+//                Group::add(self::USER_GROUP_STRATEGIC_PARTNERS, self::USER_GROUP_STRATEGIC_PARTNERS);
+//            }
+//
+//            // Group Sets
+//            if( !(GroupSet::getByName(self::USER_GROUP_SET_ALL) instanceof GroupSet) ){
+//                $groupSetAll = GroupSet::add(self::USER_GROUP_SET_ALL, $this->packageObject());
+//                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_GENERAL_PARTNERS));
+//                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_FUND_MANAGERS));
+//                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_COMPANY_LEADERS));
+//                $groupSetAll->addGroup(Group::getByName(self::USER_GROUP_STRATEGIC_PARTNERS));
+//            }
+//
+//            return $this;
+//        }
 
 
         /**
@@ -386,6 +364,10 @@
         private function setupBlocks(){
             if(!is_object(BlockType::getByHandle('accordion'))) {
                 BlockType::installBlockTypeFromPackage('accordion', $this->packageObject());
+            }
+
+            if(!is_object(BlockType::getByHandle('quotes'))) {
+                BlockType::installBlockTypeFromPackage('quotes', $this->packageObject());
             }
 
             return $this;

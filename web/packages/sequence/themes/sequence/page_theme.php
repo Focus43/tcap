@@ -33,7 +33,12 @@
                 'Main 2' => self::$sectionClasses,
                 'Main 3' => self::$sectionClasses,
                 'Main 4' => self::$sectionClasses,
-                'Main 5' => self::$sectionClasses
+                'Main 5' => self::$sectionClasses,
+                'Main 6' => self::$sectionClasses,
+                'Main 7' => self::$sectionClasses,
+                'Main 8' => self::$sectionClasses,
+                'Main 9' => self::$sectionClasses,
+                'Main 10' => self::$sectionClasses
             );
         }
 

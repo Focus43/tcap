@@ -6,7 +6,7 @@
         <div class="col-sm-8">
             <div class="anglified">
                 <h3><?php echo $fullName; ?><br/><span class="text-orange"><?php echo $title; ?></span></h3>
-                <?php echo $description; ?>
+                <?php echo $bio; ?>
             </div>
         </div>
     </div>

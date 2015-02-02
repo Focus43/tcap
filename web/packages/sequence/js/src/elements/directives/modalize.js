@@ -72,6 +72,7 @@ angular.module('sequence.elements').
                     angular.element(document.documentElement).toggleClass('no-scroll', scope._data.open);
                     if( ! _val ){
                         scope._data.src.url = null;
+                        angular.element(document.querySelectorAll('.isotope-node')).removeClass('active');
                     }
                 });
             }

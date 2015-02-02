@@ -7,6 +7,7 @@ html, body {height:100%;font-size:$font-size-base;}
 html.no-scroll {overflow:hidden;}
 img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 
+
 // Page wrapper
 #c-level-1 {height:100%;
 
@@ -31,7 +32,6 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   .iconified {position:relative;padding-bottom:2rem;padding-left:($grid-gutter-width / 4);
     &::before {content: "\f140";font-family:$font-family-icomoon;position:absolute;left:0;top:0;display:inline-block;color:$theme-orange;font-size:150%;line-height:1;@include transform(translateX(-50%));}
     h2,h3,h4,h5 {margin:0 0 0.5rem;}
-    //h4 {color:$theme-orange;margin:0 0 0.3rem;}
   }
 
   .countable {text-align:center;
@@ -44,7 +44,8 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   main {height:100%;width:100%;position:relative;}
 
   // Temporary; override in the CMS w/ custom CSS to show
-  #people, #contact {display:none;}
+  //#people, #contact {display:none;}
+  #contact {height:100%;background:$theme-gray-dark;}
 
   /**********************************************************************
   Page Sections!
@@ -61,7 +62,7 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 //      &::before {display:block;content:'';position:absolute;top:0;right:0;bottom:0;left:0;background-image:inherit;background-size:cover;background-attachment:fixed;@include transform(scale(0.6,0.6));}
 //    }
 
-    #intro {padding:0;height:100%;width:100%;position:relative;}
+    &#intro {padding:0;height:100%;width:100%;position:relative;}
   }
 
   footer {font-size:14px;display:block;text-align:center;padding:1rem;}
@@ -109,8 +110,8 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 }
 
 /**
- * When Logged In
- */
+* When Logged In
+*/
 .ccm-toolbar-visible {
   #c-level-1 {
     header {top:49px;}
@@ -118,8 +119,8 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 }
 
 /**
- * When In Edit Mode
- */
+* When In Edit Mode
+*/
 html.cms-edit-mode {
   #c-level-1 {
     header {
