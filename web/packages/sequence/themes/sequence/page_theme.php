@@ -6,8 +6,7 @@
 
         protected static $contentBlockClasses = array(
             'iconified',
-            'anglified',
-            'countable'
+            'anglified'
         );
 
         protected static $sectionClasses = array(
@@ -21,8 +20,7 @@
             return array(
                 array('title' => t('Theme Highlight Color'), 'menuClass' => '', 'spanClass' => 'theme-highlight-color'),
                 array('title' => t('Theme Light Color'), 'menuClass' => '', 'spanClass' => 'theme-light-color'),
-                array('title' => t('Theme Dark Color'), 'menuClass' => '', 'spanClass' => 'theme-dark-color'),
-                array('title' => t('Incrementable'), 'menuClass' => '', 'spanClass' => 'incrementable')
+                array('title' => t('Theme Dark Color'), 'menuClass' => '', 'spanClass' => 'theme-dark-color')
             );
         }
 

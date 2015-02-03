@@ -1,5 +1,4 @@
 @import 'required';
-@import '3rd_party/icomoon';
 @import 'elements/modal-window';
 
 * {-webkit-font-smoothing:antialiased;}
@@ -16,28 +15,20 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   h3,h4,h5 {
     &:first-of-type {margin-top:0;}
   }
-  .tabular {width:100%;height:100%;display:table;
-    .cellular {width:100%;height:100%;display:table-cell;vertical-align:middle;text-align:center;
-      &.text-left {text-align:left;}
-      &.text-right {text-align:right;}
-    }
-  }
 
   .theme-highlight-color {color:$theme-highlight-color;}
   .theme-light-color {color:$theme-light-color;}
   .theme-dark-color {color:$theme-dark-color;}
 
-  .anglified {
-    p::before {content:'>\0000a0';color:$theme-highlight-color;}
-  }
+  .anglified p::before {content:'>\0000a0';color:$theme-highlight-color;}
 
   .iconified {position:relative;padding-bottom:2rem;padding-left:($grid-gutter-width / 4);
     &::before {content: "\f140";font-family:$font-family-icomoon;position:absolute;left:0;top:0;display:inline-block;color:$theme-highlight-color;font-size:150%;line-height:1;@include transform(translateX(-50%));}
     h2,h3,h4,h5 {margin:0 0 0.5rem;}
   }
 
-  .countable {text-align:center;
-    p:first-of-type {font-size:420%;display:block;font-weight:100;line-height:1;letter-spacing:-1px;}
+  .statistic {text-align:center;
+    b {font-size:420%;display:block;font-weight:100;line-height:1;letter-spacing:-1px;}
   }
 
   // For sidebar navigation on mobile
@@ -56,10 +47,10 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     //&:first-of-type {padding:0;height:100%;width:100%;position:relative;}
     h2 {text-align:center;margin:0;padding:2rem 1rem 3rem;text-transform:uppercase;}
     [class*="wrap-"]{margin:-$theme-section-spacing 0;padding:$theme-section-spacing 0;}
-    .wrap-custom {/* unstyled; either parallax or custom color */}
-    .wrap-theme-highlight {background:$theme-highlight-color;}
+    .wrap-custom {/* un-styled; either parallax or custom color */}
+    .wrap-theme-highlight {color:#000;background:$theme-highlight-color;}
     .wrap-theme-light {background:$theme-light-color;}
-    .wrap-theme-dark {background:$theme-light-color;}
+    .wrap-theme-dark {background:$theme-dark-color;}
 
     &#intro {padding:0;height:100%;width:100%;position:relative;}
   }
@@ -76,7 +67,6 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   @import 'elements/masthead';
   @import 'elements/quote-cycle';
   @import 'elements/isotope';
-
 }
 
 // > screen-sm

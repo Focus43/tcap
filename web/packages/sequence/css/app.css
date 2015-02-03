@@ -1,110 +1,4 @@
 @import url(//fonts.googleapis.com/css?family=Ropa+Sans:400,400italic);
-@font-face {
-  font-family: 'icomoon';
-  src: url("/packages/sequence/fonts/icomoon/icomoon.eot?-4xwedh");
-  src: url("/packages/sequence/fonts/icomoon/icomoon.eot?#iefix-4xwedh") format("embedded-opentype"), url("/packages/sequence/fonts/icomoon/icomoon.woff?-4xwedh") format("woff"), url("/packages/sequence/fonts/icomoon/icomoon.ttf?-4xwedh") format("truetype"), url("/packages/sequence/fonts/icomoon/icomoon.svg?-4xwedh#icomoon") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-[class^="icn-"], [class*=" icn-"] {
-  font-family: 'icomoon';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  /* Enable Ligatures ================ */
-  -webkit-font-feature-settings: "liga";
-  -moz-font-feature-settings: "liga=1";
-  -moz-font-feature-settings: "liga";
-  -ms-font-feature-settings: "liga" 1;
-  -o-font-feature-settings: "liga";
-  font-feature-settings: "liga";
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.icn-layers:before {
-  content: "\e031"; }
-
-.icn-adjust:before {
-  content: "\f042"; }
-
-.icn-plus2:before {
-  content: "\f067"; }
-
-.icn-minus:before {
-  content: "\f068"; }
-
-.icn-bars:before {
-  content: "\f0c9"; }
-
-.icn-circle-o:before {
-  content: "\f10c"; }
-
-.icn-circle:before {
-  content: "\f111"; }
-
-.icn-bullseye:before {
-  content: "\f140"; }
-
-.icn-close:before {
-  content: "\e680"; }
-
-.icn-close-circle:before {
-  content: "\e681"; }
-
-.icn-angle-up:before {
-  content: "\e682"; }
-
-.icn-angle-up-circle:before {
-  content: "\e683"; }
-
-.icn-angle-right:before {
-  content: "\e684"; }
-
-.icn-angle-right-circle:before {
-  content: "\e685"; }
-
-.icn-angle-left:before {
-  content: "\e686"; }
-
-.icn-angle-left-circle:before {
-  content: "\e687"; }
-
-.icn-angle-down:before {
-  content: "\e688"; }
-
-.icn-angle-down-circle:before {
-  content: "\e689"; }
-
-.icn-plus:before {
-  content: "\e623"; }
-
-.icn-less:before {
-  content: "\e644"; }
-
-.icn-info:before {
-  content: "\e647"; }
-
-.icn-help1:before {
-  content: "\e64a"; }
-
-.icn-expand1:before {
-  content: "\e657"; }
-
-.icn-check:before {
-  content: "\e66c"; }
-
-.icn-attention:before {
-  content: "\e67b"; }
-
-.icn-google-plus:before {
-  content: "\ea88"; }
-
-.icn-twitter:before {
-  content: "\ea91"; }
-
 [modal-window] {
   visibility: hidden;
   opacity: 0;
@@ -197,22 +91,12 @@ img {
     text-decoration: none; }
   #c-level-1 h3:first-of-type, #c-level-1 h4:first-of-type, #c-level-1 h5:first-of-type {
     margin-top: 0; }
-  #c-level-1 .tabular {
-    width: 100%;
-    height: 100%;
-    display: table; }
-    #c-level-1 .tabular .cellular {
-      width: 100%;
-      height: 100%;
-      display: table-cell;
-      vertical-align: middle;
-      text-align: center; }
-      #c-level-1 .tabular .cellular.text-left {
-        text-align: left; }
-      #c-level-1 .tabular .cellular.text-right {
-        text-align: right; }
-  #c-level-1 .text-highlight {
+  #c-level-1 .theme-highlight-color {
     color: #f58220; }
+  #c-level-1 .theme-light-color {
+    color: #959595; }
+  #c-level-1 .theme-dark-color {
+    color: #222222; }
   #c-level-1 .anglified p::before {
     content: '>\0000a0';
     color: #f58220; }
@@ -236,9 +120,9 @@ img {
       transform: translateX(-50%); }
     #c-level-1 .iconified h2, #c-level-1 .iconified h3, #c-level-1 .iconified h4, #c-level-1 .iconified h5 {
       margin: 0 0 0.5rem; }
-  #c-level-1 .countable {
+  #c-level-1 .statistic {
     text-align: center; }
-    #c-level-1 .countable p:first-of-type {
+    #c-level-1 .statistic b {
       font-size: 420%;
       display: block;
       font-weight: 100;
@@ -261,7 +145,10 @@ img {
     background: #222222; }
   #c-level-1 section {
     padding: 90px 0;
-    overflow: hidden; }
+    overflow: hidden;
+    background-size: cover;
+    background-position: 50% 100%;
+    background-attachment: fixed; }
     #c-level-1 section h2 {
       text-align: center;
       margin: 0;
@@ -270,16 +157,15 @@ img {
     #c-level-1 section [class*="wrap-"] {
       margin: -90px 0;
       padding: 90px 0; }
-    #c-level-1 section .wrap-unstyled {
-      /* no styles; handled via the CMS! */ }
-    #c-level-1 section .wrap-orange {
+    #c-level-1 section .wrap-custom {
+      /* un-styled; either parallax or custom color */ }
+    #c-level-1 section .wrap-theme-highlight {
+      color: #000;
       background: #f58220; }
-    #c-level-1 section .wrap-gray {
+    #c-level-1 section .wrap-theme-light {
       background: #959595; }
-    #c-level-1 section .wrap-parallax {
-      background-size: cover;
-      background-position: 50% 100%;
-      background-attachment: fixed; }
+    #c-level-1 section .wrap-theme-dark {
+      background: #222222; }
     #c-level-1 section#intro {
       padding: 0;
       height: 100%;
@@ -385,7 +271,8 @@ img {
       left: 0;
       right: 0;
       width: 100%;
-      z-index: 4; }
+      z-index: 4;
+      min-height: 70px; }
       #c-level-1 header figure {
         padding: 0 2rem; }
         #c-level-1 header figure a[href] {
@@ -461,6 +348,7 @@ img {
     position: relative;
     overflow: hidden; }
     #c-level-1 [masthead] .node {
+      display: table;
       visibility: hidden;
       opacity: 0;
       position: absolute;
@@ -473,6 +361,12 @@ img {
       #c-level-1 [masthead] .node:first-of-type {
         visibility: visible;
         opacity: 1; }
+      #c-level-1 [masthead] .node .inner {
+        width: 100%;
+        height: 100%;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: left; }
       #c-level-1 [masthead] .node .node-content {
         font-size: 1.3rem;
         /*color:#fff;*/

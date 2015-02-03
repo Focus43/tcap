@@ -35,7 +35,7 @@
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.05';
+        protected $pkgVersion 			= '0.07';
 
 
         /**
@@ -339,6 +339,10 @@
 
             if(!is_object(BlockType::getByHandle('quotes'))) {
                 BlockType::installBlockTypeFromPackage('quotes', $this->packageObject());
+            }
+
+            if(!is_object(BlockType::getByHandle('statistic'))) {
+                BlockType::installBlockTypeFromPackage('statistic', $this->packageObject());
             }
 
             return $this;

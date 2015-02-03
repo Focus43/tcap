@@ -1,11 +1,11 @@
-<?php namespace Concrete\Package\Sequence\Block\Quotes;
+<?php namespace Concrete\Package\Sequence\Block\Statistic;
 
     use Loader;
     use \Concrete\Core\Editor\LinkAbstractor;
 
     class Controller extends \Concrete\Core\Block\BlockController {
 
-        protected $btTable 									= 'btQuotes';
+        protected $btTable 									= 'btStatistic';
         protected $btInterfaceWidth 						= '580';
         protected $btInterfaceHeight						= '400';
         protected $btDefaultSet                             = 'sequence';
@@ -16,12 +16,12 @@
         protected $btCacheBlockOutputLifetime 				= 0;
 
         public function getBlockTypeDescription(){
-            return t("Create A Group Of Quotes");
+            return t("Add a statistic that counts up");
         }
 
 
         public function getBlockTypeName(){
-            return t("Quotes");
+            return t("Statistic");
         }
 
 
@@ -38,14 +38,6 @@
         public function edit(){
             $this->requireAsset('redactor');
             $this->requireAsset('core/file-manager');
-
-            // Pass data
-            $this->set('dataFields', (array) Loader::helper('json')->decode($this->dataFields));
-        }
-
-
-        public function view(){
-            $this->set('dataFields', (array) Loader::helper('json')->decode($this->dataFields));
         }
 
 
@@ -60,19 +52,8 @@
 
 
         public function save( $args ){
-            $data = array();
-            foreach((array)$args['author'] AS $index => $author){
-                if( !empty($author) ){
-                    array_push($data, (object)array(
-                        'author' => $author,
-                        'body'    => LinkAbstractor::translateTo($args['body'][$index])
-                    ));
-                }
-            }
-
-            parent::save(array(
-                'dataFields' => Loader::helper('json')->encode($data)
-            ));
+            $args['statDetails'] = LinkAbstractor::translateTo($args['statDetails']);
+            parent::save($args);
         }
 
     }

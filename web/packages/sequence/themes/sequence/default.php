@@ -8,29 +8,29 @@
     <?php $this->inc('elements/header.php'); ?>
 
     <main slideable>
-        <?php if(!empty($mastheadImages)): ?>
-            <section id="intro">
-                <div masthead data-transition-speed="0.5"<?php if(!$isEditMode){echo ' data-loop-timing="12"';} ?>>
-                    <?php foreach($mastheadImages AS $index => $fileObj): ?>
-                        <div class="node tabular" style="background-image:url('<?php echo $fileObj->getRelativePath(); ?>');">
-                            <div class="cellular text-left">
-                                <div class="node-content">
-                                    <?php $index++; $a = new Area("Masthead {$index}"); $a->display($c); ?>
-                                </div>
+        <section id="intro">
+            <div masthead data-transition-speed="0.5"<?php if(!$isEditMode && (count((array)$mastheadImages) > 1)){echo ' data-loop-timing="12"';} ?>>
+                <?php if(!empty($mastheadImages)): foreach($mastheadImages AS $index => $fileObj): ?>
+                    <div class="node" style="background-image:url('<?php echo $fileObj->getRelativePath(); ?>');">
+                        <div class="inner">
+                            <div class="node-content">
+                                <?php $index++; $a = new Area("Masthead {$index}"); $a->display($c); ?>
                             </div>
                         </div>
-                    <?php endforeach; ?>
-
-                    <a class="arrows icn-angle-left"></a>
-                    <a class="arrows icn-angle-right"></a>
-                    <div class="markers">
-                        <?php for($i = 0; $i < count($mastheadImages); $i++): ?>
-                            <a class="<?php echo $i === 0 ? 'active' : ''; ?>"><i class="icn-circle"></i></a>
-                        <?php endfor; ?>
                     </div>
+                <?php endforeach; endif; ?>
+
+                <?php if(count((array)$mastheadImages) > 1): ?>
+                <a class="arrows icn-angle-left"></a>
+                <a class="arrows icn-angle-right"></a>
+                <div class="markers">
+                    <?php for($i = 0; $i < count($mastheadImages); $i++): ?>
+                        <a class="<?php echo $i === 0 ? 'active' : ''; ?>"><i class="icn-circle"></i></a>
+                    <?php endfor; ?>
                 </div>
-            </section>
-        <?php endif; ?>
+                <?php endif; ?>
+            </div>
+        </section>
 
         <?php for($i = 1; $i <= (int)$areaCount; $i++): ?>
             <section id="<?php echo "section-{$i}"; ?>">
@@ -54,20 +54,20 @@
                     <ul class="list-inline text-center" isotope-filters>
                         <li><a class="active" data-filter="*">Show All</a></li>
                         <?php
-                            foreach($userInvolvementLevels AS $levelString){
+                            if(!empty($userInvolvementLevels)): foreach($userInvolvementLevels AS $levelString){
                                 echo '<li><a data-filter="['.$textHelper->handle($levelString).']">'.$levelString.'</a></li>' . "\n";
-                            }
+                            } endif;
                         ?>
                     </ul>
                     <div class="grid-wrapper">
                         <div isotope-grid>
                             <?php
-                                foreach($peopleFileList AS $fileObj){
+                                if(!empty($peopleFileList)): foreach($peopleFileList AS $fileObj){
                                     Loader::packageElement('partials/person_grid', \Concrete\Package\Sequence\Controller::PACKAGE_HANDLE, array(
                                         'fileObj'    => $fileObj,
                                         'textHelper' => $textHelper
                                     ));
-                                }
+                                } endif;
                             ?>
                         </div>
                     </div>

@@ -116,7 +116,7 @@ angular.module('sequence.elements').
 
 
             return {
-                restrict: 'C',
+                restrict: 'A',
                 link:     _link
             };
         }

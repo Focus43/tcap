@@ -27,13 +27,33 @@ body {
       border-color:@theme-button-bg-color;
     }
 
+    header {
+      a {
+        color:@theme-light-color;
+
+        &:hover, &:active, &:focus {color:@theme-highlight-color;}
+      }
+    }
+
     // Sections
     section {
-      padding:@section-spacing-size 0;
+      padding:@theme-section-spacing-size 0;
 
       [class*="wrap-"] {
-        margin:-@section-spacing-size 0;
-        padding:@section-spacing-size 0;
+        margin:-@theme-section-spacing-size 0;
+        padding:@theme-section-spacing-size 0;
+      }
+
+      .wrap-theme-highlight {
+        background:@theme-highlight-color;
+      }
+
+      .wrap-theme-light {
+        background:@theme-light-color;
+      }
+
+      .wrap-theme-dark {
+        background:@theme-dark-color;
       }
     }
 
@@ -43,11 +63,23 @@ body {
     }
 
     // Generic Classes
-    .highlight-color {
+    .theme-highlight-color {
       color:@theme-highlight-color;
     }
 
-    .anglified::before {
+    .theme-light-color {
+      color:@theme-light-color;
+    }
+
+    .theme-dark-color {
+      color:@theme-dark-color;
+    }
+
+    .anglified p::before {
+      color:@theme-highlight-color;
+    }
+
+    .iconified::before {
       color:@theme-highlight-color;
     }
   }
