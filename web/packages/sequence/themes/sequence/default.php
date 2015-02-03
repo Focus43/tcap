@@ -42,8 +42,8 @@
             </section>
         <?php endfor; ?>
 
-        <!--<section id="people">
-            <div class="wrap-gray">
+        <section id="people">
+            <div class="wrap-theme-dark">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-        </section>-->
+        </section>
 
         <section id="contact">
             <div class="container">

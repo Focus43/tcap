@@ -54,11 +54,11 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   Page Sections!
   @todo: themable first-of-type and last-of-type sections
   **********************************************************************/
-  section {padding:$theme-section-spacing 0;overflow:hidden;background-size:cover;background-position:50% 100%;background-attachment:fixed;
+  section {padding:$theme-section-spacing 0;overflow:hidden;
     &:first-of-type, &:last-of-type {height:100%;width:100%;position:relative;background:$theme-dark-color;}
     &:first-of-type {padding:0;}
     h2 {text-align:center;margin:0;padding:2rem 1rem 3rem;text-transform:uppercase;}
-    [class*="wrap-"]{margin:-$theme-section-spacing 0;padding:$theme-section-spacing 0;}
+    [class*="wrap-"]{margin:-$theme-section-spacing 0;padding:$theme-section-spacing 0;background-size:cover;background-position:50% 100%;background-attachment:fixed;}
     .wrap-custom {/* un-styled; either parallax or custom color */}
     .wrap-theme-highlight {color:#000;background:$theme-highlight-color;}
     .wrap-theme-light {background:$theme-light-color;}
