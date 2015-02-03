@@ -3,8 +3,10 @@
 // Custom
 $package-path:                  '/packages/sequence/';
 $icomoon-font-path:             '#{$package-path}fonts/icomoon';
+$customicons-font-path:         '#{$package-path}fonts/customicons';
 $image-path:                    '#{$package-path}images';
 $font-family-icomoon:           'icomoon';
+$font-family-customicons:       'customicons';
 $nav-sidebar-width:             320px;
 $mask-animate-time:             0.5s;
 
@@ -14,6 +16,9 @@ $body-bg:                       $theme-body-bg-color;
 $text-color:                    $theme-font-color;
 $font-family-base:              $theme-font-family;
 $font-size-base:                $theme-font-size;
+
+$link-color:                    $theme-highlight-color;
+$link-hover-color:              $theme-highlight-color;
 
 $border-radius-base:            0;
 $border-radius-large:           0;

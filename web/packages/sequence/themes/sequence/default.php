@@ -8,7 +8,7 @@
     <?php $this->inc('elements/header.php'); ?>
 
     <main slideable>
-        <section id="intro">
+        <section>
             <div masthead data-transition-speed="0.5"<?php if(!$isEditMode && (count((array)$mastheadImages) > 1)){echo ' data-loop-timing="12"';} ?>>
                 <?php if(!empty($mastheadImages)): foreach($mastheadImages AS $index => $fileObj): ?>
                     <div class="node" style="background-image:url('<?php echo $fileObj->getRelativePath(); ?>');">
@@ -35,13 +35,14 @@
         <?php for($i = 1; $i <= (int)$areaCount; $i++): ?>
             <section id="<?php echo "section-{$i}"; ?>">
                 <?php
-                $a = new Area("Main {$i}"); /** @var $a \Concrete\Core\Area\Area */
-                $a->enableGridContainer();
-                $a->display($c); ?>
+                    $a = new Area("Main {$i}"); /** @var $a \Concrete\Core\Area\Area */
+                    $a->enableGridContainer();
+                    $a->display($c);
+                ?>
             </section>
         <?php endfor; ?>
 
-        <section id="people">
+        <!--<section id="people">
             <div class="wrap-gray">
                 <div class="container">
                     <div class="row">
@@ -73,7 +74,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
 
         <section id="contact">
             <div class="container">
@@ -84,37 +85,16 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-3 col-md-3 col-md-offset-1">
-                        <?php $a = new Area('Column Left Footer'); $a->display($c); ?>
+                        <?php $a = new Area('Contact Left'); $a->display($c); ?>
                     </div>
                     <div class="col-sm-9 col-md-7">
-                        <form>
-                            <div class="row">
-                                <div class="col-sm-6 form-group">
-                                    <label class="sr-only">Name</label>
-                                    <input type="text" class="form-control" placeholder="Name" />
-                                </div>
-                                <div class="col-sm-6 form-group">
-                                    <label class="sr-only">Email</label>
-                                    <input type="text" class="form-control" placeholder="Email" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 form-group">
-                                    <textarea class="form-control" placeholder="Message" rows="5"></textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 form-group">
-                                    <button type="submit" class="btn btn-default">Send</button>
-                                </div>
-                            </div>
-                        </form>
+                        <?php $a = new Area('Contact Right'); $a->display($c); ?>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer>Copyright &copy; <?php echo date('Y'); ?></footer>
+        <footer>TitleCard Capital&trade;. Copyright &copy; <?php echo date('Y'); ?></footer>
     </main>
     <aside scroll-top class="icn-angle-up"></aside>
 </div>

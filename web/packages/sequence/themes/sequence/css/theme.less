@@ -13,6 +13,10 @@ body {
   font-weight:@theme-font-type-font-weight;
 
   #c-level-1 {
+    a, a:active, a:focus, a:hover {
+      color:@theme-highlight-color;
+    }
+
     // Inputs
     input, textarea {
       color:@theme-input-font-color;
@@ -25,6 +29,11 @@ body {
       color:@theme-button-font-color;
       background-color:@theme-button-bg-color;
       border-color:@theme-button-bg-color;
+
+      &:hover {
+        background-color:lighten(@theme-button-bg-color, 12%);
+        border-color:lighten(@theme-button-bg-color, 12%);
+      }
     }
 
     header {
@@ -57,11 +66,6 @@ body {
       }
     }
 
-    // Accordions
-    [accordion] .group .accordion-header {
-      color:@theme-highlight-color;
-    }
-
     // Generic Classes
     .theme-highlight-color {
       color:@theme-highlight-color;
@@ -81,6 +85,20 @@ body {
 
     .iconified::before {
       color:@theme-highlight-color;
+    }
+
+    // Accordions
+    [accordion] .group .accordion-header {
+      color:@theme-highlight-color;
+    }
+
+    // Masthead
+    [masthead] .node .node-content ul li::before {
+      color:@theme-highlight-color;
+    }
+
+    aside[scroll-top]:hover {
+      background:rgba(red(@theme-highlight-color), green(@theme-highlight-color), blue(@theme-highlight-color), 0.85);
     }
   }
 }

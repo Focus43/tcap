@@ -11,3 +11,8 @@
 @import '../../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/utilities';
 @import '../../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/responsive-utilities';
 @import '3rd_party/icomoon';
+@import '3rd_party/customicons';
+
+#c-level-1 {
+  @import '../../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap/grid';
+}

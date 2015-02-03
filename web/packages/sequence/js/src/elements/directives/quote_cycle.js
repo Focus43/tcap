@@ -24,6 +24,7 @@ angular.module('sequence.elements').
                 // Iterator
                 (function _loop( _delay ){
                     setTimeout(function(){
+                        Tween.fromTo(element, 0.5, {height:element.clientHeight}, {height:_height()});
                         var indexNext = (indexActive === groupsCount) ? 0 : indexActive + 1;
                         Tween.to(groups[indexActive], 0.5, {y:-100,autoAlpha:0});
                         Tween.fromTo(groups[indexNext], 0.5, {y:100,autoAlpha:0}, {y:0,autoAlpha:1, delay:0.5});

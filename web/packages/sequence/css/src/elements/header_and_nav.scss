@@ -1,9 +1,11 @@
-header {text-transform:uppercase;
+header {text-transform:uppercase;z-index:4;
   a {color:$theme-light-color;text-decoration:none !important;
     &:hover, &:active, &:focus {color:$theme-highlight-color;}
     img {padding:0;}
   }
-  figure {position:relative;width:100%;margin:0;}
+  figure {padding:0 0.75rem;position:absolute;width:100%;margin:0;z-index:1;
+    a[href] {padding:0.75rem 0;display:block;max-width:180px;}
+  }
   nav {position:fixed;top:0;bottom:0;left:100%;height:100%;width:$nav-sidebar-width;background:$theme-dark-color;z-index:4;
     &::after {visibility:hidden;opacity:0;position:fixed;content:'';display:block;top:0;bottom:0;min-height:100%;right:100%;width:1000%;background:rgba(0,0,0,0.8);z-index:-1;@include transform(translateZ(0));@include transition(all $mask-animate-time ease);}
     .trigger {color:$theme-highlight-color;display:inline-block;padding:1rem;position:absolute;top:0;right:100%;z-index:4;}
@@ -20,10 +22,8 @@ header {text-transform:uppercase;
 }
 
 @media screen and (min-width:$screen-sm){
-  header {background:$theme-header-bg-color;position:fixed;top:0;left:0;right:0;width:100%;z-index:4;min-height:70px;
-    figure {padding:0 2rem;
-      a[href] {padding:0.75rem 0;display:block;max-width:180px;}
-    }
+  header {background:$theme-header-bg-color;position:fixed;top:0;left:0;right:0;width:100%;min-height:70px;
+    figure {padding:0 2rem;}
     nav {position:absolute;left:auto;right:2rem;width:auto;background:transparent;
       .trigger {display:none;}
       .inner {overflow:visible;}

@@ -19,25 +19,4 @@
     <set name="Spacing">
         <style name="Section Spacing" variable="theme-section-spacing" type="size" />
     </set>
-
-    <!--<set name="General Settings">
-        <style name="Page Background" variable="body-background" type="color" />
-        <style name="Page Font" variable="body-type" type="type" />
-    </set>
-    <set name="Header">
-        <style name="Background Color" variable="header-background" type="color" />
-        <style name="Type" variable="header-type" type="type" />
-    </set>
-    <set name="Body">
-        <style name="Section Spacing" variable="section-spacing" type="size" />
-        <style name="Header Tags Color" variable="header-tags" type="color" />
-        <style name="Highlight Color" variable="highlight" type="color" />
-        <style name="Accordion Header Color" variable="accordion-header" type="color" />
-    </set>
-    <set name="Forms">
-        <style name="Input Background Color" variable="input-background" type="color" />
-        <style name="Input Border Color" variable="input-border" type="color" />
-        <style name="Button Background Color" variable="button-background" type="color" />
-        <style name="Button Border Color" variable="button-border" type="color" />
-    </set>-->
 </styles>

@@ -65,6 +65,11 @@
                 Router::route(array('/modal_info/{id}', 'sequence')),
                 '\Concrete\Package\Sequence\Controller\Tools\ModalInfo::view'
             );
+
+            Route::register(
+                Router::route(array('/contact_form', 'sequence')),
+                '\Concrete\Package\Sequence\Controller\Tools\Contact::handler'
+            );
         }
 
 

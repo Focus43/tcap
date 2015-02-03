@@ -11,11 +11,12 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 #c-level-1 {height:100%;
 
   input, textarea, button, a {&:focus, &:active {outline:0 !important;@include box-shadow(none !important);}}
-  a, a:hover, a:active {cursor:pointer;text-decoration:none;}
+  a, a:hover, a:active {cursor:pointer;/*text-decoration:none;*/}
   h3,h4,h5 {
     &:first-of-type {margin-top:0;}
   }
 
+  .theme-text-huge {font-size:3.9rem;}
   .theme-highlight-color {color:$theme-highlight-color;}
   .theme-light-color {color:$theme-light-color;}
   .theme-dark-color {color:$theme-dark-color;}
@@ -23,7 +24,16 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   .anglified p::before {content:'>\0000a0';color:$theme-highlight-color;}
 
   .iconified {position:relative;padding-bottom:2rem;padding-left:($grid-gutter-width / 4);
-    &::before {content: "\f140";font-family:$font-family-icomoon;position:absolute;left:0;top:0;display:inline-block;color:$theme-highlight-color;font-size:150%;line-height:1;@include transform(translateX(-50%));}
+    &::before {font-family:$font-family-customicons;position:absolute;left:0;top:0;display:inline-block;color:$theme-highlight-color;font-size:150%;line-height:1;@include transform(translateX(-50%));}
+    &.custom-icon-1::before {content: "\e600";}
+    &.custom-icon-2::before {content: "\e601";}
+    &.custom-icon-3::before {content: "\e602";}
+    &.custom-icon-4::before {content: "\e603";}
+    &.custom-icon-5::before {content: "\e604";}
+    &.custom-icon-6::before {content: "\e605";}
+    &.custom-icon-7::before {content: "\e606";}
+    &.custom-icon-8::before {content: "\e607";}
+    &.custom-icon-9::before {content: "\e608";}
     h2,h3,h4,h5 {margin:0 0 0.5rem;}
   }
 
@@ -38,13 +48,15 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 
   // Temporary; override in the CMS w/ custom CSS to show
   //#people, #contact {display:none;}
-  #contact {height:100%;background:$theme-dark-color;}
+  //#contact {height:100%;background:$theme-dark-color;}
 
   /**********************************************************************
   Page Sections!
+  @todo: themable first-of-type and last-of-type sections
   **********************************************************************/
   section {padding:$theme-section-spacing 0;overflow:hidden;background-size:cover;background-position:50% 100%;background-attachment:fixed;
-    //&:first-of-type {padding:0;height:100%;width:100%;position:relative;}
+    &:first-of-type, &:last-of-type {height:100%;width:100%;position:relative;background:$theme-dark-color;}
+    &:first-of-type {padding:0;}
     h2 {text-align:center;margin:0;padding:2rem 1rem 3rem;text-transform:uppercase;}
     [class*="wrap-"]{margin:-$theme-section-spacing 0;padding:$theme-section-spacing 0;}
     .wrap-custom {/* un-styled; either parallax or custom color */}
@@ -52,10 +64,10 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     .wrap-theme-light {background:$theme-light-color;}
     .wrap-theme-dark {background:$theme-dark-color;}
 
-    &#intro {padding:0;height:100%;width:100%;position:relative;}
+    //&#intro {padding:0;height:100%;width:100%;position:relative;}
   }
 
-  footer {font-size:14px;display:block;text-align:center;padding:1rem;}
+  footer {font-size:14px;display:block;text-align:center;padding:1rem;@include transform(translateY(-100%));background:#000;}
 
   aside[scroll-top]{color:#fff;font-size:2rem;position:fixed;bottom:-100%;right:10px;display:inline-block;line-height:1;background:rgba(0,0,0,0.45);cursor:pointer;z-index:9;@include transition(bottom 0.25s ease);
     &:hover {background:rgba($theme-highlight-color,0.85);}
@@ -116,7 +128,7 @@ html.cms-edit-mode {
       figure {max-width:50%;}
     }
 
-    [masthead] .node .node-content {max-width:85%;min-width:500px;width:auto;}
+    [masthead] .node-content {max-width:85%;min-width:500px;width:auto;}
 
     section {overflow:visible;
       [data-area-handle*="Main"]:not([data-area-handle*=":"]) {margin:-$theme-section-spacing 0;padding:$theme-section-spacing 0;}

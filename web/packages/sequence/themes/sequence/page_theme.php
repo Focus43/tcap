@@ -6,7 +6,16 @@
 
         protected static $contentBlockClasses = array(
             'iconified',
-            'anglified'
+            'anglified',
+            'custom-icon-1',
+            'custom-icon-2',
+            'custom-icon-3',
+            'custom-icon-4',
+            'custom-icon-5',
+            'custom-icon-6',
+            'custom-icon-7',
+            'custom-icon-8',
+            'custom-icon-9'
         );
 
         protected static $sectionClasses = array(
@@ -20,7 +29,8 @@
             return array(
                 array('title' => t('Theme Highlight Color'), 'menuClass' => '', 'spanClass' => 'theme-highlight-color'),
                 array('title' => t('Theme Light Color'), 'menuClass' => '', 'spanClass' => 'theme-light-color'),
-                array('title' => t('Theme Dark Color'), 'menuClass' => '', 'spanClass' => 'theme-dark-color')
+                array('title' => t('Theme Dark Color'), 'menuClass' => '', 'spanClass' => 'theme-dark-color'),
+                array('title' => t('Theme Text Huge'), 'menuClass' => '', 'spanClass' => 'theme-text-huge')
             );
         }
 
@@ -46,6 +56,13 @@
         public function getThemeBlockClasses(){
             return array(
                 'content'   => self::$contentBlockClasses
+            );
+        }
+
+
+        public function getThemeDefaultBlockTemplates(){
+            return array(
+                'html' => 'naked.php'
             );
         }
 
