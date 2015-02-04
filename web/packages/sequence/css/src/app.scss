@@ -130,6 +130,9 @@ html.cms-edit-mode {
 
     [masthead] .node-content {max-width:85%;min-width:500px;width:auto;}
 
+    [isotope]{margin-bottom:0;}
+
+
     section {overflow:visible;
       [data-area-handle*="Main"]:not([data-area-handle*=":"]) {margin:-$theme-section-spacing 0;padding:$theme-section-spacing 0;}
       .ccm-block-edit-layout {padding:($grid-gutter-width/4);

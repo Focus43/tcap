@@ -29,8 +29,7 @@
             FILE_ATTR_SECONDARY_PHOTO       = 'secondary_photo',
             FILE_ATTR_INVOLVEMENT_LEVEL     = 'involvement_level',
             // File Set
-            FILE_SET_MASTHEAD               = 'Masthead Slider',
-            FILE_SET_PEOPLE                 = 'People';
+            FILE_SET_MASTHEAD               = 'Masthead Slider';
 
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
@@ -207,10 +206,6 @@
         private function setupFileSets(){
             if( ! is_object(FileSet::getByName(self::FILE_SET_MASTHEAD)) ){
                 FileSet::createAndGetSet(self::FILE_SET_MASTHEAD, FileSet::TYPE_PUBLIC);
-            }
-
-            if( ! is_object(FileSet::getByName(self::FILE_SET_PEOPLE)) ){
-                FileSet::createAndGetSet(self::FILE_SET_PEOPLE, FileSet::TYPE_PUBLIC);
             }
 
             return $this;

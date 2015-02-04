@@ -32,14 +32,14 @@
     </div>
     <div class="selected-wrap">
         <div class="inner" chosen-files data-source-method="<?php echo \Concrete\Package\Sequence\Block\PhotoWall\Controller::FILE_SOURCE_CUSTOM; ?>">
-            <?php if($this->controller->fileSource === \Concrete\Package\Sequence\Block\PhotoWall\Controller::FILE_SOURCE_CUSTOM):
+            <?php if((int)$this->controller->fileSource === \Concrete\Package\Sequence\Block\PhotoWall\Controller::FILE_SOURCE_CUSTOM):
                 foreach($fileListResults AS $file){
                     echo '<div class="node" style="background-image:url(\''.$file->getThumbnailURL('file_manager_listing').'\');"><a class="remover">&#x2715;</a><input name="fileID[]" type="hidden" value="'.$file->getFileID().'" /></div>';
                 }
             endif; ?>
         </div>
         <div class="inner" chosen-files data-source-method="<?php echo \Concrete\Package\Sequence\Block\PhotoWall\Controller::FILE_SOURCE_SET; ?>">
-            <?php if($this->controller->fileSource === \Concrete\Package\Sequence\Block\PhotoWall\Controller::FILE_SOURCE_SET):
+            <?php if((int)$this->controller->fileSource === \Concrete\Package\Sequence\Block\PhotoWall\Controller::FILE_SOURCE_SET):
                 foreach($fileListResults AS $file){
                     echo '<div class="node" style="background-image:url(\''.$file->getThumbnailURL('file_manager_listing').'\');"></div>';
                 }
