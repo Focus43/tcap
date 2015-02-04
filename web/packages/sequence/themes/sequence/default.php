@@ -8,7 +8,7 @@
     <?php $this->inc('elements/header.php'); ?>
 
     <main slideable>
-        <section>
+        <section id="section-1">
             <div masthead data-transition-speed="0.5"<?php if(!$isEditMode && (count((array)$mastheadImages) > 1)){echo ' data-loop-timing="12"';} ?>>
                 <?php if(!empty($mastheadImages)): foreach($mastheadImages AS $index => $fileObj): ?>
                     <div class="node" style="background-image:url('<?php echo $fileObj->getRelativePath(); ?>');">
@@ -32,7 +32,7 @@
             </div>
         </section>
 
-        <?php for($i = 1; $i <= (int)$areaCount; $i++): ?>
+        <?php $i = 2; while($i <= (int)$areaCount): ?>
             <section id="<?php echo "section-{$i}"; ?>">
                 <?php
                     $a = new Area("Main {$i}"); /** @var $a \Concrete\Core\Area\Area */
@@ -40,9 +40,9 @@
                     $a->display($c);
                 ?>
             </section>
-        <?php endfor; ?>
+        <?php $i++; endwhile; ?>
 
-        <section id="contact">
+        <section id="<?php echo "section-{$i}"; ?>">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">

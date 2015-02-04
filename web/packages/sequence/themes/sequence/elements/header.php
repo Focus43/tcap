@@ -1,17 +1,8 @@
 <header>
     <nav slideable>
-        <a class="trigger icn-layers"></a>
+        <a class="trigger"></a>
         <div class="inner">
             <?php $a = new GlobalArea('Header Right'); $a->display($c); ?>
-            <!--<ul>
-                <li><a href="#the-fund"><span>Fund</span></a></li>
-                <li><a href="#strategy"><span>Strategy</span></a></li>
-                <li><a href="#people"><span>People</span></a></li>
-                <li><a href="#contact"><span>Contact</span></a></li>
-                <?php /*for($i = 1; $i <= (int)$areaCount; $i++):
-                    echo '<li><a href="#section-'.$i.'"><span>Section '.$i.'</span></a></li>';
-                endfor;*/ ?>
-            </ul>-->
         </div>
     </nav>
 

@@ -1,5 +1,6 @@
 @import 'required';
 @import 'elements/modal-window';
+@import 'elements/header_and_nav';
 
 * {-webkit-font-smoothing:antialiased;}
 html, body {height:100%;font-size:$font-size-base;}
@@ -46,25 +47,19 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 
   main {height:100%;width:100%;position:relative;}
 
-  // Temporary; override in the CMS w/ custom CSS to show
-  //#people, #contact {display:none;}
-  //#contact {height:100%;background:$theme-dark-color;}
-
   /**********************************************************************
   Page Sections!
   @todo: themable first-of-type and last-of-type sections
   **********************************************************************/
   section {padding:$theme-section-spacing 0;overflow:hidden;
-    &:first-of-type, &:last-of-type {height:100%;width:100%;position:relative;background:$theme-dark-color;}
-    &:first-of-type {padding:0;}
+    &:first-of-type {padding:0;height:100%;width:100%;position:relative;background:$theme-dark-color;}
+    &:last-of-type {padding-top:$theme-section-spacing/2;}
     h2 {text-align:center;margin:0;padding:2rem 1rem 3rem;text-transform:uppercase;}
     [class*="wrap-"]{margin:-$theme-section-spacing 0;padding:$theme-section-spacing 0;background-size:cover;background-position:50% 100%;background-attachment:fixed;}
     .wrap-custom {/* un-styled; either parallax or custom color */}
     .wrap-theme-highlight {color:#000;background:$theme-highlight-color;}
     .wrap-theme-light {background:$theme-light-color;}
     .wrap-theme-dark {background:$theme-dark-color;}
-
-    //&#intro {padding:0;height:100%;width:100%;position:relative;}
   }
 
   footer {font-size:14px;display:block;text-align:center;padding:1rem;@include transform(translateY(-100%));background:#000;}
@@ -74,7 +69,6 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     &.visible {bottom:10px;}
   }
 
-  @import 'elements/header_and_nav';
   @import 'elements/accordion';
   @import 'elements/masthead';
   @import 'elements/quote-cycle';
@@ -84,6 +78,7 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 // > screen-sm
 @media screen and (min-width:$screen-sm){
   #c-level-1 {
+    section:last-of-type {height:100%;width:100%;background:$theme-dark-color;}
     form {
       .col-sm-6 {
         &:nth-child(1){padding-right:(($grid-gutter-width/4)/2);}
@@ -107,6 +102,15 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
       [slideable]{@include transform(translateX(-$nav-sidebar-width));}
       nav::after {visibility:visible;opacity:1;z-index:3;}
     }
+  }
+}
+
+/**
+ * Touch devices
+ */
+html.touch {
+  #c-level-1 {
+    section [class*="wrap-"]{background-attachment:scroll;}
   }
 }
 

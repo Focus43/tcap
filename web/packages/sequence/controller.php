@@ -34,7 +34,7 @@
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.08';
+        protected $pkgVersion 			= '0.09';
 
 
         /**
@@ -347,6 +347,10 @@
 
             if(!is_object(BlockType::getByHandle('photo_wall'))) {
                 BlockType::installBlockTypeFromPackage('photo_wall', $this->packageObject());
+            }
+
+            if(!is_object(BlockType::getByHandle('single_page_nav'))) {
+                BlockType::installBlockTypeFromPackage('single_page_nav', $this->packageObject());
             }
 
             return $this;
