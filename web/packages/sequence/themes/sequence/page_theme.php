@@ -62,7 +62,8 @@
 
         public function getThemeDefaultBlockTemplates(){
             return array(
-                'html' => 'naked.php'
+                'html'          => 'naked.php',
+                'photo_wall'    => 'our_people.php'
             );
         }
 

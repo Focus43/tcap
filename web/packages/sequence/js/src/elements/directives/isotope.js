@@ -9,6 +9,18 @@ angular.module('sequence.elements').
                     container   = element.querySelector('[isotope-grid]'),
                     gridNodes   = element.querySelectorAll('.isotope-node');
 
+                // @todo: THIS IS SUPER GHETTO, and only in place as the contianering system
+                // can't be worked around yet
+                (function upOne( _el ){
+                    if( !_el.classList.contains('container') ){
+                        upOne(_el.parentElement);
+                        return;
+                    }
+                    _el.style.width = '100%';
+                    _el.style.padding = 0;
+                })( element );
+
+
                 // Initialize Isotope instance
                 scope.isotopeInstance = new Isotope(container, {
                     itemSelector: '.isotope-node',

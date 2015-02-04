@@ -6,7 +6,7 @@
       &.active {color:$theme-highlight-color;border-color:$theme-highlight-color;}
     }
     &:hover, &.active {
-      a {color:$theme-highlight-color;border-color:$theme-highlight-color;}
+      a {color:$theme-highlight-color;border-color:$theme-highlight-color;text-decoration:none;}
     }
   }
 }

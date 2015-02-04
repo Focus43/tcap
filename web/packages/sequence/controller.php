@@ -35,7 +35,7 @@
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.07';
+        protected $pkgVersion 			= '0.08';
 
 
         /**
@@ -348,6 +348,10 @@
 
             if(!is_object(BlockType::getByHandle('statistic'))) {
                 BlockType::installBlockTypeFromPackage('statistic', $this->packageObject());
+            }
+
+            if(!is_object(BlockType::getByHandle('photo_wall'))) {
+                BlockType::installBlockTypeFromPackage('photo_wall', $this->packageObject());
             }
 
             return $this;

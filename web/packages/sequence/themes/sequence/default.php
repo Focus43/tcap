@@ -42,40 +42,6 @@
             </section>
         <?php endfor; ?>
 
-        <section id="people">
-            <div class="wrap-theme-dark">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h2>The People Behind TitleCard Capital</h2>
-                        </div>
-                    </div>
-                </div>
-                <div isotope>
-                    <ul class="list-inline text-center" isotope-filters>
-                        <li><a class="active" data-filter="*">Show All</a></li>
-                        <?php
-                            if(!empty($userInvolvementLevels)): foreach($userInvolvementLevels AS $levelString){
-                                echo '<li><a data-filter="['.$textHelper->handle($levelString).']">'.$levelString.'</a></li>' . "\n";
-                            } endif;
-                        ?>
-                    </ul>
-                    <div class="grid-wrapper">
-                        <div isotope-grid>
-                            <?php
-                                if(!empty($peopleFileList)): foreach($peopleFileList AS $fileObj){
-                                    Loader::packageElement('partials/person_grid', \Concrete\Package\Sequence\Controller::PACKAGE_HANDLE, array(
-                                        'fileObj'    => $fileObj,
-                                        'textHelper' => $textHelper
-                                    ));
-                                } endif;
-                            ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="contact">
             <div class="container">
                 <div class="row">
