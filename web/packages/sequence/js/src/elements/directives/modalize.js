@@ -47,6 +47,27 @@ angular.module('sequence.elements').
 
 
     /**
+     * Close the modal window
+     */
+    directive('closeModal', ['ModalData', function( ModalData ){
+
+        function _link( scope, $elem, attrs ){
+            $elem.on('click', function(){
+                scope.$apply(function(){
+                    ModalData.open = false;
+                });
+            });
+        }
+
+        return {
+            restrict: 'A',
+            scope: false,
+            link: _link
+        };
+    }]).
+
+
+    /**
      * Actual ModalWindow directive handler
      * @param Tween
      * @returns {{restrict: string, scope: boolean, link: Function, controller: Array}}
@@ -62,14 +83,9 @@ angular.module('sequence.elements').
              * @private
              */
             function _link( scope, $elem, attrs ){
-                angular.element($elem[0].querySelector('.icn-close')).on('click', function(){
-                    scope.$apply(function(){
-                        scope._data.open = false;
-                    });
-                });
-
                 scope.$watch('_data.open', function( _val ){
                     angular.element(document.documentElement).toggleClass('no-scroll', scope._data.open);
+
                     if( ! _val ){
                         scope._data.src.url = null;
                         angular.element(document.querySelectorAll('.isotope-node')).removeClass('active');
@@ -81,7 +97,7 @@ angular.module('sequence.elements').
                 restrict:   'A',
                 scope:      true,
                 link:       _link,
-                template:   '<span class="icn-close"></span><div class="modal-inner" ng-include="_data.src.url"></div>',
+                template:   '<span class="icn-close" close-modal></span><div class="modal-inner" ng-include="_data.src.url"></div>',
                 controller: ['$scope', 'ModalData', function( $scope, ModalData ){
                     $scope._data = ModalData;
 

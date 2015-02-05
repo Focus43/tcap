@@ -66,6 +66,16 @@
             );
 
             Route::register(
+                Router::route(array('/disclaimer', 'sequence')),
+                '\Concrete\Package\Sequence\Controller\Tools\Disclaimer::view'
+            );
+
+            Route::register(
+                Router::route(array('/terms_of_use', 'sequence')),
+                '\Concrete\Package\Sequence\Controller\Tools\TermsOfUse::view'
+            );
+
+            Route::register(
                 Router::route(array('/contact_form', 'sequence')),
                 '\Concrete\Package\Sequence\Controller\Tools\Contact::handler'
             );

@@ -4,7 +4,7 @@
 
 <body>
 
-<div id="c-level-1" class="<?php echo $c->getPageWrapperClass(); ?>" single-page-scroll>
+<div id="c-level-1" class="<?php echo $c->getPageWrapperClass(); ?>">
     <?php $this->inc('elements/header.php'); ?>
 
     <main slideable>
@@ -60,7 +60,7 @@
             </div>
         </section>
 
-        <footer>TitleCard Capital&trade;. Copyright &copy; <?php echo date('Y'); ?></footer>
+        <footer>TitleCard Capital&trade;. Copyright &copy; <?php echo date('Y'); ?> | <a modalize="<?php echo URL::route(array('/terms_of_use', 'sequence')); ?>">Terms Of Use</a></footer>
     </main>
     <aside scroll-top class="icn-angle-up"></aside>
 </div>

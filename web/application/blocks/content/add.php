@@ -16,8 +16,13 @@ $(function() {
     // Custom plugin
     RedactorPlugins.singlepagenav = {
         init: function(){
-            var pageWrapper = document.querySelector('.ccm-page'),
-                elements    = pageWrapper.querySelectorAll('[id]'),
+            var pageWrapper = document.querySelector('.ccm-page');
+
+            if( !pageWrapper ){
+                return;
+            }
+
+            var elements    = pageWrapper.querySelectorAll('[id]'),
                 fragment    = document.createDocumentFragment(),
                 dropdown    = {};
 
@@ -25,7 +30,7 @@ $(function() {
              * Redactor handler for adding the link
              */
             function _handler(key, element, obj, and){
-                this.exec('inserthtml', this.outerHtml($('<a href="#'+obj.linkID+'">'+this.getSelectionText()+'</a>')), false);
+                this.exec('inserthtml', this.outerHtml($('<a link-scroll="'+obj.linkID+'">'+this.getSelectionText()+'</a>')), false);
             }
 
             /**

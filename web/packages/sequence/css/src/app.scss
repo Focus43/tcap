@@ -12,7 +12,7 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 .theme-light-color {color:$theme-light-color;}
 .theme-dark-color {color:$theme-dark-color;}
 
-.anglified p::before {content:'>\0000a0';color:$theme-highlight-color;}
+.anglified p::before, .anglified-redactor::before {content:'>\0000a0';color:$theme-highlight-color;}
 
 .iconified {position:relative;padding-bottom:2rem;padding-left:($grid-gutter-width / 4);
   &::before {font-family:$font-family-customicons;position:absolute;left:-8px;top:0;display:inline-block;color:$theme-highlight-color;font-size:150%;line-height:1;@include transform(translateX(-50%));}
@@ -61,7 +61,7 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     .wrap-theme-dark {background:$theme-dark-color;}
   }
 
-  footer {font-size:14px;display:block;text-align:center;padding:1rem;@include transform(translateY(-100%));background:#000;}
+  footer {font-size:14px;display:block;text-align:center;padding:1rem;background:#000;}
 
   aside[scroll-top]{color:#fff;font-size:2rem;position:fixed;bottom:-100%;right:10px;display:inline-block;line-height:1;background:rgba(0,0,0,0.45);cursor:pointer;z-index:9;@include transition(bottom 0.25s ease);
     &:hover {background:rgba($theme-highlight-color,0.85);}
@@ -86,7 +86,7 @@ html.sidebar-nav {
 // > screen-sm
 @media screen and (min-width:$screen-sm){
   #c-level-1 {
-    section:last-of-type {height:100%;width:100%;background:$theme-dark-color;}
+    section:last-of-type {height:95%;width:100%;background:$theme-dark-color;}
     form {
       .col-sm-6 {
         &:nth-child(1){padding-right:(($grid-gutter-width/4)/2);}
@@ -153,6 +153,8 @@ html.touch {
 * When In Edit Mode
 */
 html.cms-edit-mode {
+  [modal-window].open {z-index:501;}
+
   #c-level-1 {
     header {
       figure {max-width:40%;}
