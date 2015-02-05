@@ -20,22 +20,3 @@ header {text-transform:uppercase;z-index:4;
     }
   }
 }
-
-html:not(.touch){
-  @media screen and (min-width:$screen-sm){
-    header {background:$theme-header-bg-color;position:fixed;top:0;left:0;right:0;width:100%;min-height:70px;
-      figure {padding:0 2rem;}
-      nav {position:absolute;left:auto;right:2rem;width:auto;background:transparent;
-        .trigger {display:none;}
-        .inner {overflow:visible;}
-        ul {height:100%;font-size:0;line-height:0;
-          li {height:100%;display:inline-block;font-size:1rem;line-height:1;
-            a {display:table;width:100%;height:100%;border:0;
-              span {padding:0.25rem 1.4rem 0;display:table-cell;width:100%;height:100%;vertical-align:middle;text-align:center;}
-            }
-          }
-        }
-      }
-    }
-  }
-}

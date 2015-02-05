@@ -4,7 +4,7 @@
 
 <body>
 
-<div id="c-level-1" class="<?php echo $c->getPageWrapperClass(); ?>">
+<div id="c-level-1" class="<?php echo $c->getPageWrapperClass(); ?>" single-page-scroll>
     <?php $this->inc('elements/header.php'); ?>
 
     <main slideable>

@@ -1,12 +1,32 @@
 @import 'required';
 @import 'elements/modal-window';
-@import 'elements/header_and_nav';
 
-* {-webkit-font-smoothing:antialiased;}
+* {-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing: grayscale;}
 html, body {height:100%;font-size:$font-size-base;}
 html.no-scroll {overflow:hidden;}
 img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 
+// General
+.theme-text-huge {font-size:3.9rem;}
+.theme-highlight-color {color:$theme-highlight-color;}
+.theme-light-color {color:$theme-light-color;}
+.theme-dark-color {color:$theme-dark-color;}
+
+.anglified p::before {content:'>\0000a0';color:$theme-highlight-color;}
+
+.iconified {position:relative;padding-bottom:2rem;padding-left:($grid-gutter-width / 4);
+  &::before {font-family:$font-family-customicons;position:absolute;left:-8px;top:0;display:inline-block;color:$theme-highlight-color;font-size:150%;line-height:1;@include transform(translateX(-50%));}
+  &.custom-icon-1::before {content: "\e600";}
+  &.custom-icon-2::before {content: "\e601";}
+  &.custom-icon-3::before {content: "\e602";}
+  &.custom-icon-4::before {content: "\e603";}
+  &.custom-icon-5::before {content: "\e604";}
+  &.custom-icon-6::before {content: "\e605";}
+  &.custom-icon-7::before {content: "\e606";}
+  &.custom-icon-8::before {content: "\e607";}
+  &.custom-icon-9::before {content: "\e608";}
+  h2,h3,h4,h5 {margin:0 0 0.5rem;}
+}
 
 // Page wrapper
 #c-level-1 {height:100%;
@@ -15,27 +35,6 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   a, a:hover, a:active {cursor:pointer;/*text-decoration:none;*/}
   h3,h4,h5 {
     &:first-of-type {margin-top:0;}
-  }
-
-  .theme-text-huge {font-size:3.9rem;}
-  .theme-highlight-color {color:$theme-highlight-color;}
-  .theme-light-color {color:$theme-light-color;}
-  .theme-dark-color {color:$theme-dark-color;}
-
-  .anglified p::before {content:'>\0000a0';color:$theme-highlight-color;}
-
-  .iconified {position:relative;padding-bottom:2rem;padding-left:($grid-gutter-width / 4);
-    &::before {font-family:$font-family-customicons;position:absolute;left:0;top:0;display:inline-block;color:$theme-highlight-color;font-size:150%;line-height:1;@include transform(translateX(-50%));}
-    &.custom-icon-1::before {content: "\e600";}
-    &.custom-icon-2::before {content: "\e601";}
-    &.custom-icon-3::before {content: "\e602";}
-    &.custom-icon-4::before {content: "\e603";}
-    &.custom-icon-5::before {content: "\e604";}
-    &.custom-icon-6::before {content: "\e605";}
-    &.custom-icon-7::before {content: "\e606";}
-    &.custom-icon-8::before {content: "\e607";}
-    &.custom-icon-9::before {content: "\e608";}
-    h2,h3,h4,h5 {margin:0 0 0.5rem;}
   }
 
   .statistic {text-align:center;
@@ -69,10 +68,19 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     &.visible {bottom:10px;}
   }
 
+  @import 'elements/header_and_nav';
   @import 'elements/accordion';
   @import 'elements/masthead';
   @import 'elements/quote-cycle';
   @import 'elements/isotope';
+}
+
+// Sidebar nav
+html.sidebar-nav {
+  #c-level-1 {
+    [slideable]{@include transform(translateX(-$nav-sidebar-width));}
+    nav::after {visibility:visible;opacity:1;z-index:3;}
+  }
 }
 
 // > screen-sm
@@ -86,22 +94,40 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
       }
     }
   }
+
+  // Tricky navigation stuff: only make the "all visible" horizontal menu work
+  // when its a) min-width of screen-sm, and b) NOT a touch device
+  html:not(.touch){
+    &.sidebar-nav {
+      #c-level-1 {
+        [slideable]{@include transform(translateX(0));}
+        nav::after {visibility:hidden;opacity:0;z-index:-1;}
+      }
+    }
+
+    #c-level-1 {
+      header {background:$theme-header-bg-color;position:fixed;top:0;left:0;right:0;width:100%;//min-height:70px;
+        figure {padding:0 2rem;position:relative;}
+        nav {position:absolute;left:auto;right:2rem;width:auto;background:transparent;
+          .trigger {display:none;}
+          .inner {overflow:visible;}
+          ul {height:100%;font-size:0;line-height:0;
+            li {height:100%;display:inline-block;font-size:1rem;line-height:1;
+              a {display:table;width:100%;height:100%;border:0;
+                span {padding:0.25rem 1.4rem 0;display:table-cell;width:100%;height:100%;vertical-align:middle;text-align:center;}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 // > screen-md
 @media screen and (min-width:$screen-md){
   #c-level-1 {
     .iconified {margin-left:($grid-gutter-width / 4);padding-right:($grid-gutter-width / 4);}
-  }
-}
-
-// Sidebar nav
-@media screen and (max-width:$screen-sm){
-  html.sidebar-nav {
-    #c-level-1 {
-      [slideable]{@include transform(translateX(-$nav-sidebar-width));}
-      nav::after {visibility:visible;opacity:1;z-index:3;}
-    }
   }
 }
 
@@ -119,7 +145,7 @@ html.touch {
 */
 .ccm-toolbar-visible {
   #c-level-1 {
-    header {top:49px;}
+    header {top:49px !important;}
   }
 }
 
@@ -129,13 +155,12 @@ html.touch {
 html.cms-edit-mode {
   #c-level-1 {
     header {
-      figure {max-width:50%;}
+      figure {max-width:40%;}
     }
 
     [masthead] .node-content {max-width:85%;min-width:500px;width:auto;}
 
     [isotope]{margin-bottom:0;}
-
 
     section {overflow:visible;
       [data-area-handle*="Main"]:not([data-area-handle*=":"]) {margin:-$theme-section-spacing 0;padding:$theme-section-spacing 0;}
