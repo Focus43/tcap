@@ -17,7 +17,7 @@
          *
          */
         public function on_start(){
-
+            $this->set('pagePermissionObj', $this->pagePermissionObject());
         }
 
 
@@ -60,6 +60,17 @@
                 $this->{$helper} = \Core::make($handle);
             }
             return $this->{$helper};
+        }
+
+
+        /**
+         * Return the page permission object
+         */
+        protected function pagePermissionObject(){
+            if( $this->_pagePermissionObj === null ){
+                $this->_pagePermissionObj = new \Concrete\Core\Permission\Checker(\Concrete\Core\Page\Page::getCurrentPage());
+            }
+            return $this->_pagePermissionObj;
         }
 
     }

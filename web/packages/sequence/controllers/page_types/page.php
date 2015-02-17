@@ -22,7 +22,14 @@
         private function getMastheadImages(){
             $fileSetObj = FileSet::getByName(PackageController::FILE_SET_MASTHEAD);
             if( is_object($fileSetObj) ){
-                return $fileSetObj->getFiles();
+                $list = array();
+                $fileObjectResults = $fileSetObj->getFiles();
+                foreach($fileObjectResults AS $fileObj){
+                    if( $fileObj instanceof \Concrete\Core\File\File ){
+                        array_push($list, $fileObj);
+                    }
+                }
+                return $list;
             }
             return array();
         }

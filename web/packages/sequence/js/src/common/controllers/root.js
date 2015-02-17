@@ -33,17 +33,30 @@ angular.module('sequence.common').
                 angular.element($window).off('scroll', _onScroll);
             }
 
-            if( Modernizr.touch ){
-                _showDisclaimer();
-            }else{
-                angular.element($window).on('scroll', _onScroll);
-            }
+            // If user is not logged in...
+            if( ! document.querySelector('body').hasAttribute('can-admin') ){
+                if( Modernizr.touch ){
+                    _showDisclaimer();
+                }else{
+                    angular.element($window).on('scroll', _onScroll);
+                }
 
-            if( typeof(ConcreteEvent) !== 'undefined' ){
-                // Recompile the whole page to make sure directives are run!
-                ConcreteEvent.subscribe('EditModeUpdateBlockComplete', function(a,b,c){
-                    $compile(document.body)($rootScope);
+            // User is logged in, don't show disclaimer and setup helpers
+            }else{
+                // Mobile editing
+                angular.element(document).on('keydown', function( event ){
+                    if( event.ctrlKey && event.keyCode === 77 ){
+                        angular.element('html').toggleClass('edit-mode-mobile');
+                    }
                 });
+
+                // Directive re-compilation
+                if( typeof(ConcreteEvent) !== 'undefined' ){
+                    // Recompile the whole page to make sure directives are run!
+                    ConcreteEvent.subscribe('EditModeUpdateBlockComplete', function(a,b,c){
+                        $compile(document.body)($rootScope);
+                    });
+                }
             }
         }
     ]);

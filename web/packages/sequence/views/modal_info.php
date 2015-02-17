@@ -1,3 +1,5 @@
+<span class="icn-close" close-modal></span>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-4">

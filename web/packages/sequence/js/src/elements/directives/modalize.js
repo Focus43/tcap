@@ -97,7 +97,7 @@ angular.module('sequence.elements').
                 restrict:   'A',
                 scope:      true,
                 link:       _link,
-                template:   '<span class="icn-close" close-modal></span><div class="modal-inner" ng-include="_data.src.url"></div>',
+                template:   '<div class="modal-inner" ng-include="_data.src.url"></div>',
                 controller: ['$scope', 'ModalData', function( $scope, ModalData ){
                     $scope._data = ModalData;
 
