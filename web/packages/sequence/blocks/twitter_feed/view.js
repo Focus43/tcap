@@ -18,6 +18,7 @@ angular.module('sequence.elements').
                 var _waitForIt = angular.element("<div class='waitForIt'><i class='fa fa-circle-o-notch fa-spin fa-5x'></i></div>")
                 element.append(_waitForIt)
 
+                scope.moving = false;
                 scope.tweetWatcher;
                 scope.$watch('tweetWatcher', function(newData, oldData) {
                     if (newData && newData !== oldData) {
@@ -47,17 +48,17 @@ angular.module('sequence.elements').
                         console.log(status)
                     });
                 };
-                // get first data set, then look every 120 secs after that
-                getTweets();
-                $interval(getTweets, 120000);
 
-                scope.moving = false;
                 var reListTweets = function () {
                     if ( scope.moving ){
                         scope.tweets.push(scope.tweets.shift());
                     }
                     scope.moving = !scope.moving;
                 }
+                // get first data set, then look every 120 secs after that
+                getTweets();
+                $interval(getTweets, 120000);
+                // rotate tweets
                 $interval(reListTweets, 2000);
 //                $interval(function () {
 //                    $timeout(reListTweets, 2000)
