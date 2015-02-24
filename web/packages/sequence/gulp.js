@@ -28,6 +28,7 @@ module.exports = function( gulp ){
                 _packagePath('bower_components/gsap/src/uncompressed/TweenMax.js'),
                 _packagePath('bower_components/gsap/src/uncompressed/plugins/ScrollToPlugin.js'),
                 _packagePath('bower_components/isotope/dist/isotope.pkgd.js'),
+                _packagePath('bower_components/moment/min/moment.min.js'),
                 _packagePath('js/3rd_party/*.js')
             ],
             app: [
