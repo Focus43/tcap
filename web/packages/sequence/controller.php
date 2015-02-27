@@ -35,7 +35,7 @@
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.193';
+        protected $pkgVersion 			= '0.200';
 
 
         /**
@@ -377,6 +377,10 @@
 
             if(!is_object(BlockType::getByHandle('twitter_feed'))) {
                 BlockType::installBlockTypeFromPackage('twitter_feed', $this->packageObject());
+            }
+
+            if(!is_object(BlockType::getByHandle('portfolio'))) {
+                BlockType::installBlockTypeFromPackage('portfolio', $this->packageObject());
             }
 
             return $this;

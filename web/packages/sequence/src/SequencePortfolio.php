@@ -22,7 +22,7 @@
          */
         protected $shortName;
         /**
-         * @Column(type="string", length=255)
+         * @Column(type="simple_array")
          */
         protected $category;
         /**
@@ -53,6 +53,10 @@
          * @Column(columnDefinition="integer unsigned")
          */
         protected $clientLogoFileID;
+        /**
+         * @Column(columnDefinition="boolean")
+         */
+        protected $isFeatured;
 
 
         /**
@@ -89,7 +93,7 @@
          * @return string
          */
         public function getCategory(){
-            return $this->category;
+            return implode(",", $this->category);
         }
         /**
          * @return string
@@ -133,6 +137,12 @@
         public function getClientLogoFileID(){
             return $this->clientLogoFileID;
         }
+        /**
+         * @return bool
+         */
+        public function getIsFeatured(){
+            return $this->isFeatured;
+        }
 
         /**
          * @param $id Int
@@ -160,6 +170,36 @@
                 ->setParameter('title', "%{$category}%")
                 ->getQuery()
                 ->getResult();
+        }
+        /**
+         * @return array
+         */
+        public static function findFeatured( ){
+            return self::entityManager()->getRepository(__CLASS__)->createQueryBuilder('portfolio')
+                ->where('portfolio.isFeatured = :isFeatured')
+                ->setParameter('isFeatured', true)
+                ->getQuery()
+                ->getResult();
+        }
+
+        /**
+         * @return array
+         */
+        public static function getCategoryOptions( ){
+            // temporary hack for category list
+            return array("Strategic Design", "Case Study", "Branding");
+        }
+        /**
+         * @return string
+         */
+        public function getCategoriesString( ){
+            $categoryOptions = self::getCategoryOptions();
+            $categories = $this->category;
+            $categoriesString = "";
+            foreach ( $categories as $key ) {
+                $categoriesString .= " [ {$categoryOptions[$key]} ] ";
+            }
+            return $categoriesString;
         }
     }
 }

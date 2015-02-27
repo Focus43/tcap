@@ -1,5 +1,6 @@
 <?php  defined('C5_EXECUTE') or die(_("Access Denied.")); ?>
 
+<a href="portfolio/item" class="btn btn-info" style="margin-bottom: 10px;">Create Portfolio Item</a>
 <?php if ( $list && sizeof($list) > 0 ) : ?>
     <table class="table table-striped">
         <tr>
@@ -9,9 +10,9 @@
             <th><?=t('Description')?></th>
             <th></th>
         </tr>
-        <?php  foreach ($list as $item): /** @var $item Concrete\Package\Sequence\Src\PortfolioItem  */ ?>
+        <?php foreach ($list as $item): /** @var $item Concrete\Package\Sequence\Src\PortfolioItem  */ ?>
             <tr>
-                <td><?php  echo $item->getMainImageID(); ?></td>
+                <td><?php $f = File::getByID((int)$item->getMainImageID()); echo $f->getListingThumbnailImage();?></td>
                 <td><?php  echo $item->getTitle(); ?></td>
                 <td><?php  echo $item->getClientName(); ?></td>
                 <td><?php  echo $item->getDescription(); // TODO: Shorten and open full in modal?></td>
@@ -23,15 +24,6 @@
         <?php  endforeach; ?>
     </table>
 <?php  else: ?>
-    There are no portfolio items.<br>
-    <a href="portfolio/item" class="button">Create Portfolio Item</a>
-<?php  endif;
-//            use \Concrete\Core\File\Set\SetList;
-//            $fsl = new SetList();
-//            $filesets = $fsl->get(1000, 0);   // set a big number here to get all sets
-//            $fsOptions = array();
-//            foreach($filesets as $fs) {
-//                $fsOptions[$fs->getFileSetID()] = $fs->getFileSetName();
-//            }
-//            $form->select("galleryFileSetID", $fsOptions, $galleryFileSetID);
-?>
+    There are no portfolio items.
+<?php  endif; ?>
+<a href="portfolio/item" class="btn btn-info" style="margin-top: 10px;">Create Portfolio Item</a>

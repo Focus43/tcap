@@ -2,6 +2,7 @@
 namespace Concrete\Package\Sequence\Controller\SinglePage\Dashboard\Portfolio {
     use \Concrete\Core\Page\Controller\DashboardPageController;
     use \Concrete\Package\Sequence\Src\SequencePortfolio;
+    use Loader;
 
     class Item extends DashboardPageController {
 
@@ -17,6 +18,9 @@ namespace Concrete\Package\Sequence\Controller\SinglePage\Dashboard\Portfolio {
                 $portfolio = new SequencePortfolio();
             }
             $this->set('portfolioObj', $portfolio);
+            $this->requireAsset('redactor');
+            $this->requireAsset('core/file-manager');
+            $this->addFooterItem('<script type="text/javascript">var CCM_EDITOR_SECURITY_TOKEN = \''.Loader::helper('validation/token')->generate('editor').'\'</script>');
         }
 
 //        public function edit( $id ){

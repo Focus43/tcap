@@ -1,8 +1,9 @@
 <?php
 defined('C5_EXECUTE') or die(_("Access Denied."));
 $form = Loader::helper('form');
+$fp = FilePermissions::getGlobal();
+$tp = new TaskPermission();
 ?>
-
 <form method="post" action="<?php echo $this->action('save', $portfolioObj->getID()); ?>">
     <div class="form-group">
         <label>Title</label>
@@ -46,29 +47,28 @@ $form = Loader::helper('form');
     <div class="row">
         <div class="col-sm-6">
             <label>Main Image</label>
-            <?php $al = Loader::helper('concrete/asset_library'); echo $al->image('mainImage', 'mainImageID', t('Select an image'), $portfolioObj->getMainImageID()); ?>
+            <?php
+            $al = Loader::helper('concrete/asset_library');
+            $f = File::getByID((int)$portfolioObj->getMainImageID());
+            echo $al->image('mainImage', 'mainImageID', t('Select an image'), $f);
+            ?>
         </div>
     </div>
     <button type="submit" class="btn primary pull-right">Save</button>
 
 </form>
-
-
-
-
-<!--    <div class="form-group">-->
-<!--        <label for="exampleInputPassword1">Password</label>-->
-<!--        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="exampleInputFile">File input</label>-->
-<!--        <input type="file" id="exampleInputFile">-->
-<!--        <p class="help-block">Example block-level help text here.</p>-->
-<!--    </div>-->
-<!--    <div class="checkbox">-->
-<!--        <label>-->
-<!--            <input type="checkbox"> Check me out-->
-<!--        </label>-->
-<!--    </div>-->
-<!--    <button type="submit" class="btn btn-default">Submit</button>-->
-<!--</form>-->
+<script type="text/javascript">
+    $(function() {
+        $('#description').redactor({
+            minHeight: '125',
+            'concrete5': {
+                filemanager: <?=$fp->canAccessFileManager()?>,
+                sitemap: <?=$tp->canAccessSitemap()?>,
+                lightbox: true
+            },
+            'plugins': [
+                'fontcolor', 'concrete5', 'underline'
+            ]
+        });
+    });
+</script>
