@@ -21,6 +21,7 @@ angular.module('sequence.common').
             function _showDisclaimer(){
                 $scope._modal = ModalData;
                 $scope._modal.src.url = ApplicationPaths.tools + '/disclaimer';
+                $scope._modal.classes['disclaimer'] = true;
                 $scope._modal.open = true;
                 _disclaimerSeen = true;
             }

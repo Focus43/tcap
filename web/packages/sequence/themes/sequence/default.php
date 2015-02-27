@@ -4,19 +4,13 @@
 
 <body<?php if($pagePermissionObj->canWrite()){ echo ' can-admin'; } ?>>
 
-<div id="c-level-1" class="<?php echo $c->getPageWrapperClass(); ?>">
-    <?php if( ! $pagePermissionObj->canWrite() ): ?>
-    <script type="text/ng-template" id="<?php echo URL::route(array('disclaimer', 'sequence')); ?>">
-        <div class="legal-popups">
-            <?php
-                $a = new \Concrete\Core\Area\GlobalArea('Disclaimer');
-                $a->display(\Concrete\Core\Page\Page::getByID(1));
-            ?>
+<?php if( ! $pagePermissionObj->canWrite() ): ?>
+<script type="text/ng-template" id="<?php echo URL::route(array('disclaimer', 'sequence')); ?>">
+    <?php Loader::packageElement('partials/disclaimer', 'sequence'); ?>
+</script>
+<?php endif; ?>
 
-            <p class="confirm-it"><button type="button" class="btn btn-default" close-modal>YES</button> I hereby certify that I have reviewed and understand that this site relates to accredited investing.</p>
-        </div>
-    </script>
-    <?php endif; ?>
+<div id="c-level-1" class="<?php echo $c->getPageWrapperClass(); ?>">
 
     <?php $this->inc('elements/header.php'); ?>
 
