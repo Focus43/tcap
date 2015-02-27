@@ -1,3 +1,32 @@
 <?xml version="1.0"?>
 <schema version="0.3">
+    <table name="SequencePortfolio">
+        <field name="id" type="I">
+            <autoincrement />
+            <key />
+            <unsigned />
+        </field>
+
+        <!-- created/modified -->
+        <field name="createdUTC" type="T">
+            <NOTNULL/>
+        </field>
+        <field name="modifiedUTC" type="T">
+            <NOTNULL/>
+        </field>
+
+        <field name="title" type="C" size="255" />
+        <field name="description" type="x2" />
+        <field name="shortName" type="C" size="255" />
+        <field name="category" type="C" size="255" />
+        <field name="toolsUsed" type="C" size="255" />
+
+        <field name="clientName" type="C" size="255" />
+        <field name="clientUrl" type="C" size="255" />
+        <field name="projectUrl" type="C" size="255" />
+
+        <field name="mainImageID" type="I" />
+        <field name="galleryFileSetID" type="I" />
+        <field name="clientLogoFileID" type="I" />
+    </table>
 </schema>

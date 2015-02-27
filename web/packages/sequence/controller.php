@@ -17,6 +17,7 @@
     use FileAttributeKey; /** @see \Concrete\Core\Attribute\Key\FileKey */
     use Group; /** @see \Concrete\Core\User\Group\Group */
     use GroupSet; /** @see \Concrete\Core\User\Group\GroupSet */
+    use SinglePage; /** @see \Concrete\Core\Page\Single */
     use Concrete\Core\Page\Type\PublishTarget\Type\Type as PublishTargetType;
 
     class Controller extends Package {
@@ -34,7 +35,7 @@
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.11';
+        protected $pkgVersion 			= '0.193';
 
 
         /**
@@ -323,6 +324,17 @@
          * @return Controller
          */
         private function setupSinglePages(){
+            // Dashboard pages
+            SinglePage::add('/dashboard/portfolio/', $this->packageObject());
+            /** @var $sp \Concrete\Core\Page\Page */
+            $sp = SinglePage::add('/dashboard/portfolio/item', $this->packageObject());
+            // since $sp is only returned if it's NEW:
+            if ($sp) {
+                $sp->update(array(
+                    'cName' => 'New Portfolio Item'
+                ));
+            }
+
             return $this;
         }
 
