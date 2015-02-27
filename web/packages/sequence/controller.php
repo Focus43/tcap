@@ -34,7 +34,7 @@
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.09';
+        protected $pkgVersion 			= '0.11';
 
 
         /**
@@ -361,6 +361,10 @@
 
             if(!is_object(BlockType::getByHandle('single_page_nav'))) {
                 BlockType::installBlockTypeFromPackage('single_page_nav', $this->packageObject());
+            }
+
+            if(!is_object(BlockType::getByHandle('twitter_feed'))) {
+                BlockType::installBlockTypeFromPackage('twitter_feed', $this->packageObject());
             }
 
             return $this;

@@ -56,4 +56,18 @@ angular.module('sequence.common').
                 return $window['FastClick'] || ($log.warn('FastClick unavailable!'), false);
             }
         ];
+    }).
+
+    /**
+     * @description Moment provider
+     * @param $window
+     * @param $log
+     * @returns moment | false
+     */
+    provider('moment', function(){
+        this.$get = ['$window', '$log',
+            function( $window, $log ){
+                return $window['moment'] || ($log.warn('Moment unavailable!'), false);
+            }
+        ];
     });

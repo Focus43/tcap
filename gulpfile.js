@@ -4,10 +4,8 @@
     var _packages = __dirname + '/web/packages/';
 
     // Search all packages for gulp.js at the root level
-    glob("**/gulp.js", {cwd: _packages, sync:true}, function(err, files){
-        files.forEach(function(filename){
-            require(_packages + filename)(gulp);
-        });
+    glob.sync("**/gulp.js", {cwd: _packages}).forEach(function(fileName){
+        require(_packages + fileName)(gulp);
     });
 
     // Register 'watch' as the default task
