@@ -7,7 +7,7 @@
   }
 }
 
-.modal-nav {display:inline-block;color:#fff;font-size:4rem;position:absolute;top:50%;line-height:1;@include transform(translateY(-50%));
+.modal-nav {display:inline-block;color:#fff;font-size:4rem;position:absolute;top:50%;line-height:1;cursor:pointer;@include transform(translateY(-50%));
   &:hover {color:$theme-highlight-color;text-decoration:none;}
   &.prev {left:0;}
   &.next {right:0;}

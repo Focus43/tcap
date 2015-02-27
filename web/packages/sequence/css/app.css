@@ -55,6 +55,7 @@
   position: absolute;
   top: 50%;
   line-height: 1;
+  cursor: pointer;
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
@@ -527,7 +528,10 @@ img {
   #c-level-1 [isotope] {
     margin-bottom: -90px; }
   #c-level-1 [isotope-filters] {
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0; }
     #c-level-1 [isotope-filters] li {
       padding: 0.5rem 0.75rem; }
       #c-level-1 [isotope-filters] li a {
@@ -610,6 +614,8 @@ img {
       width: 50%;
       padding-bottom: 33.33333%; } }
   @media screen and (min-width: 768px) {
+    #c-level-1 [isotope-filters] li {
+      display: inline-block; }
     #c-level-1 [isotope-grid] .isotope-node {
       width: 33.33%;
       padding-bottom: 22.22222%; } }
@@ -752,6 +758,14 @@ html.cms-edit-mode [modal-window].open {
   z-index: 501; }
 html.cms-edit-mode #c-level-1 header figure {
   max-width: 40%; }
+html.cms-edit-mode #c-level-1 [slideable] {
+  -moz-transform: none;
+  -ms-transform: none;
+  -webkit-transform: none;
+  transform: none;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none; }
 html.cms-edit-mode #c-level-1 [masthead] .node-content {
   max-width: 85%;
   min-width: 500px;
