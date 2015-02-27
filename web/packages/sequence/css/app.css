@@ -50,7 +50,6 @@
 
 .modal-nav {
   display: inline-block;
-  display: none;
   color: #fff;
   font-size: 4rem;
   position: absolute;
@@ -100,9 +99,8 @@ html, body {
   font-size: 16px; }
 
 html.no-scroll {
-  overflow: hidden; }
-  html.no-scroll body {
-    overflow: hidden; }
+  overflow: hidden;
+  /*body {overflow:hidden;}*/ }
 
 img {
   display: inline-block;
