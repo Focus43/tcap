@@ -14,5 +14,5 @@
     </div>
 </div>
 
-<a class="modal-nav prev icn-angle-left" modal-reload=""></a>
-<a class="modal-nav next icn-angle-right" modal-reload=""></a>
+<a class="modal-nav prev icn-angle-left" modal-swap></a>
+<a class="modal-nav next icn-angle-right" modal-swap></a>

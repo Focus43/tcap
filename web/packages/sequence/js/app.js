@@ -33,8 +33,6 @@
         ]);
 
 })(window, window.angular);
-
-
 angular.module('sequence.common', []);
 angular.module('sequence.elements', []);
 angular.module('sequence.common').
@@ -92,6 +90,7 @@ angular.module('sequence.common').
             function _showDisclaimer(){
                 $scope._modal = ModalData;
                 $scope._modal.src.url = ApplicationPaths.tools + '/disclaimer';
+                $scope._modal.classes['disclaimer'] = true;
                 $scope._modal.open = true;
                 _disclaimerSeen = true;
             }
@@ -187,20 +186,6 @@ angular.module('sequence.common').
         this.$get = ['$window', '$log',
             function( $window, $log ){
                 return $window['FastClick'] || ($log.warn('FastClick unavailable!'), false);
-            }
-        ];
-    }).
-
-    /**
-     * @description Moment provider
-     * @param $window
-     * @param $log
-     * @returns moment | false
-     */
-    provider('moment', function(){
-        this.$get = ['$window', '$log',
-            function( $window, $log ){
-                return $window['moment'] || ($log.warn('Moment unavailable!'), false);
             }
         ];
     });
@@ -396,8 +381,8 @@ angular.module('sequence.elements').
                     container   = element.querySelector('[isotope-grid]'),
                     gridNodes   = element.querySelectorAll('.isotope-node');
 
-                // @todo: THIS IS SUPER GHETTO, and only in place as the contianering system
-                // can't be worked around yet
+                // @todo: THIS IS SUPER GHETTO, and only in place to as the container
+                // @todo: parent class can't be worked around yet
                 (function upOne( _el ){
                     if( !_el.classList.contains('container') ){
                         upOne(_el.parentElement);
@@ -541,6 +526,7 @@ angular.module('sequence.elements').
     factory('ModalData', [function(){
         return {
             open: false,
+            classes: {open: false},
             src: {
                 url: null
             }
@@ -555,7 +541,7 @@ angular.module('sequence.elements').
         function(){
 
             // Will automatically initialize modalWindow directive
-            angular.element(document.querySelector('body')).append('<div modal-window ng-class="{open:_data.open}"></div>');
+            angular.element(document.querySelector('body')).append('<div modal-window ng-class="_data.classes"></div>');
 
             /**
              * Link function with ModalData service bound to the scope
@@ -610,8 +596,8 @@ angular.module('sequence.elements').
      * @param Tween
      * @returns {{restrict: string, scope: boolean, link: Function, controller: Array}}
      */
-    directive('modalWindow', [
-        function(){
+    directive('modalWindow', ['$rootScope',
+        function( $rootScope ){
 
             /**
              * Link function with ModalData service bound to the scope
@@ -622,10 +608,12 @@ angular.module('sequence.elements').
              */
             function _link( scope, $elem, attrs ){
                 scope.$watch('_data.open', function( _val ){
-                    angular.element(document.documentElement).toggleClass('no-scroll', scope._data.open);
+                    $rootScope.rootClasses['no-scroll'] = scope._data.open;
+                    scope._data.classes['open'] = scope._data.open;
 
                     if( ! _val ){
                         scope._data.src.url = null;
+                        scope._data.classes = {open: false};
                         angular.element(document.querySelectorAll('.isotope-node')).removeClass('active');
                     }
                 });
@@ -647,27 +635,32 @@ angular.module('sequence.elements').
         }
     ]).
 
-    directive('modalReload', [function(){
+    directive('modalSwap', [function(){
 
-        var gridNodes       = document.querySelectorAll('.isotope-node'),
-            gridNodesLength = gridNodes.length - 1;
-
+        /**
+         * Bind click event in the modal window that inspects the dom for the isotope-node element
+         * that currently has the class active, get its siblings (implicitly limits to make sure
+         * the next/prev only accounts for WITHIN this list), and activate the relevant one.
+         * @param scope
+         * @param $elem
+         * @param attrs
+         * @param Controller
+         * @private
+         */
         function _link( scope, $elem, attrs, Controller ){
             $elem.on('click', function(){
-                var indexActive = Array.prototype.slice.call(gridNodes).indexOf(document.querySelector('.isotope-node.active')),
-                    _index;
+                var active          = document.querySelector('.isotope-node.active'),
+                    siblings        = active.parentNode.children,
+                    siblingCount    = siblings.length - 1,
+                    activeIndex     = Array.prototype.slice.call(siblings).indexOf(active),
+                    indexToActivate = $elem.hasClass('prev') ? ((activeIndex === 0) ? siblingCount : activeIndex - 1)
+                        : ((activeIndex === siblingCount) ? 0 : activeIndex + 1);
 
-                if( $elem.hasClass('prev') ){
-                    _index = (indexActive === 0) ? gridNodesLength : indexActive - 1;
-                }else{
-                    _index = (indexActive === gridNodesLength) ? 0 : indexActive + 1;
-                }
-
-                angular.element(gridNodes).removeClass('active');
-                angular.element(gridNodes[_index]).addClass('active');
+                angular.element(active).removeClass('active');
+                angular.element(siblings[indexToActivate]).addClass('active');
 
                 scope.$apply(function(){
-                    scope._data.src.url = gridNodes[_index].getAttribute('modalize');
+                    scope._data.src.url = siblings[indexToActivate].getAttribute('modalize');
                 });
             });
         }

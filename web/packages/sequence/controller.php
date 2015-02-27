@@ -258,7 +258,7 @@
             /** @var $pageType \Concrete\Core\Page\Type\Type */
             $pageType = PageType::getByHandle('page');
 
-            // Delete it?
+            // Delete it? Only works if the $pageType isn't assigned to this package already
             if( is_object($pageType) && !((int)$pageType->getPackageID() >= 1) ){
                 $pageType->delete();
             }
