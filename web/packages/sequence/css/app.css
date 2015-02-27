@@ -382,6 +382,7 @@ img {
       #c-level-1 [accordion] .group.active .accordion-header::after {
         content: '\f068'; }
   #c-level-1 [masthead] {
+    color: #fff;
     width: 100%;
     height: 100%;
     position: relative;
@@ -480,15 +481,17 @@ img {
           color: #222222;
           text-decoration: none; }
   @media screen and (min-width: 768px) {
-    #c-level-1 [masthead] .inner {
-      vertical-align: middle;
-      padding-top: 0; }
-    #c-level-1 [masthead] .node-content {
-      padding-left: 7rem;
-      max-width: 75%; }
-    #c-level-1 [masthead] .arrows {
-      font-size: 5rem;
-      top: 50%; } }
+    #c-level-1 [masthead] {
+      color: #959595; }
+      #c-level-1 [masthead] .inner {
+        vertical-align: middle;
+        padding-top: 0; }
+      #c-level-1 [masthead] .node-content {
+        padding-left: 7rem;
+        max-width: 75%; }
+      #c-level-1 [masthead] .arrows {
+        font-size: 5rem;
+        top: 50%; } }
   @media screen and (min-width: 992px) {
     #c-level-1 [masthead] .node-content {
       max-width: 60%; } }
