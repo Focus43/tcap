@@ -37,6 +37,7 @@ angular.module('sequence.elements').
                     });
                 });
 
+                // Click to activate
                 angular.element(gridNodes).on('click', function(){
                     angular.element(gridNodes).removeClass('active');
                     angular.element(this).addClass('active');
@@ -45,6 +46,7 @@ angular.module('sequence.elements').
 
             return {
                 restrict:   'A',
+                scope:      true,
                 link:       _link
             };
         }

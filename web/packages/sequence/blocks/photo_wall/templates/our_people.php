@@ -10,7 +10,7 @@ foreach($opts AS $optObj){ /** $optObj \Concrete\Attribute\Select\Option */
 ?>
 
 <div isotope>
-    <ul class="list-inline text-center" isotope-filters>
+    <ul class="text-center" isotope-filters>
         <li><a class="active" data-filter="*">Show All</a></li>
         <?php
             foreach($userInvolvementLevels AS $levelString){

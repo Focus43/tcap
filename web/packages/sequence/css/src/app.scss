@@ -3,7 +3,7 @@
 
 * {-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing: grayscale;}
 html, body {height:100%;font-size:$font-size-base;}
-html.no-scroll {overflow:hidden; /*body {overflow:hidden;}*/}
+html.no-scroll {overflow:hidden;/*body {overflow:hidden;}*/}
 img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 
 // General
@@ -186,6 +186,8 @@ html.cms-edit-mode {
     header {
       figure {max-width:40%;}
     }
+
+    [slideable]{@include transform(none);@include transition(none);}
 
     [masthead] .node-content {max-width:85%;min-width:500px;width:auto;}
 
