@@ -1,5 +1,6 @@
 [modal-window]{padding:2rem 0;width:100%;height:100%;visibility:hidden;opacity:0;display:block;position:fixed;top:50%;left:50%;background:rgba(0,0,0,0.85);z-index:-1;@include scrollOverflow;@include transform(translate(-50%, 0));@include transition(all 0.35s ease);
   img {max-height:350px;display:block;margin:0 auto;}
+  h2 {margin-top:0;}
   h3 {margin-top:0;text-align:center;}
   &.open {visibility:visible;opacity:1;z-index:9;@include transform(translate(-50%,-50%));}
   .icn-close {position:absolute;top:0;right:0;font-size:4rem;line-height:1;padding:0;z-index:2;cursor:pointer;
@@ -29,4 +30,15 @@
 
 @media screen and (min-width:$screen-lg){
   [modal-window]{max-width:1000px;}
+}
+
+// Format disclaimer page on mobile devices
+@media screen and (max-width:$screen-sm){
+  [modal-window].disclaimer {padding:0;overflow:hidden;
+    .modal-inner {height:100%;}
+    .legal-popups {height:100%;padding:0;
+      .scrollable {height:100%;padding:2rem 2rem 10rem;@include scrollOverflow;}
+      .confirm-it {position:fixed;bottom:0;left:0;right:0;margin:0;padding:3rem 1rem 1rem;@include gradient-vertical(rgba(0,0,0,0.2),rgba(0,0,0,1),0%,35%);}
+    }
+  }
 }

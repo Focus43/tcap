@@ -14,7 +14,8 @@ angular.module('sequence.elements').
 
                 var _errorMsg = angular.element( document.querySelectorAll("ul.errors") );
                 var _twContainer = angular.element( document.querySelectorAll(".twitter div.container") );
-                _errorMsg.hide();
+//                _errorMsg.hide();
+                _errorMsg[0].style.display = 'none';
                 var _waitForIt = angular.element("<div class='waitForIt'><i class='fa fa-circle-o-notch fa-spin fa-5x'></i></div>");
                 element.append(_waitForIt);
 
@@ -31,16 +32,22 @@ angular.module('sequence.elements').
                     $http.get(attrs['showTwitterFeed']).
                         success(function(data, status) {
                             if ( !data.errors ) {
-                                console.log(data);
-                                _waitForIt.hide();
-                                _errorMsg.hide();
-                                _twContainer.show();
+                                //console.log(data);
+//                                _waitForIt.hide();
+//                                _errorMsg.hide();
+//                                _twContainer.show();
+                                _waitForIt[0].style.display = 'none';
+                                _errorMsg[0].style.display = 'none';
+                                _twContainer[0].style.display = 'block';
                                 scope.tweetWatcher = data;
                             } else {
                                 scope.errors = data.errors;
-                                _twContainer.hide();
-                                _waitForIt.show();
-                                _errorMsg.show();
+//                                _twContainer.hide();
+//                                _waitForIt.show();
+//                                _errorMsg.show();
+                                _waitForIt[0].style.display = 'block';
+                                _errorMsg[0].style.display = 'block';
+                                _twContainer[0].style.display = 'none';
                             }
                         }).
                         error(function(data, status) {

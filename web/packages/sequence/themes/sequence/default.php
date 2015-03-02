@@ -51,6 +51,7 @@
                     $a->enableGridContainer();
                     $a->display($c);
                 ?>
+                <div class="section-footer"><?php $a = new Area("Sub {$i}"); $a->display($c); ?></div>
             </section>
         <?php $i++; endwhile; ?>
 
