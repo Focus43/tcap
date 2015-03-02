@@ -7,14 +7,14 @@ $textHelper = Loader::helper('text');
         <li><a class="active" data-filter="*">Show All</a></li>
         <?php
         foreach($categoryList AS $key=>$category){
-            echo '<li><a data-filter="['.$key.']">'.$category.'</a></li>' . "\n";
+            echo '<li><a data-filter="[data-category-'.$key.']">'.$category.'</a></li>' . "\n";
         }
         ?>
     </ul>
     <div class="grid-wrapper">
         <div isotope-grid class="portfolio-grid">
             <?php foreach( $portfolioList AS $portfolio) : ?>
-                <a class="isotope-node" modalize="<?php echo Loader::helper('concrete/urls')->getBlockTypeToolsURL($bt); ?>/portfolio_modal?pId=<?php echo $portfolio->getID(); ?>'" data-modal-classes="['portfolio']" <?php echo str_replace(",", " ",$portfolio->getCategory()); ?>>
+                <a class="isotope-node" modalize="<?php echo Loader::helper('concrete/urls')->getBlockTypeToolsURL($bt); ?>/portfolio_modal?pId=<?php echo $portfolio->getID(); ?>'" data-modal-classes="['portfolio']" <?php echo implode(" ", array_map(function($id){return "data-category-{$id}";}, explode(',', $portfolio->getCategory()))); //echo str_replace(",", " ",$portfolio->getCategory()); ?>>
                     <div class="isotope-box" style="background-image:url('<?php echo File::getByID((int)$portfolio->getMainImageID())->getRelativePath(); ?>');">
                         <div class="isotope-content">
                             <h5><?php echo $portfolio->getTitle(); ?></h5>
