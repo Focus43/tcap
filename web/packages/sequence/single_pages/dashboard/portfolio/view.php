@@ -1,6 +1,5 @@
 <?php  defined('C5_EXECUTE') or die(_("Access Denied.")); ?>
 
-<a href="portfolio/item" class="btn btn-info" style="margin-bottom: 10px;">Create Portfolio Item</a>
 <?php if ( $list && sizeof($list) > 0 ) : ?>
     <table class="table table-striped">
         <tr>
@@ -26,4 +25,7 @@
 <?php  else: ?>
     There are no portfolio items.
 <?php  endif; ?>
-<a href="portfolio/item" class="btn btn-info" style="margin-top: 10px;">Create Portfolio Item</a>
+
+<div class="ccm-dashboard-header-buttons">
+    <a class="btn btn-primary" href="<?php echo View::url('/dashboard/portfolio/item'); ?>"><?php echo t("Create Portfolio Item"); ?></a>
+</div>

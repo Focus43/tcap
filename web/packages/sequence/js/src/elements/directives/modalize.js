@@ -31,13 +31,18 @@ angular.module('sequence.elements').
                 $elem.on('click', function(){
                     scope.$apply(function(){
                         scope._data.src.url = attrs.modalize;
+                        if( angular.isArray(scope.extraClasses) ){
+                            angular.forEach(scope.extraClasses, function( className ){
+                                scope._data.classes[className] = true;
+                            });
+                        }
                     });
                 });
             }
 
             return {
                 restrict:   'A',
-                scope:      true,
+                scope:      {extraClasses: '=modalClasses'},
                 link:       _link,
                 controller: ['$scope', 'ModalData', function( $scope, ModalData ){
                     $scope._data = ModalData;

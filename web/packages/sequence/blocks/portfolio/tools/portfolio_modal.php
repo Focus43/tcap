@@ -38,6 +38,3 @@ $fileSetObj = FileSet::getByID((int) $portfolioObj->getGalleryFileSetID());
     }
     ?>
 </div>
-
-<a class="modal-nav prev icn-angle-left" modal-reload=""></a>
-<a class="modal-nav next icn-angle-right" modal-reload=""></a>

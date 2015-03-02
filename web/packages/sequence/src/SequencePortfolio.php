@@ -93,7 +93,7 @@
          * @return string
          */
         public function getCategory(){
-            return implode(",", $this->category);
+            return implode(",", (array) $this->category);
         }
         /**
          * @return string

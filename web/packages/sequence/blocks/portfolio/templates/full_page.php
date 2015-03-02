@@ -3,7 +3,7 @@ $textHelper = Loader::helper('text');
 ?>
 
 <div isotope>
-    <ul class="list-inline text-center" isotope-filters>
+    <ul class="text-center" isotope-filters>
         <li><a class="active" data-filter="*">Show All</a></li>
         <?php
         foreach($categoryList AS $key=>$category){
@@ -14,7 +14,7 @@ $textHelper = Loader::helper('text');
     <div class="grid-wrapper">
         <div isotope-grid class="portfolio-grid">
             <?php foreach( $portfolioList AS $portfolio) : ?>
-                <a class="isotope-node" modalize="<?php echo Loader::helper('concrete/urls')->getBlockTypeToolsURL($bt); ?>/portfolio_modal?pId=<?php echo $portfolio->getID(); ?>'" <?php echo str_replace(",", " ",$portfolio->getCategory()); ?>>
+                <a class="isotope-node" modalize="<?php echo Loader::helper('concrete/urls')->getBlockTypeToolsURL($bt); ?>/portfolio_modal?pId=<?php echo $portfolio->getID(); ?>'" data-modal-classes="['portfolio']" <?php echo str_replace(",", " ",$portfolio->getCategory()); ?>>
                     <div class="isotope-box" style="background-image:url('<?php echo File::getByID((int)$portfolio->getMainImageID())->getRelativePath(); ?>');">
                         <div class="isotope-content">
                             <h5><?php echo $portfolio->getTitle(); ?></h5>
