@@ -101,6 +101,12 @@ html.sidebar-nav {
   }
 }
 
+// Spacing on mobile: this is not ideal; setup something more re-usable in the future
+@media screen and (max-width:$screen-sm){
+  .col-sm-4, .col-sm-6 {padding-bottom:2rem;}
+  [class*="col-sm-"] .iconified:last-of-type {padding-bottom:0;}
+}
+
 // > screen-sm
 @media screen and (min-width:$screen-sm){
   #c-level-1 {
