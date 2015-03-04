@@ -151,6 +151,7 @@
         public static function getByID( $id ){
             return self::entityManager()->find(__CLASS__, $id);
         }
+
         /****************************************************************
          * List queries
          ***************************************************************/

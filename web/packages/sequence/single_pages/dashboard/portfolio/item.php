@@ -5,6 +5,11 @@ $fp = FilePermissions::getGlobal();
 $tp = new TaskPermission();
 ?>
 <form method="post" action="<?php echo $this->action('save', $portfolioObj->getID()); ?>">
+    <div class="row">
+        <div class="col-sm12" style="text-align: center;">
+            <button type="submit" class="btn btn-info primary pull-right" style="margin-right: 17px;">Save</button>
+        </div>
+    </div>
     <div class="form-group">
         <label>Title</label>
         <?php echo $form->text("title", $portfolioObj->getTitle()); ?>
@@ -54,7 +59,18 @@ $tp = new TaskPermission();
             ?>
         </div>
     </div>
-    <button type="submit" class="btn primary pull-right">Save</button>
+    <div class="row">
+        <div class="col-sm12" style="text-align: center;">
+            <button type="submit" class="btn btn-info primary pull-right" style="margin-right: 17px;">Save</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm12" style="text-align: center;padding-top: 15px;">
+            <a href="/dashboard/portfolio/item/delete/<?php echo $portfolioObj->getID(); ?>"
+               class="btn btn-danger"
+               data-confirm="Are you sure you want to delete this portfolio item?">Delete this portfolio item</a>
+        </div>
+    </div>
 
 </form>
 <script type="text/javascript">
@@ -70,5 +86,8 @@ $tp = new TaskPermission();
                 'fontcolor', 'concrete5', 'underline'
             ]
         });
+    });
+    $(".btn[data-confirm]").on("click", function(){
+        return confirm($(this).data("confirm"));
     });
 </script>
