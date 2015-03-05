@@ -616,7 +616,6 @@ img {
         display: none;
         background-color: rgba(245, 130, 32, 0.85); }
         #c-level-1 [isotope-grid] .isotope-node .isotope-box .isotope-content {
-          color: white;
           position: absolute;
           bottom: 15%;
           left: 3px;
