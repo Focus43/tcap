@@ -15,20 +15,12 @@ $node-spacing: 3px;
 .grid-wrapper {padding:0 $node-spacing;}
 [isotope-grid]{position:relative;width:100%;
   .isotope-node {color:#000;position: relative;/*height:0;*/padding:$node-spacing;background-size:cover;background-position:50% 50%;background-clip:border-box;background-clip: border-box;border: 4px solid black;overflow: hidden;
-//    .isotope-box,
-//    .isotope-box::before {padding:$node-spacing;position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:50% 50%;background-clip:content-box;overflow:hidden;}
-
     .isotope-box {width:100%;height:100%;position:absolute;display: none;background-color:rgba($theme-highlight-color,0.85);
-//      &::before {content:'';visibility:hidden;opacity:0;display:block;background-color:rgba($theme-highlight-color,0.85);min-width:100%;min-height:100%;@include transition(all 0.25s ease);}
       .isotope-content {color:white;position:absolute;bottom:15%;left:$node-spacing;right:$node-spacing;padding:1rem;@include transition(all 0.25s ease);
         h5 {text-transform:uppercase;font-size:130%;margin:0;}
         p {margin-bottom:0;font-size:90%;}
       }
     }
-//    &:hover, &.active {
-//      .isotope-box::before {visibility:visible;opacity:1;}
-//      .isotope-content {visibility:visible;opacity:1;bottom:$node-spacing;}
-//    }
   }
 }
 
