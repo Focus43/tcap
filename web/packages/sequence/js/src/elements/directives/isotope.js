@@ -1,5 +1,11 @@
 angular.module('sequence.elements').
-
+//    .isotope-box {width:100%;height:100%;
+//      &::before {content:'';visibility:hidden;opacity:0;display:block;background-color:rgba($theme-highlight-color,0.85);min-width:100%;min-height:100%;@include transition(all 0.25s ease);}
+//      .isotope-content {visibility:hidden;opacity:0;position:absolute;bottom:15%;left:$node-spacing;right:$node-spacing;padding:1rem;@include transition(all 0.25s ease);
+//        h5 {text-transform:uppercase;font-size:130%;margin:0;}
+//        p {margin-bottom:0;font-size:90%;}
+//      }
+//}
     directive('isotope', ['Isotope',
         function( Isotope ){
 
