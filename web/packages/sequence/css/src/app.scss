@@ -81,11 +81,12 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   }
 
   @import 'elements/header_and_nav';
-  @import 'elements/accordion';
+//  @import 'elements/accordion';
 //  @import 'elements/masthead';
   @import 'elements/quote-cycle';
   @import 'elements/isotope';
 }
+@import 'elements/accordion';
 @import 'elements/masthead';
 
 // Disclaimer pop-up
@@ -100,6 +101,16 @@ html.sidebar-nav {
     [slideable]{@include transform(translateX(-$nav-sidebar-width));}
     nav::after {visibility:visible;opacity:1;z-index:3;}
   }
+}
+
+// Portfolio
+.portfolio {
+    .portfolio-head { cursor: pointer; }
+    .progress { height: 5px;width: 0;background-color: $theme-font-color; }
+    .btn-portfolio { color: $theme-button-font-color;display: block;padding: 0.25rem 0.75rem;border: 1px solid $theme-button-font-color;text-align: center;
+        &:hover { color: $theme-highlight-color;border-color: $theme-highlight-color;text-decoration: none;  }
+    }
+    .client-link { color: $theme-font-color; }
 }
 
 // Spacing on mobile: this is not ideal; setup something more re-usable in the future

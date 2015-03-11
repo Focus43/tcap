@@ -2005,8 +2005,8 @@ select[multiple].input-lg {
     display: none !important; } }
 @font-face {
   font-family: 'icomoon';
-  src: url("/packages/sequence/fonts/icomoon/icomoon.eot?-4xwedh");
-  src: url("/packages/sequence/fonts/icomoon/icomoon.eot?#iefix-4xwedh") format("embedded-opentype"), url("/packages/sequence/fonts/icomoon/icomoon.woff?-4xwedh") format("woff"), url("/packages/sequence/fonts/icomoon/icomoon.ttf?-4xwedh") format("truetype"), url("/packages/sequence/fonts/icomoon/icomoon.svg?-4xwedh#icomoon") format("svg");
+  src: url("/packages/sequence/fonts/icomoon/icomoon.eot?-qmahge");
+  src: url("/packages/sequence/fonts/icomoon/icomoon.eot?#iefix-qmahge") format("embedded-opentype"), url("/packages/sequence/fonts/icomoon/icomoon.woff?-qmahge") format("woff"), url("/packages/sequence/fonts/icomoon/icomoon.ttf?-qmahge") format("truetype"), url("/packages/sequence/fonts/icomoon/icomoon.svg?-qmahge#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icn-"], [class*=" icn-"] {
@@ -2028,29 +2028,8 @@ select[multiple].input-lg {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.icn-layers:before {
-  content: "\e031"; }
-
-.icn-adjust:before {
-  content: "\f042"; }
-
-.icn-plus2:before {
-  content: "\f067"; }
-
-.icn-minus:before {
-  content: "\f068"; }
-
-.icn-bars:before {
-  content: "\f0c9"; }
-
-.icn-circle-o:before {
-  content: "\f10c"; }
-
-.icn-circle:before {
-  content: "\f111"; }
-
-.icn-bullseye:before {
-  content: "\f140"; }
+.icn-office:before {
+  content: "\e600"; }
 
 .icn-close:before {
   content: "\e680"; }
@@ -2108,6 +2087,39 @@ select[multiple].input-lg {
 
 .icn-twitter:before {
   content: "\ea91"; }
+
+.icn-file-text:before {
+  content: "\e922"; }
+
+.icn-layers:before {
+  content: "\e031"; }
+
+.icn-cabinet:before {
+  content: "\e601"; }
+
+.icn-tools:before {
+  content: "\e602"; }
+
+.icn-adjust:before {
+  content: "\f042"; }
+
+.icn-plus2:before {
+  content: "\f067"; }
+
+.icn-minus:before {
+  content: "\f068"; }
+
+.icn-bars:before {
+  content: "\f0c9"; }
+
+.icn-circle-o:before {
+  content: "\f10c"; }
+
+.icn-circle:before {
+  content: "\f111"; }
+
+.icn-bullseye:before {
+  content: "\f140"; }
 
 @font-face {
   font-family: 'customicons';

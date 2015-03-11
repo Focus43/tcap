@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:url('#{$icomoon-font-path}/icomoon.eot?-4xwedh');
-  src:url('#{$icomoon-font-path}/icomoon.eot?#iefix-4xwedh') format('embedded-opentype'),
-  url('#{$icomoon-font-path}/icomoon.woff?-4xwedh') format('woff'),
-  url('#{$icomoon-font-path}/icomoon.ttf?-4xwedh') format('truetype'),
-  url('#{$icomoon-font-path}/icomoon.svg?-4xwedh#icomoon') format('svg');
+  src:url('#{$icomoon-font-path}/icomoon.eot?-qmahge');
+  src:url('#{$icomoon-font-path}/icomoon.eot?#iefix-qmahge') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/icomoon.woff?-qmahge') format('woff'),
+  url('#{$icomoon-font-path}/icomoon.ttf?-qmahge') format('truetype'),
+  url('#{$icomoon-font-path}/icomoon.svg?-qmahge#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -31,110 +31,127 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icn-layers:before {
-  content: "\e031";
-}
-
-.icn-adjust:before {
-  content: "\f042";
-}
-
-.icn-plus2:before {
-  content: "\f067";
-}
-
-.icn-minus:before {
-  content: "\f068";
-}
-
-.icn-bars:before {
-  content: "\f0c9";
-}
-
-.icn-circle-o:before {
-  content: "\f10c";
-}
-
-.icn-circle:before {
-  content: "\f111";
-}
-
-.icn-bullseye:before {
-  content: "\f140";
+.icn-office:before {
+    content: "\e600";
 }
 
 .icn-close:before {
-  content: "\e680";
+    content: "\e680";
 }
 
 .icn-close-circle:before {
-  content: "\e681";
+    content: "\e681";
 }
 
 .icn-angle-up:before {
-  content: "\e682";
+    content: "\e682";
 }
 
 .icn-angle-up-circle:before {
-  content: "\e683";
+    content: "\e683";
 }
 
 .icn-angle-right:before {
-  content: "\e684";
+    content: "\e684";
 }
 
 .icn-angle-right-circle:before {
-  content: "\e685";
+    content: "\e685";
 }
 
 .icn-angle-left:before {
-  content: "\e686";
+    content: "\e686";
 }
 
 .icn-angle-left-circle:before {
-  content: "\e687";
+    content: "\e687";
 }
 
 .icn-angle-down:before {
-  content: "\e688";
+    content: "\e688";
 }
 
 .icn-angle-down-circle:before {
-  content: "\e689";
+    content: "\e689";
 }
 
 .icn-plus:before {
-  content: "\e623";
+    content: "\e623";
 }
 
 .icn-less:before {
-  content: "\e644";
+    content: "\e644";
 }
 
 .icn-info:before {
-  content: "\e647";
+    content: "\e647";
 }
 
 .icn-help1:before {
-  content: "\e64a";
+    content: "\e64a";
 }
 
 .icn-expand1:before {
-  content: "\e657";
+    content: "\e657";
 }
 
 .icn-check:before {
-  content: "\e66c";
+    content: "\e66c";
 }
 
 .icn-attention:before {
-  content: "\e67b";
+    content: "\e67b";
 }
 
 .icn-google-plus:before {
-  content: "\ea88";
+    content: "\ea88";
 }
 
 .icn-twitter:before {
-  content: "\ea91";
+    content: "\ea91";
 }
+
+.icn-file-text:before {
+    content: "\e922";
+}
+
+.icn-layers:before {
+    content: "\e031";
+}
+
+.icn-cabinet:before {
+    content: "\e601";
+}
+
+.icn-tools:before {
+    content: "\e602";
+}
+
+.icn-adjust:before {
+    content: "\f042";
+}
+
+.icn-plus2:before {
+    content: "\f067";
+}
+
+.icn-minus:before {
+    content: "\f068";
+}
+
+.icn-bars:before {
+    content: "\f0c9";
+}
+
+.icn-circle-o:before {
+    content: "\f10c";
+}
+
+.icn-circle:before {
+    content: "\f111";
+}
+
+.icn-bullseye:before {
+    content: "\f140";
+}
+

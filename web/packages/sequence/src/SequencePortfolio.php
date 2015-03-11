@@ -98,6 +98,17 @@
         /**
          * @return string
          */
+        public function getCategoryString(){
+            $categoryOptions = self::getCategoryOptions();
+            $categoryString = "";
+            foreach ( (array) $this->category as $key ) {
+                $categoryString .= $categoryOptions[$key] . ", ";
+            }
+            return substr($categoryString, 0, -2);
+        }
+        /**
+         * @return string
+         */
         public function getToolsUsed(){
             return $this->toolsUsed;
         }

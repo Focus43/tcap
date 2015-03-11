@@ -396,39 +396,6 @@ img {
             display: block; }
         #c-level-1 header nav ul li:first-child a {
           border-top: 0; }
-  #c-level-1 [accordion] {
-    position: relative;
-    top: -0.5rem; }
-    #c-level-1 [accordion] .group {
-      overflow: hidden;
-      position: relative;
-      border-bottom: 1px solid #000; }
-      #c-level-1 [accordion] .group .accordion-header {
-        display: block;
-        padding: 0.5rem 0;
-        color: #f58220;
-        cursor: pointer;
-        line-height: 1;
-        padding-right: 15px; }
-        #c-level-1 [accordion] .group .accordion-header::after {
-          font-size: 14px;
-          content: "\f067";
-          font-family: 'icomoon';
-          display: inline-block;
-          position: absolute;
-          right: 0;
-          top: 9px;
-          line-height: 1; }
-      #c-level-1 [accordion] .group .accordion-body {
-        height: 0;
-        overflow: hidden; }
-        #c-level-1 [accordion] .group .accordion-body p {
-          margin: 0;
-          padding: 0 0 0.5rem; }
-      #c-level-1 [accordion] .group:first-child .accordion-body {
-        height: auto; }
-      #c-level-1 [accordion] .group.active .accordion-header::after {
-        content: '\f068'; }
   #c-level-1 [quote-cycle] {
     position: relative;
     text-transform: uppercase;
@@ -534,6 +501,40 @@ img {
     #c-level-1 [isotope-grid] .isotope-node {
       width: 25%;
       padding-bottom: 16.66667%; } }
+
+[accordion] {
+  position: relative;
+  top: -0.5rem; }
+  [accordion] .group {
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid #000; }
+    [accordion] .group .accordion-header {
+      display: block;
+      padding: 0.5rem 0;
+      color: #f58220;
+      cursor: pointer;
+      line-height: 1;
+      padding-right: 15px; }
+      [accordion] .group .accordion-header::after {
+        font-size: 14px;
+        content: "\f067";
+        font-family: 'icomoon';
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 9px;
+        line-height: 1; }
+    [accordion] .group .accordion-body {
+      height: 0;
+      overflow: hidden; }
+      [accordion] .group .accordion-body p {
+        margin: 0;
+        padding: 0 0 0.5rem; }
+    [accordion] .group:first-child .accordion-body {
+      height: auto; }
+    [accordion] .group.active .accordion-header::after {
+      content: '\f068'; }
 
 [masthead] {
   color: #fff;
@@ -667,6 +668,25 @@ html.sidebar-nav #c-level-1 nav::after {
   visibility: visible;
   opacity: 1;
   z-index: 3; }
+
+.portfolio .portfolio-head {
+  cursor: pointer; }
+.portfolio .progress {
+  height: 5px;
+  width: 0;
+  background-color: #959595; }
+.portfolio .btn-portfolio {
+  color: #fff;
+  display: block;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #fff;
+  text-align: center; }
+  .portfolio .btn-portfolio:hover {
+    color: #f58220;
+    border-color: #f58220;
+    text-decoration: none; }
+.portfolio .client-link {
+  color: #959595; }
 
 @media screen and (max-width: 768px) {
   .col-sm-4, .col-sm-6 {
