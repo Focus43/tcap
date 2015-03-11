@@ -82,10 +82,11 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 
   @import 'elements/header_and_nav';
   @import 'elements/accordion';
-  @import 'elements/masthead';
+//  @import 'elements/masthead';
   @import 'elements/quote-cycle';
   @import 'elements/isotope';
 }
+@import 'elements/masthead';
 
 // Disclaimer pop-up
 .legal-popups {padding:0 2rem;

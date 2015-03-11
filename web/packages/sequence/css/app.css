@@ -429,120 +429,6 @@ img {
         height: auto; }
       #c-level-1 [accordion] .group.active .accordion-header::after {
         content: '\f068'; }
-  #c-level-1 [masthead] {
-    color: #fff;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden; }
-    #c-level-1 [masthead] .node {
-      display: table;
-      visibility: hidden;
-      opacity: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: 70% 50%; }
-      #c-level-1 [masthead] .node:first-of-type {
-        visibility: visible;
-        opacity: 1; }
-    #c-level-1 [masthead] .inner {
-      width: 100%;
-      height: 100%;
-      display: table-cell;
-      vertical-align: bottom;
-      text-align: left;
-      padding-bottom: 2rem; }
-    #c-level-1 [masthead] .node-content {
-      font-size: 1.3rem;
-      display: inline-block;
-      max-width: 90%;
-      padding-left: 2rem; }
-    #c-level-1 [masthead] a {
-      color: inherit; }
-      #c-level-1 [masthead] a:hover {
-        text-decoration: underline; }
-    #c-level-1 [masthead] ul {
-      list-style: none;
-      padding: 0 0 0 18px; }
-      #c-level-1 [masthead] ul li {
-        position: relative; }
-        #c-level-1 [masthead] ul li::before {
-          content: "\e684";
-          font-family: 'icomoon';
-          position: absolute;
-          right: 100%;
-          top: 50%;
-          display: inline-block;
-          color: #f58220;
-          font-size: 150%;
-          -moz-transform: translateY(-50%);
-          -ms-transform: translateY(-50%);
-          -webkit-transform: translateY(-50%);
-          transform: translateY(-50%); }
-    #c-level-1 [masthead] .arrows {
-      color: #959595;
-      position: absolute;
-      top: 100%;
-      font-size: 4rem;
-      padding: 0;
-      line-height: 1;
-      -moz-transform: translateY(-100%);
-      -ms-transform: translateY(-100%);
-      -webkit-transform: translateY(-100%);
-      transform: translateY(-100%);
-      -webkit-transition: all 0.25s ease;
-      -o-transition: all 0.25s ease;
-      transition: all 0.25s ease;
-      z-index: 1; }
-      #c-level-1 [masthead] .arrows:hover {
-        color: #b4b4b4;
-        text-decoration: none; }
-      #c-level-1 [masthead] .arrows[class*="left"] {
-        left: 0; }
-        #c-level-1 [masthead] .arrows[class*="left"]:hover {
-          padding-left: 0.25rem; }
-      #c-level-1 [masthead] .arrows[class*="right"] {
-        right: 0; }
-        #c-level-1 [masthead] .arrows[class*="right"]:hover {
-          padding-right: 0.25rem; }
-    #c-level-1 [masthead] .markers {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0;
-      line-height: 0; }
-      #c-level-1 [masthead] .markers a {
-        color: #959595;
-        display: inline-block;
-        padding: 0.25rem;
-        font-size: 14px;
-        line-height: 1; }
-        #c-level-1 [masthead] .markers a:hover, #c-level-1 [masthead] .markers a.active {
-          color: #222222;
-          text-decoration: none; }
-  @media screen and (min-width: 768px) {
-    #c-level-1 [masthead] {
-      color: #959595; }
-      #c-level-1 [masthead] .inner {
-        vertical-align: middle;
-        padding-top: 0; }
-      #c-level-1 [masthead] .node-content {
-        padding-left: 7rem;
-        max-width: 75%; }
-      #c-level-1 [masthead] .arrows {
-        font-size: 5rem;
-        top: 50%; } }
-  @media screen and (min-width: 992px) {
-    #c-level-1 [masthead] .node-content {
-      max-width: 60%; } }
   #c-level-1 [quote-cycle] {
     position: relative;
     text-transform: uppercase;
@@ -649,6 +535,121 @@ img {
       width: 25%;
       padding-bottom: 16.66667%; } }
 
+[masthead] {
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden; }
+  [masthead] .node {
+    display: table;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: 70% 50%; }
+    [masthead] .node:first-of-type {
+      visibility: visible;
+      opacity: 1; }
+  [masthead] .inner {
+    width: 100%;
+    height: 100%;
+    display: table-cell;
+    vertical-align: bottom;
+    text-align: left;
+    padding-bottom: 2rem; }
+  [masthead] .node-content {
+    font-size: 1.3rem;
+    display: inline-block;
+    max-width: 90%;
+    padding-left: 2rem; }
+  [masthead] a {
+    color: inherit; }
+    [masthead] a:hover {
+      text-decoration: underline; }
+  [masthead] ul {
+    list-style: none;
+    padding: 0 0 0 18px; }
+    [masthead] ul li {
+      position: relative; }
+      [masthead] ul li::before {
+        content: "\e684";
+        font-family: 'icomoon';
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        display: inline-block;
+        color: #f58220;
+        font-size: 150%;
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%); }
+  [masthead] .arrows {
+    color: #959595;
+    position: absolute;
+    top: 100%;
+    font-size: 4rem;
+    padding: 0;
+    line-height: 1;
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    z-index: 1; }
+    [masthead] .arrows:hover {
+      color: #b4b4b4;
+      text-decoration: none; }
+    [masthead] .arrows[class*="left"] {
+      left: 0; }
+      [masthead] .arrows[class*="left"]:hover {
+        padding-left: 0.25rem; }
+    [masthead] .arrows[class*="right"] {
+      right: 0; }
+      [masthead] .arrows[class*="right"]:hover {
+        padding-right: 0.25rem; }
+  [masthead] .markers {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0;
+    line-height: 0; }
+    [masthead] .markers a {
+      color: #959595;
+      display: inline-block;
+      padding: 0.25rem;
+      font-size: 14px;
+      line-height: 1; }
+      [masthead] .markers a:hover, [masthead] .markers a.active {
+        color: #222222;
+        text-decoration: none; }
+
+@media screen and (min-width: 768px) {
+  [masthead] {
+    color: #959595; }
+    [masthead] .inner {
+      vertical-align: middle;
+      padding-top: 0; }
+    [masthead] .node-content {
+      padding-left: 7rem;
+      max-width: 75%; }
+    [masthead] .arrows {
+      font-size: 5rem;
+      top: 50%; } }
+@media screen and (min-width: 992px) {
+  [masthead] .node-content {
+    max-width: 60%; } }
 .legal-popups {
   padding: 0 2rem; }
   .legal-popups h1, .legal-popups h2, .legal-popups h3 {

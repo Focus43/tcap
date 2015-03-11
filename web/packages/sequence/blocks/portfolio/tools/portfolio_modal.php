@@ -21,7 +21,32 @@ $fileSetObj = FileSet::getByID((int) $portfolioObj->getGalleryFileSetID());
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 portfolio-details">
+        <div class="col-sm-12 col-md-8">
+            <?php
+            if ( is_object($fileSetObj) ){ $filesInSet = $fileSetObj->getFiles(); }
+            $fileCount = 0;
+            ?>
+            <div masthead progress-indicator="progress" data-transition-speed="0.5"<?php if(!$isEditMode && (count((array)$filesInSet) > 1)){echo ' data-loop-timing="12"';} ?>
+                 style="max-height: 500px;height: 390px;">
+                <?php if(!empty($filesInSet)): foreach($filesInSet AS $index => $fileObj): if($fileObj): ?>
+                <div class="node" style="max-height: 500px;height: 390px;background-image:url('<?php echo $fileObj->getRelativePath(); ?>');">
+                    <div class="progress" style="height: 5px;width: 0;background-color: red;"></div>
+                    <div class="inner" style="display: none;"><div class="node-content"></div></div>
+                </div>
+                <?php $fileCount ++;
+                endif; endforeach; endif; ?>
+                <?php if( $fileCount > 1 ): ?>
+                    <a class="arrows icn-angle-left"></a>
+                    <a class="arrows icn-angle-right"></a>
+                    <div class="markers">
+                        <?php for($i = 0; $i < $fileCount; $i++): ?>
+                            <a class="<?php echo $i === 0 ? 'active' : ''; ?>"><i class="icn-circle"></i></a>
+                        <?php endfor; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 portfolio-details">
             <div class="anglified">
                 <h3><?php echo $portfolioObj->getTitle(); ?></h3>
                 <span class="theme-highlight-color"><?php echo $portfolioObj->getCategoriesString(); ?></span>
@@ -29,12 +54,4 @@ $fileSetObj = FileSet::getByID((int) $portfolioObj->getGalleryFileSetID());
             </div>
         </div>
     </div>
-    <?php
-    if( is_object($fileSetObj) ){
-    $filesInSet = $fileSetObj->getFiles();
-    if(!empty($filesInSet)): foreach($filesInSet AS $fileObj): if($fileObj): /** @var $fileObj \Concrete\Core\File\File */ ?>
-        <div class="row"><div class="col-sm-12 portfolio-image"><img src="<?php echo $fileObj->getRelativePath(); ?>"></div></div>
-    <?php endif; endforeach; endif;
-    }
-    ?>
 </div>

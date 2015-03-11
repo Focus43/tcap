@@ -10,7 +10,8 @@ angular.module('sequence.elements').
                     $markers            = angular.element(element.querySelectorAll('.markers a')),
                     indexActive         = 0,
                     _loopTiming         = +(attrs.loopTiming || 0),
-                    _transitionSpeed    = +(attrs.transitionSpeed || 0.75);
+                    _transitionSpeed    = +(attrs.transitionSpeed || 0.75),
+                    _progressBar        = null;
 
                 function _render( _index ){
                     var indexNext       = _index,
@@ -19,6 +20,12 @@ angular.module('sequence.elements').
                         nextNode        = nodes[indexNext],
                         nextNodeKids    = nextNode.querySelector('.node-content').children;
 
+                    if ( attrs.progressIndicator ) {
+                        var _progressBar = element.querySelectorAll('.' + attrs.progressIndicator);
+                        TweenLite.killTweensOf(_progressBar);
+                        angular.element(_progressBar).css('width', '0');
+                        Tween.to(_progressBar, _loopTiming, { css:{'width':'100%'}, ease:Linear.easeNone });
+                    }
                     // Current
                     Tween.to(currentNode, _transitionSpeed, {autoAlpha:0});
                     Tween.staggerTo(currentNodeKids, _transitionSpeed, {x:200,autoAlpha:0}, (_transitionSpeed/currentNodeKids.length));
@@ -54,12 +61,18 @@ angular.module('sequence.elements').
                     _render(index);
                 });
 
+                if ( attrs.progressIndicator ) {
+                    _progressBar = element.querySelectorAll('.' + attrs.progressIndicator);
+                    Tween.to(_progressBar, _loopTiming, { css:{'width':'100%'}, ease:Linear.easeNone });
+                }
+
                 if( _loopTiming > 0 ){
                     (function _loop( _delay ){
                         setTimeout(function(){
                             _next();
                             _loop(_delay);
                         }, (_loopTiming * 1000));
+                        if ( attrs.progressIndicator ) { Tween.to(_progressBar, _loopTiming, { css:{'width':'100%'}, ease:Linear.easeNone }); }
                     })( 3000 );
                 }
             }

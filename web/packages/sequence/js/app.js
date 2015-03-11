@@ -132,79 +132,6 @@ angular.module('sequence.common').
             }
         }
     ]);
-/* global Modernizr */
-/* global FastClick */
-angular.module('sequence.common').
-
-    /**
-     * @description Modernizr provider
-     * @param $window
-     * @param $log
-     * @returns Modernizr | false
-     */
-    provider('Modernizr', function(){
-        this.$get = ['$window', '$log',
-            function( $window, $log ){
-                return $window['Modernizr'] || ($log.warn('Modernizr unavailable!'), false);
-            }
-        ];
-    }).
-
-    /**
-     * @description TweenLite OR TweenMax provider
-     * @param $window
-     * @param $log
-     * @returns TweenMax | TweenLite | false
-     */
-    provider('Tween', function(){
-        this.$get = ['$window', '$log',
-            function( $window, $log ){
-                return $window['TweenMax'] || $window['TweenLite'] || ($log.warn('Tween library unavailable!'), false);
-            }
-        ];
-    }).
-
-    /**
-     * @description Isotope provider
-     * @param $window
-     * @param $log
-     * @returns Isotope | false
-     */
-    provider('Isotope', function(){
-        this.$get = ['$window', '$log',
-            function( $window, $log ){
-                return $window['Isotope'] || ($log.warn('Isotope unavailable!'), false);
-            }
-        ];
-    }).
-
-    /**
-     * @description FastClick provider
-     * @param $window
-     * @param $log
-     * @returns FastClick | false
-     */
-    provider('FastClick', function(){
-        this.$get = ['$window', '$log',
-            function( $window, $log ){
-                return $window['FastClick'] || ($log.warn('FastClick unavailable!'), false);
-            }
-        ];
-    }).
-
-    /**
-     * @description Moment provider
-     * @param $window
-     * @param $log
-     * @returns moment | false
-     */
-    provider('moment', function(){
-        this.$get = ['$window', '$log',
-            function( $window, $log ){
-                return $window['moment'] || ($log.warn('Moment unavailable!'), false);
-            }
-        ];
-    });
 angular.module('sequence.elements').
 
     directive('accordion', ['Tween',
@@ -581,7 +508,8 @@ angular.module('sequence.elements').
                     $markers            = angular.element(element.querySelectorAll('.markers a')),
                     indexActive         = 0,
                     _loopTiming         = +(attrs.loopTiming || 0),
-                    _transitionSpeed    = +(attrs.transitionSpeed || 0.75);
+                    _transitionSpeed    = +(attrs.transitionSpeed || 0.75),
+                    _progressBar        = null;
 
                 function _render( _index ){
                     var indexNext       = _index,
@@ -590,6 +518,12 @@ angular.module('sequence.elements').
                         nextNode        = nodes[indexNext],
                         nextNodeKids    = nextNode.querySelector('.node-content').children;
 
+                    if ( attrs.progressIndicator ) {
+                        var _progressBar = element.querySelectorAll('.' + attrs.progressIndicator);
+                        TweenLite.killTweensOf(_progressBar);
+                        angular.element(_progressBar).css('width', '0');
+                        Tween.to(_progressBar, _loopTiming, { css:{'width':'100%'}, ease:Linear.easeNone });
+                    }
                     // Current
                     Tween.to(currentNode, _transitionSpeed, {autoAlpha:0});
                     Tween.staggerTo(currentNodeKids, _transitionSpeed, {x:200,autoAlpha:0}, (_transitionSpeed/currentNodeKids.length));
@@ -625,12 +559,18 @@ angular.module('sequence.elements').
                     _render(index);
                 });
 
+                if ( attrs.progressIndicator ) {
+                    _progressBar = element.querySelectorAll('.' + attrs.progressIndicator);
+                    Tween.to(_progressBar, _loopTiming, { css:{'width':'100%'}, ease:Linear.easeNone });
+                }
+
                 if( _loopTiming > 0 ){
                     (function _loop( _delay ){
                         setTimeout(function(){
                             _next();
                             _loop(_delay);
                         }, (_loopTiming * 1000));
+                        Tween.to(_progressBar, _loopTiming, { css:{'width':'100%'}, ease:Linear.easeNone });
                     })( 3000 );
                 }
             }
@@ -957,3 +897,76 @@ angular.module('sequence.elements').
             }
         };
     }]);
+/* global Modernizr */
+/* global FastClick */
+angular.module('sequence.common').
+
+    /**
+     * @description Modernizr provider
+     * @param $window
+     * @param $log
+     * @returns Modernizr | false
+     */
+    provider('Modernizr', function(){
+        this.$get = ['$window', '$log',
+            function( $window, $log ){
+                return $window['Modernizr'] || ($log.warn('Modernizr unavailable!'), false);
+            }
+        ];
+    }).
+
+    /**
+     * @description TweenLite OR TweenMax provider
+     * @param $window
+     * @param $log
+     * @returns TweenMax | TweenLite | false
+     */
+    provider('Tween', function(){
+        this.$get = ['$window', '$log',
+            function( $window, $log ){
+                return $window['TweenMax'] || $window['TweenLite'] || ($log.warn('Tween library unavailable!'), false);
+            }
+        ];
+    }).
+
+    /**
+     * @description Isotope provider
+     * @param $window
+     * @param $log
+     * @returns Isotope | false
+     */
+    provider('Isotope', function(){
+        this.$get = ['$window', '$log',
+            function( $window, $log ){
+                return $window['Isotope'] || ($log.warn('Isotope unavailable!'), false);
+            }
+        ];
+    }).
+
+    /**
+     * @description FastClick provider
+     * @param $window
+     * @param $log
+     * @returns FastClick | false
+     */
+    provider('FastClick', function(){
+        this.$get = ['$window', '$log',
+            function( $window, $log ){
+                return $window['FastClick'] || ($log.warn('FastClick unavailable!'), false);
+            }
+        ];
+    }).
+
+    /**
+     * @description Moment provider
+     * @param $window
+     * @param $log
+     * @returns moment | false
+     */
+    provider('moment', function(){
+        this.$get = ['$window', '$log',
+            function( $window, $log ){
+                return $window['moment'] || ($log.warn('Moment unavailable!'), false);
+            }
+        ];
+    });
