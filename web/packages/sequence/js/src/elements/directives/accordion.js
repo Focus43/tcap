@@ -19,6 +19,7 @@ angular.module('sequence.elements').
                     Tween.to(this.querySelector('.accordion-body'), _speed, {
                         height:this.querySelector('.accordion-content').clientHeight
                     });
+                    console.log(this.querySelector('.accordion-content').clientHeight);
                     angular.element(_groups).removeClass('active');
                     angular.element(this).addClass('active');
                 });

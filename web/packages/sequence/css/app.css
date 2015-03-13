@@ -131,6 +131,35 @@
   height: 100%;
   width: 100%;
   background: #222222; }
+  [modal-window].portfolio .portfolio-head {
+    padding-bottom: 45px; }
+    [modal-window].portfolio .portfolio-head .close {
+      cursor: pointer;
+      color: #f58220;
+      line-height: 1;
+      display: inline-block;
+      font-size: 20px;
+      padding: 0.5rem 1rem;
+      border: 1px solid #f58220;
+      border-top: 0;
+      border-bottom: 0; }
+  [modal-window].portfolio .portfolio-details h4 {
+    color: #f58220; }
+  [modal-window].portfolio .portfolio-details [accordion] {
+    margin-top: 45px; }
+  [modal-window].portfolio .portfolio-details .client-link {
+    color: #959595; }
+  [modal-window].portfolio .portfolio-image {
+    text-align: center; }
+    [modal-window].portfolio .portfolio-image img {
+      display: inline-block;
+      margin: 10px auto; }
+  [modal-window].portfolio .progress {
+    height: 5px;
+    width: 0;
+    background-color: rgba(245, 130, 32, 0.5); }
+  [modal-window].portfolio [masthead] .arrows {
+    font-size: 2.8rem; }
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -478,6 +507,7 @@ img {
       #c-level-1 [isotope-grid] .isotope-node .isotope-box {
         width: 100%;
         height: 100%;
+        display: none;
         position: absolute;
         background-color: rgba(245, 130, 32, 0.85); }
         #c-level-1 [isotope-grid] .isotope-node .isotope-box .isotope-content {
@@ -574,7 +604,7 @@ img {
     display: table-cell;
     vertical-align: bottom;
     text-align: left;
-    padding-bottom: 2rem; }
+    padding-bottom: 4rem; }
   [masthead] .node-content {
     font-size: 1.3rem;
     display: inline-block;
@@ -603,12 +633,13 @@ img {
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%); }
   [masthead] .arrows {
-    color: #959595;
+    color: #fff !important;
     position: absolute;
     top: 100%;
     font-size: 4rem;
     padding: 0;
     line-height: 1;
+    cursor: pointer;
     -moz-transform: translateY(-100%);
     -ms-transform: translateY(-100%);
     -webkit-transform: translateY(-100%);
@@ -618,7 +649,7 @@ img {
     transition: all 0.25s ease;
     z-index: 1; }
     [masthead] .arrows:hover {
-      color: #b4b4b4;
+      color: #b4b4b4 !important;
       text-decoration: none; }
     [masthead] .arrows[class*="left"] {
       left: 0; }
@@ -639,13 +670,13 @@ img {
     font-size: 0;
     line-height: 0; }
     [masthead] .markers a {
-      color: #959595;
+      color: #959595 !important;
       display: inline-block;
       padding: 0.25rem;
       font-size: 14px;
       line-height: 1; }
       [masthead] .markers a:hover, [masthead] .markers a.active {
-        color: #222222;
+        color: #f58220 !important;
         text-decoration: none; }
 
 @media screen and (min-width: 768px) {
@@ -653,13 +684,18 @@ img {
     color: #959595; }
     [masthead] .inner {
       vertical-align: middle;
-      padding-top: 0; }
+      padding-top: 0;
+      padding-bottom: 2rem; }
     [masthead] .node-content {
       padding-left: 7rem;
       max-width: 75%; }
     [masthead] .arrows {
       font-size: 5rem;
-      top: 50%; } }
+      top: 50%;
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%); } }
 @media screen and (min-width: 992px) {
   [masthead] .node-content {
     max-width: 60%; } }
@@ -680,25 +716,6 @@ html.sidebar-nav #c-level-1 nav::after {
   visibility: visible;
   opacity: 1;
   z-index: 3; }
-
-.portfolio .portfolio-head {
-  cursor: pointer; }
-.portfolio .progress {
-  height: 5px;
-  width: 0;
-  background-color: #959595; }
-.portfolio .btn-portfolio {
-  color: #fff;
-  display: block;
-  padding: 0.25rem 0.75rem;
-  border: 1px solid #fff;
-  text-align: center; }
-  .portfolio .btn-portfolio:hover {
-    color: #f58220;
-    border-color: #f58220;
-    text-decoration: none; }
-.portfolio .client-link {
-  color: #959595; }
 
 @media screen and (max-width: 768px) {
   .col-sm-4, .col-sm-6 {

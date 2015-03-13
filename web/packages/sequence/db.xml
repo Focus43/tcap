@@ -16,9 +16,8 @@
         </field>
 
         <field name="title" type="C" size="255" />
-        <field name="description" type="x2" />
-        <field name="shortName" type="C" size="255" />
-        <field name="category" type="x2" />
+        <field name="description" type="X2" />
+        <field name="category" type="X2" />
         <field name="toolsUsed" type="C" size="255" />
 
         <field name="clientName" type="C" size="255" />

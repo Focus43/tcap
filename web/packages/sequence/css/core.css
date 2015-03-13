@@ -1294,21 +1294,21 @@ address {
     background-color: #fff; }
 
 .btn-primary {
-  color: #fff;
-  background-color: #428bca;
-  border-color: #357ebd; }
+  color: #222222;
+  background-color: #f58220;
+  border-color: #f58220; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #3071a9;
-    border-color: #285e8e; }
+    color: #222222;
+    background-color: #d8690a;
+    border-color: #cf6409; }
   .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
     background-image: none; }
   .btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled]:active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active {
-    background-color: #428bca;
-    border-color: #357ebd; }
+    background-color: #f58220;
+    border-color: #f58220; }
   .btn-primary .badge {
-    color: #428bca;
-    background-color: #fff; }
+    color: #f58220;
+    background-color: #222222; }
 
 .btn-success {
   color: #fff;
@@ -2005,8 +2005,8 @@ select[multiple].input-lg {
     display: none !important; } }
 @font-face {
   font-family: 'icomoon';
-  src: url("/packages/sequence/fonts/icomoon/icomoon.eot?-qmahge");
-  src: url("/packages/sequence/fonts/icomoon/icomoon.eot?#iefix-qmahge") format("embedded-opentype"), url("/packages/sequence/fonts/icomoon/icomoon.woff?-qmahge") format("woff"), url("/packages/sequence/fonts/icomoon/icomoon.ttf?-qmahge") format("truetype"), url("/packages/sequence/fonts/icomoon/icomoon.svg?-qmahge#icomoon") format("svg");
+  src: url("/packages/sequence/fonts/icomoon/icomoon.eot?-brai0n");
+  src: url("/packages/sequence/fonts/icomoon/icomoon.eot?#iefix-brai0n") format("embedded-opentype"), url("/packages/sequence/fonts/icomoon/icomoon.woff?-brai0n") format("woff"), url("/packages/sequence/fonts/icomoon/icomoon.ttf?-brai0n") format("truetype"), url("/packages/sequence/fonts/icomoon/icomoon.svg?-brai0n#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icn-"], [class*=" icn-"] {
@@ -2028,8 +2028,59 @@ select[multiple].input-lg {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.icn-office:before {
+.icn-settings:before {
   content: "\e600"; }
+
+.icn-stack:before {
+  content: "\e601"; }
+
+.icn-user:before {
+  content: "\f007"; }
+
+.icn-th:before {
+  content: "\f00a"; }
+
+.icn-cog:before {
+  content: "\f013"; }
+
+.icn-inbox:before {
+  content: "\f01c"; }
+
+.icn-adjust:before {
+  content: "\f042"; }
+
+.icn-plus2:before {
+  content: "\f067"; }
+
+.icn-minus:before {
+  content: "\f068"; }
+
+.icn-bars:before {
+  content: "\f0c9"; }
+
+.icn-lightbulb-o:before {
+  content: "\f0eb"; }
+
+.icn-circle-o:before {
+  content: "\f10c"; }
+
+.icn-circle:before {
+  content: "\f111"; }
+
+.icn-bullseye:before {
+  content: "\f140"; }
+
+.icn-sun-o:before {
+  content: "\f185"; }
+
+.icn-cubes:before {
+  content: "\f1b3"; }
+
+.icn-area-chart:before {
+  content: "\f1fe"; }
+
+.icn-pie-chart:before {
+  content: "\f200"; }
 
 .icn-close:before {
   content: "\e680"; }
@@ -2087,39 +2138,6 @@ select[multiple].input-lg {
 
 .icn-twitter:before {
   content: "\ea91"; }
-
-.icn-file-text:before {
-  content: "\e922"; }
-
-.icn-layers:before {
-  content: "\e031"; }
-
-.icn-cabinet:before {
-  content: "\e601"; }
-
-.icn-tools:before {
-  content: "\e602"; }
-
-.icn-adjust:before {
-  content: "\f042"; }
-
-.icn-plus2:before {
-  content: "\f067"; }
-
-.icn-minus:before {
-  content: "\f068"; }
-
-.icn-bars:before {
-  content: "\f0c9"; }
-
-.icn-circle-o:before {
-  content: "\f10c"; }
-
-.icn-circle:before {
-  content: "\f111"; }
-
-.icn-bullseye:before {
-  content: "\f140"; }
 
 @font-face {
   font-family: 'customicons';

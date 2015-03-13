@@ -105,16 +105,6 @@ html.sidebar-nav {
   }
 }
 
-// Portfolio
-.portfolio {
-    .portfolio-head { cursor: pointer; }
-    .progress { height: 5px;width: 0;background-color: $theme-font-color; }
-    .btn-portfolio { color: $theme-button-font-color;display: block;padding: 0.25rem 0.75rem;border: 1px solid $theme-button-font-color;text-align: center;
-        &:hover { color: $theme-highlight-color;border-color: $theme-highlight-color;text-decoration: none;  }
-    }
-    .client-link { color: $theme-font-color; }
-}
-
 // Spacing on mobile: this is not ideal; setup something more re-usable in the future
 @media screen and (max-width:$screen-sm){
   .col-sm-4, .col-sm-6 {padding-bottom:2rem;}

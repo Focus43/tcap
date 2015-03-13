@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:url('#{$icomoon-font-path}/icomoon.eot?-qmahge');
-  src:url('#{$icomoon-font-path}/icomoon.eot?#iefix-qmahge') format('embedded-opentype'),
-  url('#{$icomoon-font-path}/icomoon.woff?-qmahge') format('woff'),
-  url('#{$icomoon-font-path}/icomoon.ttf?-qmahge') format('truetype'),
-  url('#{$icomoon-font-path}/icomoon.svg?-qmahge#icomoon') format('svg');
+  src:url('#{$icomoon-font-path}/icomoon.eot?-brai0n');
+  src:url('#{$icomoon-font-path}/icomoon.eot?#iefix-brai0n') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/icomoon.woff?-brai0n') format('woff'),
+  url('#{$icomoon-font-path}/icomoon.ttf?-brai0n') format('truetype'),
+  url('#{$icomoon-font-path}/icomoon.svg?-brai0n#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -31,127 +31,150 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icn-office:before {
-    content: "\e600";
+.icn-settings:before {
+  content: "\e600";
 }
 
-.icn-close:before {
-    content: "\e680";
+.icn-stack:before {
+  content: "\e601";
 }
 
-.icn-close-circle:before {
-    content: "\e681";
+.icn-user:before {
+  content: "\f007";
 }
 
-.icn-angle-up:before {
-    content: "\e682";
+.icn-th:before {
+  content: "\f00a";
 }
 
-.icn-angle-up-circle:before {
-    content: "\e683";
+.icn-cog:before {
+  content: "\f013";
 }
 
-.icn-angle-right:before {
-    content: "\e684";
-}
-
-.icn-angle-right-circle:before {
-    content: "\e685";
-}
-
-.icn-angle-left:before {
-    content: "\e686";
-}
-
-.icn-angle-left-circle:before {
-    content: "\e687";
-}
-
-.icn-angle-down:before {
-    content: "\e688";
-}
-
-.icn-angle-down-circle:before {
-    content: "\e689";
-}
-
-.icn-plus:before {
-    content: "\e623";
-}
-
-.icn-less:before {
-    content: "\e644";
-}
-
-.icn-info:before {
-    content: "\e647";
-}
-
-.icn-help1:before {
-    content: "\e64a";
-}
-
-.icn-expand1:before {
-    content: "\e657";
-}
-
-.icn-check:before {
-    content: "\e66c";
-}
-
-.icn-attention:before {
-    content: "\e67b";
-}
-
-.icn-google-plus:before {
-    content: "\ea88";
-}
-
-.icn-twitter:before {
-    content: "\ea91";
-}
-
-.icn-file-text:before {
-    content: "\e922";
-}
-
-.icn-layers:before {
-    content: "\e031";
-}
-
-.icn-cabinet:before {
-    content: "\e601";
-}
-
-.icn-tools:before {
-    content: "\e602";
+.icn-inbox:before {
+  content: "\f01c";
 }
 
 .icn-adjust:before {
-    content: "\f042";
+  content: "\f042";
 }
 
 .icn-plus2:before {
-    content: "\f067";
+  content: "\f067";
 }
 
 .icn-minus:before {
-    content: "\f068";
+  content: "\f068";
 }
 
 .icn-bars:before {
-    content: "\f0c9";
+  content: "\f0c9";
+}
+
+.icn-lightbulb-o:before {
+  content: "\f0eb";
 }
 
 .icn-circle-o:before {
-    content: "\f10c";
+  content: "\f10c";
 }
 
 .icn-circle:before {
-    content: "\f111";
+  content: "\f111";
 }
 
 .icn-bullseye:before {
-    content: "\f140";
+  content: "\f140";
 }
 
+.icn-sun-o:before {
+  content: "\f185";
+}
+
+.icn-cubes:before {
+  content: "\f1b3";
+}
+
+.icn-area-chart:before {
+  content: "\f1fe";
+}
+
+.icn-pie-chart:before {
+  content: "\f200";
+}
+
+.icn-close:before {
+  content: "\e680";
+}
+
+.icn-close-circle:before {
+  content: "\e681";
+}
+
+.icn-angle-up:before {
+  content: "\e682";
+}
+
+.icn-angle-up-circle:before {
+  content: "\e683";
+}
+
+.icn-angle-right:before {
+  content: "\e684";
+}
+
+.icn-angle-right-circle:before {
+  content: "\e685";
+}
+
+.icn-angle-left:before {
+  content: "\e686";
+}
+
+.icn-angle-left-circle:before {
+  content: "\e687";
+}
+
+.icn-angle-down:before {
+  content: "\e688";
+}
+
+.icn-angle-down-circle:before {
+  content: "\e689";
+}
+
+.icn-plus:before {
+  content: "\e623";
+}
+
+.icn-less:before {
+  content: "\e644";
+}
+
+.icn-info:before {
+  content: "\e647";
+}
+
+.icn-help1:before {
+  content: "\e64a";
+}
+
+.icn-expand1:before {
+  content: "\e657";
+}
+
+.icn-check:before {
+  content: "\e66c";
+}
+
+.icn-attention:before {
+  content: "\e67b";
+}
+
+.icn-google-plus:before {
+  content: "\ea88";
+}
+
+.icn-twitter:before {
+  content: "\ea91";
+}

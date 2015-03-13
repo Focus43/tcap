@@ -18,10 +18,6 @@
          */
         protected $description;
         /**
-         * @Column(type="string", length=255)
-         */
-        protected $shortName;
-        /**
          * @Column(type="simple_array")
          */
         protected $category;
@@ -82,12 +78,6 @@
          */
         public function getDescription(){
             return $this->description;
-        }
-        /**
-         * @return string
-         */
-        public function getShortName(){
-            return $this->shortName;
         }
         /**
          * @return string

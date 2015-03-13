@@ -1,23 +1,15 @@
 <?php
-
 use Concrete\Package\Sequence\Controller AS PackageController;
 use Concrete\Package\Sequence\Src\SequencePortfolio;
 
 $portfolioObj = SequencePortfolio::getByID((int)$_REQUEST['pId']);
 $fileSetObj = FileSet::getByID((int) $portfolioObj->getGalleryFileSetID());
 ?>
-<style>
-    div.portfolio-head { text-align: center; }
-    div.portfolio-head div.close { display: inline-block;margin: 10px auto;font-size: 50px; }
-    div.portfolio-details p { padding-top: 10px; }
-    div.portfolio-image { text-align: center; }
-    div.portfolio-image img { display: inline-block;margin: 10px auto; }
-</style>
 
 <div class="container-fluid portfolio">
     <div class="row">
-        <div class="col-sm-12 portfolio-head">
-            <div class="close" close-modal><span class="icn-close-circle"></span></div>
+        <div class="col-sm-12 portfolio-head text-center">
+            <div class="close" close-modal><span class="icn-th"></span></div>
         </div>
     </div>
     <div class="row">
@@ -47,36 +39,44 @@ $fileSetObj = FileSet::getByID((int) $portfolioObj->getGalleryFileSetID());
             </div>
         </div>
         <div class="col-sm-12 col-md-4 portfolio-details">
-            <div class="anglified">
-                <h3><?php echo $portfolioObj->getTitle(); ?></h3>
-                <div accordion="" data-speed="0.25">
-                    <div class="group active">
-                        <div class="accordion-header"><span class="icn-file-text"></span> Project Overview</div>
-                        <div class="accordion-body" style="height: 200px;overflow-y: auto;">
-                            <div class="accordion-content"><?php echo $portfolioObj->getDescription(); ?></div>
+            <h4><?php echo $portfolioObj->getTitle(); ?> <small>Details</small></h4>
+            <?php echo $portfolioObj->getDescription(); ?>
+
+            <div accordion data-speed="0.25">
+                <!--<div class="group active">
+                    <div class="accordion-header"><span class="icn-file-text"></span> Project Overview</div>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <?php echo $portfolioObj->getDescription(); ?>
                         </div>
                     </div>
-                    <div class="group">
-                        <div class="accordion-header"><span class="icn-office"></span> Client</div>
-                        <div class="accordion-body" style="height: 0px;">
-                            <div class="accordion-content"><a href="<?php echo getClientUrl; ?>" class="client-link" target="_blank"><?php echo $portfolioObj->getClientName(); ?></a></div>
-                        </div>
-                    </div>
-                    <div class="group">
-                        <div class="accordion-header"><span class="icn-cabinet"></span> Category</div>
-                        <div class="accordion-body" style="height: 0px;">
-                            <div class="accordion-content"><?php echo $portfolioObj->getCategoryString(); ?></div>
-                        </div>
-                    </div>
-                    <div class="group">
-                        <div class="accordion-header"><span class="icn-tools"></span> Tools Used</div>
-                        <div class="accordion-body" style="height: 0px;">
-                            <div class="accordion-content"><?php echo $portfolioObj->getToolsUsed(); ?></div>
+                </div>-->
+                <div class="group">
+                    <div class="accordion-header"><span class="icn-pie-chart"></span> Client</div>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p><a href="<?php echo getClientUrl; ?>" class="client-link" target="_blank"><?php echo $portfolioObj->getClientName(); ?></a></p>
                         </div>
                     </div>
                 </div>
-                <a href="<?php echo getProjectUrl; ?>" class="btn-portfolio" target="_blank">View Project</a>
+                <div class="group">
+                    <div class="accordion-header"><span class="icn-inbox"></span> Category</div>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p><?php echo $portfolioObj->getCategoryString(); ?></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="accordion-header"><span class="icn-cog"></span> Tools Used</div>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <p><?php echo $portfolioObj->getToolsUsed(); ?></p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <a href="<?php echo getProjectUrl; ?>" class="btn btn-lg btn-primary btn-block" target="_blank">View Project</a>
         </div>
     </div>
 </div>

@@ -228,6 +228,7 @@ angular.module('sequence.elements').
                     Tween.to(this.querySelector('.accordion-body'), _speed, {
                         height:this.querySelector('.accordion-content').clientHeight
                     });
+                    console.log(this.querySelector('.accordion-content').clientHeight);
                     angular.element(_groups).removeClass('active');
                     angular.element(this).addClass('active');
                 });
@@ -271,7 +272,7 @@ angular.module('sequence.elements').
         function( $window, Tween ){
 
             var _options = {
-                speed :0.25,
+                speed :0.15,
 //                hoverDelay : 0, // not used
                 inverse : false
             };

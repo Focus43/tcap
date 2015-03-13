@@ -1,15 +1,15 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-qmahge');
-	src:url('fonts/icomoon.eot?#iefix-qmahge') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-qmahge') format('woff'),
-		url('fonts/icomoon.ttf?-qmahge') format('truetype'),
-		url('fonts/icomoon.svg?-qmahge#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-brai0n');
+	src:url('fonts/icomoon.eot?#iefix-brai0n') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-brai0n') format('woff'),
+		url('fonts/icomoon.ttf?-brai0n') format('truetype'),
+		url('fonts/icomoon.svg?-brai0n#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icn-"], [class*=" icn-"] {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -17,133 +17,165 @@
 	font-variant: normal;
 	text-transform: none;
 	line-height: 1;
+	
+	/* Enable Ligatures ================ */
+	-webkit-font-feature-settings: "liga";
+	-moz-font-feature-settings: "liga=1";
+	-moz-font-feature-settings: "liga";
+	-ms-font-feature-settings: "liga" 1;
+	-o-font-feature-settings: "liga";
+	font-feature-settings: "liga";
 
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-office:before {
+.icn-settings:before {
 	content: "\e600";
 }
 
-.icon-close:before {
-	content: "\e680";
-}
-
-.icon-close-circle:before {
-	content: "\e681";
-}
-
-.icon-angle-up:before {
-	content: "\e682";
-}
-
-.icon-angle-up-circle:before {
-	content: "\e683";
-}
-
-.icon-angle-right:before {
-	content: "\e684";
-}
-
-.icon-angle-right-circle:before {
-	content: "\e685";
-}
-
-.icon-angle-left:before {
-	content: "\e686";
-}
-
-.icon-angle-left-circle:before {
-	content: "\e687";
-}
-
-.icon-angle-down:before {
-	content: "\e688";
-}
-
-.icon-angle-down-circle:before {
-	content: "\e689";
-}
-
-.icon-plus:before {
-	content: "\e623";
-}
-
-.icon-less:before {
-	content: "\e644";
-}
-
-.icon-info:before {
-	content: "\e647";
-}
-
-.icon-help1:before {
-	content: "\e64a";
-}
-
-.icon-expand1:before {
-	content: "\e657";
-}
-
-.icon-check:before {
-	content: "\e66c";
-}
-
-.icon-attention:before {
-	content: "\e67b";
-}
-
-.icon-google-plus:before {
-	content: "\ea88";
-}
-
-.icon-twitter:before {
-	content: "\ea91";
-}
-
-.icon-file-text:before {
-	content: "\e922";
-}
-
-.icon-layers:before {
-	content: "\e031";
-}
-
-.icon-cabinet:before {
+.icn-stack:before {
 	content: "\e601";
 }
 
-.icon-tools:before {
-	content: "\e602";
+.icn-user:before {
+	content: "\f007";
 }
 
-.icon-adjust:before {
+.icn-th:before {
+	content: "\f00a";
+}
+
+.icn-cog:before {
+	content: "\f013";
+}
+
+.icn-inbox:before {
+	content: "\f01c";
+}
+
+.icn-adjust:before {
 	content: "\f042";
 }
 
-.icon-plus2:before {
+.icn-plus2:before {
 	content: "\f067";
 }
 
-.icon-minus:before {
+.icn-minus:before {
 	content: "\f068";
 }
 
-.icon-bars:before {
+.icn-bars:before {
 	content: "\f0c9";
 }
 
-.icon-circle-o:before {
+.icn-lightbulb-o:before {
+	content: "\f0eb";
+}
+
+.icn-circle-o:before {
 	content: "\f10c";
 }
 
-.icon-circle:before {
+.icn-circle:before {
 	content: "\f111";
 }
 
-.icon-bullseye:before {
+.icn-bullseye:before {
 	content: "\f140";
+}
+
+.icn-sun-o:before {
+	content: "\f185";
+}
+
+.icn-cubes:before {
+	content: "\f1b3";
+}
+
+.icn-area-chart:before {
+	content: "\f1fe";
+}
+
+.icn-pie-chart:before {
+	content: "\f200";
+}
+
+.icn-close:before {
+	content: "\e680";
+}
+
+.icn-close-circle:before {
+	content: "\e681";
+}
+
+.icn-angle-up:before {
+	content: "\e682";
+}
+
+.icn-angle-up-circle:before {
+	content: "\e683";
+}
+
+.icn-angle-right:before {
+	content: "\e684";
+}
+
+.icn-angle-right-circle:before {
+	content: "\e685";
+}
+
+.icn-angle-left:before {
+	content: "\e686";
+}
+
+.icn-angle-left-circle:before {
+	content: "\e687";
+}
+
+.icn-angle-down:before {
+	content: "\e688";
+}
+
+.icn-angle-down-circle:before {
+	content: "\e689";
+}
+
+.icn-plus:before {
+	content: "\e623";
+}
+
+.icn-less:before {
+	content: "\e644";
+}
+
+.icn-info:before {
+	content: "\e647";
+}
+
+.icn-help1:before {
+	content: "\e64a";
+}
+
+.icn-expand1:before {
+	content: "\e657";
+}
+
+.icn-check:before {
+	content: "\e66c";
+}
+
+.icn-attention:before {
+	content: "\e67b";
+}
+
+.icn-google-plus:before {
+	content: "\ea88";
+}
+
+.icn-twitter:before {
+	content: "\ea91";
 }
 
