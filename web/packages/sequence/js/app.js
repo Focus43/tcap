@@ -271,7 +271,7 @@ angular.module('sequence.elements').
         function( $window, Tween ){
 
             var _options = {
-                speed :0.5,
+                speed :0.25,
 //                hoverDelay : 0, // not used
                 inverse : false
             };
