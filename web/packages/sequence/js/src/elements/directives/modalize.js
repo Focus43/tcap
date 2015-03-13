@@ -2,8 +2,7 @@ angular.module('sequence.elements').
 
     factory('ModalData', [function(){
         return {
-            open: false,
-            classes: {open: false},
+            classes: {open:false},
             src: {
                 url: null
             }
@@ -60,7 +59,7 @@ angular.module('sequence.elements').
         function _link( scope, $elem, attrs ){
             $elem.on('click', function(){
                 scope.$apply(function(){
-                    ModalData.open = false;
+                    ModalData.src.url = null;
                 });
             });
         }
@@ -89,15 +88,17 @@ angular.module('sequence.elements').
              * @private
              */
             function _link( scope, $elem, attrs ){
-                scope.$watch('_data.open', function( _val ){
-                    $rootScope.rootClasses['no-scroll'] = scope._data.open;
-                    scope._data.classes['open'] = scope._data.open;
-
-                    if( ! _val ){
-                        scope._data.src.url = null;
-                        scope._data.classes = {open: false};
-                        angular.element(document.querySelectorAll('.isotope-node')).removeClass('active');
+                scope.$watch('_data.src.url', function( _url ){
+                    if( _url ){
+                        $rootScope.rootClasses['no-scroll'] = true;
+                        scope._data.classes.open    = true;
+                        scope._data.classes.loading = true;
+                        return;
                     }
+                    // reset the object here to clear other set classes
+                    scope._data.classes = {open:false};
+                    $rootScope.rootClasses['no-scroll'] = false;
+                    //angular.element(document.querySelectorAll('.isotope-node')).removeClass('active');
                 });
             }
 
@@ -110,7 +111,7 @@ angular.module('sequence.elements').
                     $scope._data = ModalData;
 
                     $scope.$on('$includeContentLoaded', function(){
-                        $scope._data.open = true;
+                        $scope._data.classes.loading = false;
                     });
                 }]
             };

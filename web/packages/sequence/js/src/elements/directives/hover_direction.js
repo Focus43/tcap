@@ -1,7 +1,7 @@
 angular.module('sequence.elements').
 
-    directive('hoverDirection', ['$window', 'Tween',
-        function( $window, Tween ){
+    directive('hoverDirection', ['$window', 'Tween', 'Modernizr',
+        function( $window, Tween, Modernizr ){
 
             var _options = {
                 speed :0.15,
@@ -83,6 +83,9 @@ angular.module('sequence.elements').
             };
 
             function _link( scope, $elem, attrs ) {
+                if( Modernizr.touch ){
+                    return;
+                }
                 var _hoverElem = attrs.hoverDirection;
                 _loadEvents($elem, _hoverElem);
             }

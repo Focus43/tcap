@@ -6,6 +6,10 @@
   .icn-close {position:absolute;top:0;right:0;font-size:4rem;line-height:1;padding:0;z-index:2;cursor:pointer;
     &:hover {color:$theme-highlight-color;}
   }
+
+  // Loading icon
+  &::after {visibility:hidden;opacity:0;content:'';display:inline-block;width:50%;height:50%;max-width:125px;max-height:125px;position:absolute;top:50%;left:50%;background:url('#{$image-path}/loading.svg') no-repeat 50% 50%;background-size:contain;z-index:99;@include transform(translate(-50%,-50%));@include transition(all 0.75s ease);}
+  &.loading::after {visibility:visible;opacity:1;}
 }
 
 .modal-nav {display:inline-block;color:#fff;font-size:3rem;position:absolute;top:50%;line-height:1;cursor:pointer;@include transform(translateY(-50%));
