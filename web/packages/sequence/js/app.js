@@ -42,7 +42,7 @@ angular.module('sequence.common').
     controller('CtrlContactForm', ['$scope', '$http', '$timeout',
         function( $scope, $http, $timeout ){
 
-            var $btnSubmit   = angular.element(event.target.querySelector('button[type="submit"]')),
+            var $btnSubmit   = angular.element(document.querySelector('[name="contactForm"] button')),
                 originalText = $btnSubmit.text();
 
             $scope.sent_message = false;
@@ -228,7 +228,6 @@ angular.module('sequence.elements').
                     Tween.to(this.querySelector('.accordion-body'), _speed, {
                         height:this.querySelector('.accordion-content').clientHeight
                     });
-                    console.log(this.querySelector('.accordion-content').clientHeight);
                     angular.element(_groups).removeClass('active');
                     angular.element(this).addClass('active');
                 });

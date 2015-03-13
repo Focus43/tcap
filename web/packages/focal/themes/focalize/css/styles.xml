@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<styles version="1.0">
-    <set name="Header">
-        <style name="Background Color" variable="header-background" type="color" />
-        <style name="Font" variable="header-font" type="type" />
-    </set>
-</styles>

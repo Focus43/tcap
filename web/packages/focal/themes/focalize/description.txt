@@ -1,2 +1,0 @@
-Focalize Theme
-Made with love for Concrete5.7+

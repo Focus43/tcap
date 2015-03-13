@@ -8,11 +8,9 @@ use Concrete\Package\Sequence\Src\SequencePortfolio;
 
 class Controller extends \Concrete\Core\Block\BlockController {
 
-    private $_portfolioList;
-//    protected $_categoryOptions = array("Strategic Design", "Case Study", "Branding");
+    protected $portfolioItems;
 
-//    protected $btTable 									= 'btPhotoWall';
-//    protected $btTableSecondary                         = 'btPhotoWallFiles';
+    protected $btTable 									= 'btPortfolio';
     protected $btInterfaceWidth 						= '650';
     protected $btInterfaceHeight						= '480';
     protected $btCacheBlockRecord 						= true;
@@ -30,69 +28,56 @@ class Controller extends \Concrete\Core\Block\BlockController {
         return t("Portfolio");
     }
 
+    public function add(){ $this->edit(); }
+    public function edit(){
+        $this->set('portfolioList', $this->portfolioList());
+        $this->set('chosenPortfolioItems', $this->chosenPortfolioItems());
+    }
+
 
     public function view(){
         $this->set('portfolioList', $this->portfolioList());
         $this->set('categoryList', $this->getCategoryList());
+        $this->set('chosenPortfolioItems', $this->chosenPortfolioItems());
+    }
+
+    protected function chosenPortfolioItems(){
+        if( $this->_chosenItems === null ){
+            if( is_string($this->portfolioItems) ){
+                $this->_chosenItems = json_decode($this->portfolioItems);
+            }else{
+                $this->_chosenItems = array();
+            }
+        }
+        return $this->_chosenItems;
     }
 
     protected function portfolioList(){
-        $this->_portfolioList = SequencePortfolio::findAll();
+        if( $this->_portfolioList === null ){
+            $sortOrder = $this->chosenPortfolioItems();
+            if( !empty($sortOrder) ){
+                $this->_portfolioList = array_filter(SequencePortfolio::findAll(), function( $item ) use ($sortOrder){
+                    return in_array($item->getID(), $sortOrder);
+                });
+                usort($this->_portfolioList, function($item1, $item2) use ($sortOrder){
+                    $pos1 = array_search((int)$item1->getID(), $sortOrder);
+                    $pos2 = array_search((int)$item2->getID(), $sortOrder);
+                    return ($pos1 > $pos2) ? 1 : -1;
+                });
+            }else{
+                $this->_portfolioList = SequencePortfolio::findAll();
+            }
+        }
         return $this->_portfolioList;
     }
 
     public function getCategoryList() {
         return SequencePortfolio::getCategoryOptions();
     }
-//
-//    /**
-//     * @return \Concrete\Core\File\FileList
-//     */
-//    protected function fileListObj(){
-//        if( $this->_fileListObj === null ){
-//            $this->_fileListObj = new FileList();
-//            $this->applyFileListFilters($this->_fileListObj);
-//        }
-//        return $this->_fileListObj;
-//    }
-//
-//
-//    /**
-//     * Apply any customizations to the FileList query
-//     * @param \Concrete\Core\File\FileList $fileListObj
-//     */
-//    protected function applyFileListFilters( \Concrete\Core\File\FileList $fileListObj ){
-//        if( (int)$this->fileSource === self::FILE_SOURCE_CUSTOM ){
-//            $fileListObj->getQueryObject()->rightJoin('f', $this->btTableSecondary, 'btsecondary', 'f.fID = btsecondary.fileID');
-//            $fileListObj->getQueryObject()->andWhere('btsecondary.bID = :bRecordID');
-//            $fileListObj->getQueryObject()->setParameter(':bRecordID', $this->bID);
-//            $fileListObj->getQueryObject()->orderBy('btsecondary.displayOrder', 'asc');
-//        }
-//
-//        if( (int)$this->fileSource === self::FILE_SOURCE_SET ){
-//            $fileSetObj = FileSet::getByID((int)$this->fileSetID);
-//            if( is_object($fileSetObj) ){
-//                $this->_fileListObj->filterBySet($fileSetObj);
-//            }
-//        }
-//    }
-//
-//
-//    /**
-//     * Get a list of available file sets.
-//     * @return Array
-//     */
-//    protected function availableFileSets(){
-//        if( $this->_availableFileSets === null ){
-//            $fileSetListObj = new \Concrete\Core\File\Set\SetList;
-//            $fileSetListObj->filterByType(\Concrete\Core\File\Set\Set::TYPE_PUBLIC);
-//            $fileSets = $fileSetListObj->get();
-//
-//            $this->_availableFileSets = array();
-//            foreach($fileSets AS $fileSetObj){ /** @var $fileSetObj \Concrete\Core\File\Set\Set */
-//                $this->_availableFileSets[$fileSetObj->getFileSetID()] = $fileSetObj->getFileSetName();
-//            }
-//        }
-//        return $this->_availableFileSets;
-//    }
+
+    public function save( $args ){
+        parent::save(array(
+            'portfolioItems' => json_encode((array)$args['items'])
+        ));
+    }
 }
