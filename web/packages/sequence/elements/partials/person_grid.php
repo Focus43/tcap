@@ -12,8 +12,8 @@ if( is_object($levelsOptionsList) ){
 }
 ?>
 
-<a class="isotope-node" hover-direction="isotope-box" modalize="<?php echo URL::route(array('/modal_info', 'sequence'), $fileObj->getFileID()); ?>" <?php echo join(' ', $groups); ?>>
-    <div class="isotope-box" style="background-image:url('<?php echo $fileObj->getRelativePath(); ?>');">
+<a class="isotope-node" hover-direction="isotope-box" modalize="<?php echo URL::route(array('/modal_info', 'sequence'), $fileObj->getFileID()); ?>" <?php echo join(' ', $groups); ?> style="background-image:url('<?php echo $fileObj->getRelativePath(); ?>');">
+    <div class="isotope-box">
         <div class="isotope-content">
             <h5><?php echo $fileVersionObj->getTitle(); ?></h5>
             <p><?php echo $fileVersionObj->getDescription(); ?></p>
