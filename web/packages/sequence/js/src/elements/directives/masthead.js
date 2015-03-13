@@ -1,3 +1,4 @@
+/* global Linear */
 angular.module('sequence.elements').
 
     directive('masthead', ['Tween',
@@ -22,7 +23,7 @@ angular.module('sequence.elements').
 
                     if ( attrs.progressIndicator ) {
                         var _progressBar = element.querySelectorAll('.' + attrs.progressIndicator);
-                        TweenLite.killTweensOf(_progressBar);
+                        Tween.killTweensOf(_progressBar);
                         angular.element(_progressBar).css('width', '0');
                         Tween.to(_progressBar, _loopTiming, { css:{'width':'100%'}, ease:Linear.easeNone });
                     }

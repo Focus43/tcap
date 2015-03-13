@@ -67,25 +67,36 @@
                         <?php $a = new Area('Contact Left'); $a->display($c); ?>
                     </div>
                     <div class="col-sm-9 col-md-7">
-                        <form name="contactForm" ng-controller="CtrlContactForm" ng-submit="submitHandler($event)" role="form" action="<?php echo URL::route(array('contact_form', 'sequence')); ?>">
+                        <form name="contactForm" ng-controller="CtrlContactForm" ng-submit="submitHandler($event)" role="form" action="<?php echo URL::route(array('contact_form', 'sequence')); ?>" novalidate>
+                            <div class="row confirm-msg" ng-show="sent_message">
+                                <div class="col-sm-12">
+                                    <p>Thanks for inquiring.</p>
+                                </div>
+                            </div>
+                            <ul class="show-errors" ng-show="has_errors && contactForm.$invalid">
+                                <li ng-show="contactForm.name.$invalid">Name field is required.</li>
+                                <li ng-show="contactForm.email.$invalid">A <i>valid</i> email address is required.</li>
+                            </ul>
                             <div class="row">
                                 <div class="col-sm-6 form-group">
-                                    <label class="sr-only">Name</label>
-                                    <input required ng-model="form_data.name" type="text" class="form-control" placeholder="Name" />
+                                    <span class="show-required">
+                                        <input name="name" ng-model="form_data.name" type="text" class="form-control" placeholder="Name" required />
+                                    </span>
                                 </div>
                                 <div class="col-sm-6 form-group">
-                                    <label class="sr-only">Email</label>
-                                    <input required ng-model="form_data.email" type="email" class="form-control" placeholder="Email" />
+                                    <span class="show-required">
+                                        <input name="email" ng-model="form_data.email" type="email" class="form-control" placeholder="Email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required />
+                                    </span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 form-group">
-                                    <textarea ng-model="form_data.message" class="form-control" placeholder="Message" rows="5"></textarea>
+                                    <textarea name="message" ng-model="form_data.message" class="form-control" placeholder="Message" rows="5"></textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 form-group">
-                                    <button ng-disabled="isDisabled()" type="submit" class="btn btn-default">Send</button>
+                                    <button type="submit" class="btn btn-default">Send</button>
                                 </div>
                             </div>
                         </form>

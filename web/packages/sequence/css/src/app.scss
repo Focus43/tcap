@@ -37,10 +37,12 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     &:first-of-type {margin-top:0;}
   }
 
-  input{position:relative;
-    &::after {line-height:1;display:inline-block;position:absolute;top:0;right:0;font-size:12px;padding:4px 6px;background:rgba(0,0,0,0.65);color:#fff;}
-    &[type="text"]::after {content:'required';}
-    &[type="email"]::after {content:'valid email';}
+  form {
+    .confirm-msg p {background:$theme-highlight-color;color:$theme-dark-color;padding:0.5rem 1rem;}
+    .show-errors {background:$theme-highlight-color;color:$theme-dark-color;list-style:none;padding:0.5rem 1rem;}
+    span.show-required {display:block;position:relative;
+      &::after {content:'required';line-height:1;display:inline-block;position:absolute;top:0;right:0;font-size:11px;padding:4px 6px;background:#000;color:#fff;opacity:0.35;}
+    }
   }
 
   .statistic {text-align:center;
@@ -117,6 +119,9 @@ html.sidebar-nav {
 @media screen and (max-width:$screen-sm){
   .col-sm-4, .col-sm-6 {padding-bottom:2rem;}
   [class*="col-sm-"] .iconified:last-of-type {padding-bottom:0;}
+  form {
+    .col-sm-4, .col-sm-6 {padding-bottom:0;}
+  }
 }
 
 // > screen-sm
