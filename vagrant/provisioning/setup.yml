@@ -65,12 +65,12 @@
         - bundler
         - compass
 
-    - role: concrete5
-      run_composer: true
-      build_core_assets: true
-      apply_patches: true
+    # - role: concrete5
+    #   run_composer: true
+    #   build_core_assets: true
+    #   apply_patches: true
 
   # Random stuff after main dependencies are provisioned
-  tasks:
-    - name: Install MySQL timezone tables
-      shell: mysql_tzinfo_to_sql 2>/dev/null /usr/share/zoneinfo | mysql -u root --password=root mysql 2>/dev/null
+  # tasks:
+  #   - name: Install MySQL timezone tables
+  #     shell: mysql_tzinfo_to_sql 2>/dev/null /usr/share/zoneinfo | mysql -u root --password=root mysql 2>/dev/null
