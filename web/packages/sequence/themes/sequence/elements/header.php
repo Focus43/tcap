@@ -2,11 +2,19 @@
     <nav slideable>
         <a class="trigger"></a>
         <div class="inner">
-            <?php $a = new GlobalArea('Header Right'); $a->display($c); ?>
+            <?php if($homeLinkOnly === true): ?>
+                <ul>
+                    <li style="display:inline-block;"><a href="/"><span>Home</span></a></li>
+                </ul>
+            <?php else: $a = new GlobalArea('Header Right'); $a->display($c); endif; ?>
         </div>
     </nav>
 
     <figure slideable>
-        <?php $a = new GlobalArea('Header Left'); $a->display($c); ?>
+        <?php if($homeLinkOnly === true): ?>
+            <a href="/">
+                <img src="<?php echo SEQUENCE_IMAGE_PATH; ?>titlecard-logo.svg" class="img-responsive" />
+            </a>
+        <?php else: $a = new GlobalArea('Header Left'); $a->display($c); endif; ?>
     </figure>
 </header>

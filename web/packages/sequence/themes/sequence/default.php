@@ -110,7 +110,7 @@
             </div>
         </section>
 
-        <footer>TitleCard Capital&trade;. Copyright &copy; <?php echo date('Y'); ?> | <a modalize="<?php echo URL::route(array('/terms_of_use', 'sequence')); ?>">Terms Of Use</a></footer>
+        <?php $this->inc('elements/footer.php'); ?>
     </main>
     <aside scroll-top class="icn-angle-up"></aside>
 </div>

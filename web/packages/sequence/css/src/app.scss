@@ -97,6 +97,16 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
   .confirm-it {font-size:1.3rem;color:#fff;}
 }
 
+// Page Type Full
+.pt-full {
+  #c-level-1 {
+    main {}
+    section {
+      &:first-of-type,&:last-of-type {height:auto;padding:($theme-section-spacing * 1.5) 0 ($theme-section-spacing * 0.5);background:transparent;}
+    }
+  }
+}
+
 // Sidebar nav
 html.sidebar-nav {
   #c-level-1 {

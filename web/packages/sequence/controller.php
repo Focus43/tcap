@@ -35,7 +35,7 @@
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.301';
+        protected $pkgVersion 			= '0.302';
 
 
         /**
@@ -245,6 +245,15 @@
         private function setupTemplates(){
             if( ! PageTemplate::getByHandle('default') ){
                 PageTemplate::add('default', t('Default'), 'full.png', $this->packageObject());
+            }
+
+            $fullPageTemplate = PageTemplate::getByHandle('full');
+            if( is_object($fullPageTemplate) && ((int)$fullPageTemplate->getPackageID() !== $this->packageObject()->getPackageID()) ){
+                $fullPageTemplate->delete();
+            }
+
+            if( ! PageTemplate::getByhandle('full') ){
+                PageTemplate::add('full', t('Full'), 'full.png', $this->packageObject());
             }
 
             return $this;

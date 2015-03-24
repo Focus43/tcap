@@ -34,12 +34,16 @@ angular.module('sequence.common').
                 angular.element($window).off('scroll', _onScroll);
             }
 
+            var _noDisclaimer = document.documentElement.classList.contains('no-disclaimer');
+
             // If user is not logged in...
             if( ! document.querySelector('body').hasAttribute('can-admin') ){
-                if( Modernizr.touch ){
-                    _showDisclaimer();
-                }else{
-                    angular.element($window).on('scroll', _onScroll);
+                if( _noDisclaimer !== true ){
+                    if( Modernizr.touch ){
+                        _showDisclaimer();
+                    }else{
+                        angular.element($window).on('scroll', _onScroll);
+                    }
                 }
 
             // User is logged in, don't show disclaimer and setup helpers
