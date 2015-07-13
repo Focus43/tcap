@@ -41,3 +41,12 @@ $node-ratio: 2/3;
 @media screen and (min-width:$screen-md){
   [isotope-grid] .isotope-node{width:25%;padding-bottom:percentage(1/4 * $node-ratio);}
 }
+
+/***************************************************************************
+*
+***************************************************************************/
+[isotope-gallery]{font-size:0;line-height:0;margin:1rem -5px;
+  .isotope-node {display:inline-block;padding-bottom:30%;width:33.33%;position:relative;
+    .isotope-box {position:absolute;top:5px;right:5px;bottom:5px;left:5px;background-size:cover;background-repeat:no-repeat;background-position:50% 50%;}
+  }
+}

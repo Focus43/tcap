@@ -19,12 +19,14 @@
     use GroupSet; /** @see \Concrete\Core\User\Group\GroupSet */
     use SinglePage; /** @see \Concrete\Core\Page\Single */
     use Concrete\Core\Page\Type\PublishTarget\Type\Type as PublishTargetType;
+    use Zend\Feed\Reader\Collection;
 
     class Controller extends Package {
 
         const PACKAGE_HANDLE                = 'sequence',
             // Collection Attributes
             COLLECTION_ATTR_SECTIONS        = 'page_sections',
+            COLLECTION_ATTR_PAGE_IMAGE      = 'image',
             // User Attributes
             FILE_ATTR_BIO                   = 'bio',
             FILE_ATTR_SECONDARY_PHOTO       = 'secondary_photo',
@@ -35,7 +37,7 @@
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.302';
+        protected $pkgVersion 			= '0.303';
 
 
         /**
@@ -169,6 +171,13 @@
                 ), $this->packageObject());
             }
 
+            if( ! is_object(CollectionAttributeKey::getByHandle(self::COLLECTION_ATTR_PAGE_IMAGE)) ){
+                CollectionAttributeKey::add($this->attributeType('image_file'), array(
+                    'akHandle'  => self::COLLECTION_ATTR_PAGE_IMAGE,
+                    'akName'    => 'Page Image'
+                ), $this->packageObject());
+            }
+
             return $this;
         }
 
@@ -256,6 +265,10 @@
                 PageTemplate::add('full', t('Full'), 'full.png', $this->packageObject());
             }
 
+            if( ! PageTemplate::getByhandle('news') ){
+                PageTemplate::add('news', t('News'), 'full.png', $this->packageObject());
+            }
+
             return $this;
         }
 
@@ -278,6 +291,40 @@
                     'handle'                => 'page',
                     'name'                  => t('Page'),
                     'defaultTemplate'       => PageTemplate::getByHandle('default'),
+                    'ptIsFrequentlyAdded'   => 1,
+                    'ptLaunchInComposer'    => 1
+                ), $this->packageObject());
+
+                // Set configured publish target
+                $ptPage->setConfiguredPageTypePublishTargetObject(
+                    PublishTargetType::getByHandle('all')->configurePageTypePublishTarget($ptPage, array(
+                        'ptID' => $ptPage->getPageTypeID()
+                    ))
+                );
+
+                /** @var $layoutSet \Concrete\Core\Page\Type\Composer\FormLayoutSet */
+                $layoutSet = $ptPage->addPageTypeComposerFormLayoutSet('Basics', 'Basics');
+
+                /** @var $controlTypeCorePageProperty \Concrete\Core\Page\Type\Composer\Control\Type\CorePagePropertyType */
+                $controlTypeCorePageProperty = \Concrete\Core\Page\Type\Composer\Control\Type\Type::getByHandle('core_page_property');
+
+                /** @var $controlTypeName \Concrete\Core\Page\Type\Composer\Control\CorePageProperty\NameCorePageProperty */
+                $controlTypeName = $controlTypeCorePageProperty->getPageTypeComposerControlByIdentifier('name');
+                $controlTypeName->addToPageTypeComposerFormLayoutSet($layoutSet)
+                    ->updateFormLayoutSetControlRequired(true);
+
+                /** @var $controlTypePublishTarget \Concrete\Core\Page\Type\Composer\Control\CorePageProperty\PublishTargetCorePageProperty */
+                $controlTypePublishTarget = $controlTypeCorePageProperty->getPageTypeComposerControlByIdentifier('publish_target');
+                $controlTypePublishTarget->addToPageTypeComposerFormLayoutSet($layoutSet)
+                    ->updateFormLayoutSetControlRequired(true);
+            }
+
+            if( !is_object(PageType::getByHandle('news')) ){
+                /** @var $ptPage \Concrete\Core\Page\Type\Type */
+                $ptPage = PageType::add(array(
+                    'handle'                => 'news',
+                    'name'                  => t('News'),
+                    'defaultTemplate'       => PageTemplate::getByHandle('news'),
                     'ptIsFrequentlyAdded'   => 1,
                     'ptLaunchInComposer'    => 1
                 ), $this->packageObject());

@@ -8,6 +8,7 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 
 // General
 .theme-text-huge {font-size:3.9rem;}
+.theme-extra-light-color {color:#fff;}
 .theme-highlight-color {color:$theme-highlight-color;}
 .theme-light-color {color:$theme-light-color;}
 .theme-dark-color {color:$theme-dark-color;}
@@ -104,6 +105,16 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
     section {
       &:first-of-type,&:last-of-type {height:auto;padding:($theme-section-spacing * 1.5) 0 ($theme-section-spacing * 0.5);background:transparent;}
     }
+  }
+}
+
+// Page Type News
+.pt-news {
+  #c-level-1 {
+    .pseudo-header {padding-top:7rem;margin-bottom:2rem;
+      h1 {padding-bottom:1.5rem;margin:0;border-bottom:1px solid darken($theme-light-color, 40%);}
+    }
+    //section, section:last-of-type {padding:1rem 0;background:transparent;height:auto;width:100%;}
   }
 }
 
