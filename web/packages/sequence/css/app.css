@@ -761,14 +761,6 @@ img {
   padding: 135px 0 45px;
   background: transparent; }
 
-.pt-news #c-level-1 .pseudo-header {
-  padding-top: 7rem;
-  margin-bottom: 2rem; }
-  .pt-news #c-level-1 .pseudo-header h1 {
-    padding-bottom: 1.5rem;
-    margin: 0;
-    border-bottom: 1px solid #2f2f2f; }
-
 html.sidebar-nav #c-level-1 [slideable] {
   -moz-transform: translateX(-320px);
   -ms-transform: translateX(-320px);
