@@ -4,7 +4,9 @@
 * {-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing: grayscale;}
 html, body {height:100%;font-size:$font-size-base;}
 html.no-scroll {overflow:hidden;/*body {overflow:hidden;}*/}
-img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
+img {@include img-responsive(inline-block);padding-bottom:0.75rem;
+  &.img-rounded {@include border-radius(6px);}
+}
 
 // General
 .theme-text-huge {font-size:3.9rem;}
@@ -91,6 +93,7 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;}
 }
 @import 'elements/accordion';
 @import 'elements/masthead';
+@import 'pages/news';
 
 // Disclaimer pop-up
 .legal-popups {padding:0 2rem;

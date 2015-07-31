@@ -203,6 +203,10 @@ img {
   max-width: 100%;
   height: auto;
   padding-bottom: 0.75rem; }
+  img.img-rounded {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px; }
 
 .theme-text-huge {
   font-size: 3.9rem; }
@@ -748,6 +752,62 @@ img {
 @media screen and (min-width: 992px) {
   [masthead] .node-content {
     max-width: 60%; } }
+/*****************************************************************************
+These styles should apply to both the news page TYPE and news single page
+*****************************************************************************/
+html.pt-news-post body, html.pt-news-post #c-level-1 footer, html.pg-news body, html.pg-news #c-level-1 footer {
+  background: #fff; }
+html.pt-news-post #c-level-1 .news-page-container, html.pg-news #c-level-1 .news-page-container {
+  padding-top: 6rem; }
+html.pt-news-post #c-level-1 .post-img-title, html.pg-news #c-level-1 .post-img-title {
+  color: #959595;
+  display: block;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #f58220;
+  text-decoration: none !important; }
+  html.pt-news-post #c-level-1 .post-img-title img, html.pg-news #c-level-1 .post-img-title img {
+    margin: 0 0 1rem;
+    padding: 0; }
+  html.pt-news-post #c-level-1 .post-img-title h1, html.pg-news #c-level-1 .post-img-title h1 {
+    margin: 0 0 1rem;
+    text-transform: capitalize; }
+    html.pt-news-post #c-level-1 .post-img-title h1 small, html.pg-news #c-level-1 .post-img-title h1 small {
+      font-size: 50%;
+      display: inline-block;
+      padding: 0 0.5rem;
+      white-space: nowrap; }
+  html.pt-news-post #c-level-1 .post-img-title.and-descr, html.pg-news #c-level-1 .post-img-title.and-descr {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem; }
+    html.pt-news-post #c-level-1 .post-img-title.and-descr h2, html.pg-news #c-level-1 .post-img-title.and-descr h2 {
+      margin: 0 0 0.5rem; }
+    html.pt-news-post #c-level-1 .post-img-title.and-descr p, html.pg-news #c-level-1 .post-img-title.and-descr p {
+      margin: 0;
+      padding-bottom: 1rem; }
+html.pt-news-post #c-level-1 .news-body, html.pg-news #c-level-1 .news-body {
+  margin-bottom: 3rem; }
+html.pt-news-post #c-level-1 .sidebar-box, html.pg-news #c-level-1 .sidebar-box {
+  padding-top: 2rem; }
+  html.pt-news-post #c-level-1 .sidebar-box:first-of-type, html.pg-news #c-level-1 .sidebar-box:first-of-type {
+    padding-top: 0; }
+  html.pt-news-post #c-level-1 .sidebar-box h4, html.pg-news #c-level-1 .sidebar-box h4 {
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0.5rem 0; }
+  html.pt-news-post #c-level-1 .sidebar-box ul li, html.pg-news #c-level-1 .sidebar-box ul li {
+    border-bottom: 1px dotted #959595; }
+    html.pt-news-post #c-level-1 .sidebar-box ul li a, html.pg-news #c-level-1 .sidebar-box ul li a {
+      color: #959595;
+      display: block;
+      padding: 0.25rem 0;
+      text-decoration: none !important; }
+      html.pt-news-post #c-level-1 .sidebar-box ul li a:hover, html.pg-news #c-level-1 .sidebar-box ul li a:hover {
+        color: #f58220; }
+      html.pt-news-post #c-level-1 .sidebar-box ul li a i[class*="icn"], html.pg-news #c-level-1 .sidebar-box ul li a i[class*="icn"] {
+        color: #f58220;
+        position: relative;
+        top: 2px; }
+
 .legal-popups {
   padding: 0 2rem; }
   .legal-popups h1, .legal-popups h2, .legal-popups h3 {

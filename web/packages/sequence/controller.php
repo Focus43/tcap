@@ -26,7 +26,7 @@
         const PACKAGE_HANDLE                = 'sequence',
             // Collection Attributes
             COLLECTION_ATTR_SECTIONS        = 'page_sections',
-            COLLECTION_ATTR_PAGE_IMAGE      = 'image',
+            COLLECTION_ATTR_PAGE_IMAGE      = 'image', // @todo: rename to page_image
             // User Attributes
             FILE_ATTR_BIO                   = 'bio',
             FILE_ATTR_SECONDARY_PHOTO       = 'secondary_photo',
@@ -37,7 +37,7 @@
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.303';
+        protected $pkgVersion 			= '0.304';
 
 
         /**
@@ -143,7 +143,8 @@
                 ->assignPageTypes()
                 ->setupSinglePages()
                 ->setupBlockTypeSets()
-                ->setupBlocks();
+                ->setupBlocks()
+                ->setupThumbnailTypes();
         }
 
 
@@ -265,8 +266,8 @@
                 PageTemplate::add('full', t('Full'), 'full.png', $this->packageObject());
             }
 
-            if( ! PageTemplate::getByhandle('news') ){
-                PageTemplate::add('news', t('News'), 'full.png', $this->packageObject());
+            if( ! PageTemplate::getByhandle('news_post') ){
+                PageTemplate::add('news_post', t('News Post'), 'full.png', $this->packageObject());
             }
 
             return $this;
@@ -319,12 +320,12 @@
                     ->updateFormLayoutSetControlRequired(true);
             }
 
-            if( !is_object(PageType::getByHandle('news')) ){
+            if( !is_object(PageType::getByHandle('news_post')) ){
                 /** @var $ptPage \Concrete\Core\Page\Type\Type */
                 $ptPage = PageType::add(array(
-                    'handle'                => 'news',
-                    'name'                  => t('News'),
-                    'defaultTemplate'       => PageTemplate::getByHandle('news'),
+                    'handle'                => 'news_post',
+                    'name'                  => t('News Post'),
+                    'defaultTemplate'       => PageTemplate::getByHandle('news_post'),
                     'ptIsFrequentlyAdded'   => 1,
                     'ptLaunchInComposer'    => 1
                 ), $this->packageObject());
@@ -391,6 +392,9 @@
                 ));
             }
 
+            // Public single pages
+            SinglePage::add('/news', $this->packageObject());
+
             return $this;
         }
 
@@ -437,6 +441,20 @@
 
             if(!is_object(BlockType::getByHandle('portfolio'))) {
                 BlockType::installBlockTypeFromPackage('portfolio', $this->packageObject());
+            }
+
+            return $this;
+        }
+
+
+        private function setupThumbnailTypes(){
+            $largeThumbnail = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle('large');
+            if( ! is_object($largeThumbnail) ){
+                $type = new \Concrete\Core\File\Image\Thumbnail\Type\Type();
+                $type->setName('Large');
+                $type->setHandle('large');
+                $type->setWidth(1440);
+                $type->save();
             }
 
             return $this;
