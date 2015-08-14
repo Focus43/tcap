@@ -25,9 +25,7 @@
 
         </div>
         <div class="col-sm-3">
-            <div class="sidebar-box">
-                <input type="text" class="form-control" placeholder="Search" />
-            </div>
+            <?php Loader::packageElement('news/search', 'sequence'); ?>
             <?php Loader::packageElement('news/recent_posts', 'sequence'); ?>
             <?php Loader::packageElement('news/archives', 'sequence'); ?>
             <?php Loader::packageElement('news/categories', 'sequence'); ?>
