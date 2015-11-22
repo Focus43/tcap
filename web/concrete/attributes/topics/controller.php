@@ -1,19 +1,21 @@
 <?php
+
 namespace Concrete\Attribute\Topics;
 
 use Concrete\Core\Search\ItemList\Database\AttributedItemList;
 use Concrete\Core\Tree\Node\Node;
-use Loader;
-use \Concrete\Core\Tree\Type\Topic as TopicTree;
-use \Concrete\Core\Tree\Tree;
-use \Concrete\Core\Tree\Node\Node as TreeNode;
-use \Concrete\Core\Attribute\Controller as AttributeTypeController;
+use Concrete\Core\Tree\Type\Topic as TopicTree;
+use Concrete\Core\Tree\Tree;
+use Concrete\Core\Tree\Node\Node as TreeNode;
+use Concrete\Core\Attribute\Controller as AttributeTypeController;
+use Core;
+use Database;
 
 class Controller extends AttributeTypeController
 {
     protected $searchIndexFieldDefinition = array(
         'type' => 'text',
-        'options' => array('length' => 4294967295, 'default' => null, 'notnull' => false)
+        'options' => array('length' => 4294967295, 'default' => null, 'notnull' => false),
     );
 
     public $helpers = array('form');
@@ -37,22 +39,39 @@ class Controller extends AttributeTypeController
 
     public function saveKey($data)
     {
+        $data += array(
+            'akTopicParentNodeID' => null,
+            'akTopicTreeID' => null,
+        );
         $akTopicParentNodeID = $data['akTopicParentNodeID'];
         $akTopicTreeID = $data['akTopicTreeID'];
         $this->setNodes($akTopicParentNodeID, $akTopicTreeID);
         // trap dynatree display node / tree node here.
     }
 
+    public function getDisplayValue()
+    {
+        $list = $this->getSelectedOptions();
+        $topics = array();
+        foreach ($list as $node) {
+            $topic = Node::getByID($node);
+            if (is_object($topic)) {
+                $topics[] = $topic->getTreeNodeDisplayName();
+            }
+        }
+
+        return implode(', ', $topics);
+    }
+
     public function getDisplaySanitizedValue()
     {
-        //$this->load();
-        //return parent::getDisplaySanitizedValue();
+        return $this->getDisplayValue();
     }
 
     public function getSelectedOptions()
     {
         $avID = $this->getAttributeValueID();
-        $db = Loader::db();
+        $db = Database::get();
         $optionIDs = $db->GetCol(
             'select TopicNodeID from atSelectedTopics where avID=?',
             array($avID)
@@ -61,7 +80,7 @@ class Controller extends AttributeTypeController
         return $optionIDs;
     }
 
-    public function exportValue($akn)
+    public function exportValue(\SimpleXMLElement $akn)
     {
         $avn = $akn->addChild('topics');
         $nodes = $this->getSelectedOptions();
@@ -73,12 +92,12 @@ class Controller extends AttributeTypeController
         }
     }
 
-    public function importValue($akn)
+    public function importValue(\SimpleXMLElement $akn)
     {
         $selected = array();
         if (isset($akn->topics)) {
             foreach ($akn->topics->topic as $topicPath) {
-                $selected[] = (string)$topicPath;
+                $selected[] = (string) $topicPath;
             }
         }
 
@@ -97,7 +116,7 @@ class Controller extends AttributeTypeController
             }
         }
 
-        $db = Loader::db();
+        $db = Database::get();
         $db->Execute('delete from atSelectedTopics where avID = ?', array($this->getAttributeValueID()));
 
         foreach ($selected as $optionID) {
@@ -123,9 +142,9 @@ class Controller extends AttributeTypeController
 
     public function importKey($key)
     {
-        $name = (string)$key->tree['name'];
+        $name = (string) $key->tree['name'];
         $tree = \Concrete\Core\Tree\Type\Topic::getByName($name);
-        $node = $tree->getNodeByDisplayPath((string)$key->tree['path']);
+        $node = $tree->getNodeByDisplayPath((string) $key->tree['path']);
         $this->setNodes($node->getTreeNodeID(), $tree->getTreeID());
     }
 
@@ -168,9 +187,9 @@ class Controller extends AttributeTypeController
 
     public function searchForm($list)
     {
-        //$db = Loader::db();
-        //$list->filterByAttribute($this->attributeKey->getAttributeKeyHandle(), '%' . $this->request('value') . '%', 'like');
-        //return $list;
+        $list->filterByAttribute($this->attributeKey->getAttributeKeyHandle(), $this->request('treeNodeID'));
+
+        return $list;
     }
 
     public function getSearchIndexValue()
@@ -193,20 +212,28 @@ class Controller extends AttributeTypeController
 
     public function search()
     {
-        //$f = Loader::helper('form');
-        //print $f->text($this->field('value'), $this->request('value'));
+        $this->requireAsset('core/topics');
+        $this->load();
+        $tree = TopicTree::getByID(Core::make('helper/security')->sanitizeInt($this->akTopicTreeID));
+        $this->set('tree', $tree);
+        $treeNodeID = $this->request('treeNodeID');
+        if (!$treeNodeID) {
+            $treeNodeID = $this->akTopicParentNodeID;
+        }
+        $this->set('selectedNode', $treeNodeID);
+        $this->set('attributeKey', $this->attributeKey);
     }
 
     public function setNodes($akTopicParentNodeID, $akTopicTreeID)
     {
-        $db = Loader::db();
+        $db = Database::get();
         $ak = $this->getAttributeKey();
         $db->Replace(
             'atTopicSettings',
             array(
                 'akID' => $ak->getAttributeKeyID(),
                 'akTopicParentNodeID' => $akTopicParentNodeID,
-                'akTopicTreeID' => $akTopicTreeID
+                'akTopicTreeID' => $akTopicTreeID,
             ),
             array('akID'),
             true
@@ -215,8 +242,8 @@ class Controller extends AttributeTypeController
 
     public function saveForm()
     {
-        $db = Loader::db();
-        $sh = Loader::helper('security');
+        $db = Database::get();
+        $sh = Core::make('helper/security');
         $ak = $this->getAttributeKey();
         $cleanIDs = array();
         $topicsArray = $_POST['topics_' . $ak->getAttributeKeyID()];
@@ -250,7 +277,7 @@ class Controller extends AttributeTypeController
 
     public function deleteKey()
     {
-        $db = Loader::db();
+        $db = Database::get();
         $arr = $this->attributeKey->getAttributeValueIDList();
         foreach ($arr as $id) {
             $db->Execute('delete from atDefault where avID = ?', array($id));
@@ -267,7 +294,7 @@ class Controller extends AttributeTypeController
         $tt = new TopicTree();
         $defaultTree = $tt->getDefault();
         $topicTreeList = $tt->getList();
-        $tree = $tt->getByID(Loader::helper('security')->sanitizeInt($this->akTopicTreeID));
+        $tree = $tt->getByID(Core::make('helper/security')->sanitizeInt($this->akTopicTreeID));
         if (!$tree) {
             $tree = $defaultTree;
         }
@@ -285,14 +312,24 @@ class Controller extends AttributeTypeController
         $this->set('parentNode', $this->akTopicParentNodeID);
     }
 
-    public function validateKey($data)
+    public function validateKey($data = false)
     {
+        if ($data == false) {
+            $data = $this->post();
+        }
         $e = parent::validateKey($data);
         if (!$data['akTopicParentNodeID'] || !$data['akTopicTreeID']) {
             $e->add(t('You must specify a valid topic tree parent node ID and topic tree ID.'));
         }
-        return $e;
 
+        return $e;
+    }
+
+    public function validateValue()
+    {
+        $val = $this->getValue();
+
+        return is_object($val);
     }
 
     public function validateForm($data)
@@ -307,13 +344,20 @@ class Controller extends AttributeTypeController
         return $this->akTopicParentNodeID;
     }
 
+    public function getTopicTreeID()
+    {
+        $this->load();
+
+        return $this->akTopicTreeID;
+    }
+
     protected function load()
     {
         $ak = $this->getAttributeKey();
         if (!is_object($ak)) {
             return false;
         }
-        $db = Loader::db();
+        $db = Database::get();
         $row = $db->GetRow('select * from atTopicSettings where akID = ?', $ak->getAttributeKeyID());
         $this->akTopicParentNodeID = $row['akTopicParentNodeID'];
         $this->akTopicTreeID = $row['akTopicTreeID'];
@@ -322,13 +366,13 @@ class Controller extends AttributeTypeController
     public function duplicateKey($newAK)
     { // TODO this is going to need some work to function with the child options table...
         $this->load();
-        $db = Loader::db();
+        $db = Database::get();
         $db->Replace(
             'atTopicSettings',
             array(
                 'akID' => $newAK->getAttributeKeyID(),
                 'akTopicParentNodeID' => $this->akTopicParentNodeID,
-                'akTopicTreeID' => $this->akTopicTreeID
+                'akTopicTreeID' => $this->akTopicTreeID,
             ),
             array('akID'),
             true

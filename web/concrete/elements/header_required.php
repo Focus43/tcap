@@ -1,5 +1,6 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
+
 $c = Page::getCurrentPage();
 if (is_object($c)) {
 	$cp = new Permissions($c);
@@ -24,7 +25,14 @@ if (is_object($c)) {
 			if($c->isSystemPage()) {
 				$pageTitle = t($pageTitle);
 			}
-			$pageTitle = sprintf(Config::get('concrete.seo.title_format'), Config::get('concrete.site'), $pageTitle);
+			$seo = Core::make('helper/seo');
+			if (!$seo->hasCustomTitle()) {
+				$seo->addTitleSegmentBefore($pageTitle);
+			}
+			$seo->setSiteName(Config::get('concrete.site'));
+			$seo->setTitleFormat(Config::get('concrete.seo.title_format'));
+			$seo->setTitleSegmentSeparator(Config::get('concrete.seo.title_segment_separator'));
+			$pageTitle = $seo->getTitle();
 		}
 	}
 	$pageDescription = (!isset($pageDescription) || !$pageDescription) ? $c->getCollectionDescription() : $pageDescription;
@@ -50,10 +58,6 @@ if (is_object($c)) {
 	$cID = 1;
 }
 ?>
-<!--[if lt IE 9]>
-<script src="<?=ASSETS_URL_JAVASCRIPT?>/ie/html5-shiv.js"></script>
-<script src="<?=ASSETS_URL_JAVASCRIPT?>/ie/respond.js"></script>
-<![endif]-->
 
 <meta http-equiv="content-type" content="text/html; charset=<?php echo APP_CHARSET?>" />
 <?php
@@ -61,14 +65,14 @@ $akd = $c->getCollectionAttributeValue('meta_description');
 $akk = $c->getCollectionAttributeValue('meta_keywords');
 ?>
 <title><?php echo htmlspecialchars($pageTitle, ENT_COMPAT, APP_CHARSET)?></title>
-<?
+<?php
 if ($akd) { ?>
-<meta name="description" content="<?=htmlspecialchars($akd, ENT_COMPAT, APP_CHARSET)?>" />
+<meta name="description" content="<?php echo htmlspecialchars($akd, ENT_COMPAT, APP_CHARSET)?>" />
 <?php } else { ?>
-<meta name="description" content="<?=htmlspecialchars($pageDescription, ENT_COMPAT, APP_CHARSET)?>" />
+<meta name="description" content="<?php echo htmlspecialchars($pageDescription, ENT_COMPAT, APP_CHARSET)?>" />
 <?php }
 if ($akk) { ?>
-<meta name="keywords" content="<?=htmlspecialchars($akk, ENT_COMPAT, APP_CHARSET)?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($akk, ENT_COMPAT, APP_CHARSET)?>" />
 <?php }
 if($c->getCollectionAttributeValue('exclude_search_index')) { ?>
     <meta name="robots" content="noindex" />
@@ -96,16 +100,16 @@ else {
 ?>
 var CCM_IMAGE_PATH = "<?php echo ASSETS_URL_IMAGES?>";
 var CCM_TOOLS_PATH = "<?php echo REL_DIR_FILES_TOOLS_REQUIRED?>";
-var CCM_BASE_URL = "<?php echo BASE_URL?>";
-var CCM_REL = "<?php echo DIR_REL?>";
+var CCM_APPLICATION_URL = "<?php echo \Core::getApplicationURL()?>";
+var CCM_REL = "<?php echo \Core::getApplicationRelativePath()?>";
 
 </script>
 
-<? if (is_object($scc)) { ?>
+<?php if (isset($scc) && is_object($scc)) { ?>
     <style type="text/css">
-        <? print $scc->getValue();?>
+        <?php print $scc->getValue();?>
     </style>
-<? } ?>
+<?php } ?>
 
 <?php
 
@@ -125,8 +129,8 @@ if($favIconFID) {
     $f = File::getByID($favIconFID);
     if (is_object($f)) {
         ?>
-        <link rel="shortcut icon" href="<?php echo $f->getRelativePath() ?>" type="image/x-icon"/>
-        <link rel="icon" href="<?php echo $f->getRelativePath() ?>" type="image/x-icon"/>
+        <link rel="shortcut icon" href="<?php echo $f->getURL() ?>" type="image/x-icon"/>
+        <link rel="icon" href="<?php echo $f->getURL() ?>" type="image/x-icon"/>
     <?php
     }
 }
@@ -135,7 +139,7 @@ if($appleIconFID) {
     $f = File::getByID($appleIconFID);
     if (is_object($f)) {
         ?>
-        <link rel="apple-touch-icon" href="<?php echo $f->getRelativePath() ?>"/>
+        <link rel="apple-touch-icon" href="<?php echo $f->getURL() ?>"/>
     <?php
     }
 }
@@ -144,7 +148,7 @@ if($modernIconFID) {
 	$f = File::getByID($modernIconFID);
     if(is_object($f)) {
         ?>
-        <meta name="msapplication-TileImage" content="<?php echo $f->getRelativePath(); ?>" /><?php
+        <meta name="msapplication-TileImage" content="<?php echo $f->getURL(); ?>" /><?php
         echo "\n";
         if (strlen($modernIconBGColor)) {
             ?>
@@ -160,9 +164,10 @@ if (is_object($cp)) {
 
 	$cih = Loader::helper('concrete/ui');
 	if ($cih->showNewsflowOverlay()) {
-		$v->addFooterItem('<script type="text/javascript">$(function() { ccm_showDashboardNewsflowWelcome(); });</script>');
+		$v->addFooterItem('<script type="text/javascript">$(function() { new ConcreteNewsflowDialog().open(); });</script>');
 	}
-	if ($_COOKIE['ccmLoadAddBlockWindow'] && $c->isEditMode()) {
+
+	if (array_get($_COOKIE, 'ccmLoadAddBlockWindow') && $c->isEditMode()) {
 		$v->addFooterItem('<script type="text/javascript">$(function() { setTimeout(function() { $("a[data-launch-panel=add-block]").click()}, 100); });</script>', 'CORE');
 		setcookie("ccmLoadAddBlockWindow", false, -1, DIR_REL . '/');
 	}

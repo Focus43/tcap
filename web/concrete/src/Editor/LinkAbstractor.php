@@ -10,6 +10,7 @@
  */
 
 namespace Concrete\Core\Editor;
+use Core;
 use File;
 use Page;
 use Loader;
@@ -22,27 +23,9 @@ class LinkAbstractor extends Object {
 	 * Takes a chunk of content containing full urls
 	 * and converts them to abstract link references.
 	 */
-	public static function translateTo($text) {
-		// keep links valid
-		if (!defined('BASE_URL') || BASE_URL == '') {
-			return $text;
-		}
+	private static $blackListImgAttributes = array('src', 'fid', 'data-verified', 'data-save-url');
 
-		$url1 = str_replace('/', '\/', BASE_URL . DIR_REL . '/' . DISPATCHER_FILENAME);
-		$url2 = str_replace('/', '\/', BASE_URL . DIR_REL);
-		$url4 = URL::to('/download_file', 'view');
-		$url4 = str_replace('/', '\/', $url4);
-		$url4 = str_replace('-', '\-', $url4);
-		$text = preg_replace(
-			array(
-				'/' . $url1 . '\?cID=([0-9]+)/i',
-				'/' . $url4 . '\/([0-9]+)/i',
-				'/' . $url2 . '/i'),
-			array(
-				'{CCM:CID_\\1}',
-				'{CCM:FID_DL_\\1}',
-				'{CCM:BASE_URL}')
-			, $text);
+	public static function translateTo($text) {
 
 		// images inline
 		$imgmatch = URL::to('/download_file', 'view_inline');
@@ -54,15 +37,39 @@ class LinkAbstractor extends Object {
 		$r = $dom->str_get_html($text);
 		if ($r) {
 			foreach($r->find('img') as $img) {
-				$src = $img->src;
-				$alt = $img->alt;
-				$style = $img->style;
-				if (preg_match($imgmatch, $src, $matches)) {
-					$img->outertext = '<concrete-picture fID="' . $matches[1] . '" alt="' . $alt . '" style="' . $style . '" />';
+
+				$attrString = "";
+				foreach($img->attr as $key => $val) {
+					if(!in_array($key, self::$blackListImgAttributes)) {
+						$attrString .= "$key=\"$val\" ";
+					}
+				}
+
+				if (preg_match($imgmatch, $img->src, $matches)) {
+					$img->outertext = '<concrete-picture fID="' . $matches[1] . '" ' . $attrString . '/>';
 				}
 			}
 
 			$text = (string) $r;
+		}
+
+		$appUrl = Core::getApplicationURL();
+		if (!empty($appUrl)) {
+			$url1 = str_replace('/', '\/', $appUrl . '/' . DISPATCHER_FILENAME);
+			$url2 = str_replace('/', '\/', $appUrl);
+			$url4 = URL::to('/download_file', 'view');
+			$url4 = str_replace('/', '\/', $url4);
+			$url4 = str_replace('-', '\-', $url4);
+			$text = preg_replace(
+				array(
+					'/' . $url1 . '\?cID=([0-9]+)/i',
+					'/' . $url4 . '\/([0-9]+)/i',
+					'/' . $url2 . '/i'),
+				array(
+					'{CCM:CID_\\1}',
+					'{CCM:FID_DL_\\1}',
+					'{CCM:BASE_URL}')
+				, $text);
 		}
 
 		return $text;
@@ -79,7 +86,7 @@ class LinkAbstractor extends Object {
 				'/{CCM:BASE_URL}/i'
 			),
 			array(
-				BASE_URL . DIR_REL,
+				\Core::getApplicationURL(),
 			),
 			$text);
 
@@ -101,8 +108,6 @@ class LinkAbstractor extends Object {
 		if (is_object($r)) {
 			foreach($r->find('concrete-picture') as $picture) {
 				$fID = $picture->fid;
-				$alt = $picture->alt;
-				$style = $picture->style;
 				$fo = \File::getByID($fID);
 				if (is_object($fo)) {
 					if ($style) {
@@ -112,12 +117,23 @@ class LinkAbstractor extends Object {
 						$image = new \Concrete\Core\Html\Image($fo);
 					}
 					$tag = $image->getTag();
-					if ($alt) {
-						$tag->alt($alt);
+
+					foreach($picture->attr as $attr => $val) {
+						if(!in_array($attr, self::$blackListImgAttributes)) {
+
+							//Apply attributes to child img, if using picture tag.
+							if($tag instanceof \Concrete\Core\Html\Object\Picture) {
+								foreach($tag->getChildren() as $child) {
+						            if ($child instanceof \HtmlObject\Image) {
+						                $child->$attr($val);
+						            }
+						        }
+						    } else {
+								$tag->$attr($val);
+						    }
+						}
 					}
-					if ($style) {
-						$tag->style($style);
-					}
+					
 					$picture->outertext = (string) $tag;
 				}
 			}
@@ -154,10 +170,12 @@ class LinkAbstractor extends Object {
 	 * and expands them to urls suitable for the rich text editor.
 	 */
 	public static function translateFromEditMode($text) {
+		$app = \Core::make('app');
+
 		//page links...
 		$text = preg_replace(
 			'/{CCM:CID_([0-9]+)}/i',
-			BASE_URL . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=\\1',
+			\Core::getApplicationURL() . '/' . DISPATCHER_FILENAME . '?cID=\\1',
 			$text);
 
 		//images...
@@ -166,9 +184,15 @@ class LinkAbstractor extends Object {
 		if (is_object($r)) {
 			foreach($r->find('concrete-picture') as $picture) {
 				$fID = $picture->fid;
-				$alt = $picture->alt;
-				$style = $picture->style;
-				$picture->outertext = '<img src="' . URL::to('/download_file', 'view_inline', $fID) . '" alt="' . $alt . '" style="' . $style . '" />';
+
+				$attrString = "";
+				foreach($picture->attr as $attr => $val) {
+					if(!in_array($attr, self::$blackListImgAttributes)) {
+						$attrString .= "$attr=\"$val\" ";
+					}
+				}
+
+				$picture->outertext = '<img src="' . URL::to('/download_file', 'view_inline', $fID) . '" ' . $attrString . '/>';
 			}
 
 			$text = (string) $r;

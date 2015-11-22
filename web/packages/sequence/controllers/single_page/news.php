@@ -2,7 +2,7 @@
 
     use Concrete\Package\Sequence\Controller AS PackageController;
 
-    class News extends \Concrete\Package\Sequence\Libraries\BaseController {
+    class News extends \Concrete\Package\Sequence\Controller\BaseController {
 
         protected $_includeThemeAssets  = true;
         //protected $supportsPageCache    = false;

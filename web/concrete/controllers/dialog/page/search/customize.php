@@ -1,4 +1,4 @@
-<?
+<?php
 namespace Concrete\Controller\Dialog\Page\Search;
 use \Concrete\Controller\Backend\UserInterface as BackendInterfaceController;
 use \Concrete\Core\Page\Search\ColumnSet\ColumnSet as PageSearchColumnSet;
@@ -48,7 +48,7 @@ class Customize extends BackendInterfaceController {
 			$pageList = new PageList();
 			$columns = PageSearchColumnSet::getCurrent();
 			$col = $columns->getDefaultSortColumn();	
-			$pageList->sortBy($col->getColumnKey(), $col->getColumnDefaultSortDirection());
+			$pageList->sanitizedSortBy($col->getColumnKey(), $col->getColumnDefaultSortDirection());
 
 			$ilr = new PageSearchResult($columns, $pageList, URL::to('/ccm/system/search/pages/submit'));
 			$r = new SearchResponse();

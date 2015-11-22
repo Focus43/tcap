@@ -1,4 +1,4 @@
-<?
+<?php
 namespace Concrete\Controller\Dialog\User\Search;
 use \Concrete\Controller\Backend\UserInterface as BackendInterfaceController;
 use User;
@@ -44,7 +44,7 @@ class Customize extends BackendInterfaceController {
 			$userList = new UserList();
 			$columns = \Concrete\Core\User\Search\ColumnSet\ColumnSet::getCurrent();
 			$col = $columns->getDefaultSortColumn();	
-			$userList->sortBy($col->getColumnKey(), $col->getColumnDefaultSortDirection());
+			$userList->sanitizedSortBy($col->getColumnKey(), $col->getColumnDefaultSortDirection());
 
 			$ilr = new \Concrete\Core\User\Search\Result\Result($columns, $userList, URL::to('/ccm/system/search/users/submit'));
 			$r = new \Concrete\Core\Search\Response();

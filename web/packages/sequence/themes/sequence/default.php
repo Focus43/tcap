@@ -31,16 +31,27 @@
             <?php //$this->inc('elements/partial/home_slider.php'); ?>
         </section>
 
-        <?php $i = 1; while($i <= (int)$areaCount): ?>
-            <section id="<?php echo "section-{$i}"; ?>">
+        <?php if( !empty($pageSections) ): foreach($pageSections AS $section): ?>
+            <section id="section-<?php echo $section; ?>">
                 <?php
-                    $a = new Area("Main {$i}"); /** @var $a \Concrete\Core\Area\Area */
+                    $a = new Area("Main {$section}"); /** @var $a \Concrete\Core\Area\Area */
                     $a->enableGridContainer();
                     $a->display($c);
                 ?>
-                <div class="section-footer"><?php $a = new Area("Sub {$i}"); $a->display($c); ?></div>
+                <div class="section-footer"><?php $a = new Area("Sub {$section}"); $a->display($c); ?></div>
             </section>
-        <?php $i++; endwhile; ?>
+        <?php endforeach; endif; ?>
+
+<!--        --><?php //$i = 1; while($i <= (int)$areaCount): ?>
+<!--            <section id="--><?php //echo "section-{$i}"; ?><!--">-->
+<!--                --><?php
+//                    $a = new Area("Main {$i}"); /** @var $a \Concrete\Core\Area\Area */
+//                    $a->enableGridContainer();
+//                    $a->display($c);
+//                ?>
+<!--                <div class="section-footer">--><?php //$a = new Area("Sub {$i}"); $a->display($c); ?><!--</div>-->
+<!--            </section>-->
+<!--        --><?php //$i++; endwhile; ?>
 
         <section id="<?php echo "section-{$i}"; ?>">
             <div class="container">

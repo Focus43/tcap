@@ -119,8 +119,8 @@ $tp = new TaskPermission();
         container.find('.redactor-content').redactor({
             minHeight: '200',
             'concrete5': {
-                filemanager: <?=$fp->canAccessFileManager()?>,
-                sitemap: <?=$tp->canAccessSitemap()?>,
+                filemanager: <?php echo $fp->canAccessFileManager()?>,
+                sitemap: <?php echo $tp->canAccessSitemap()?>,
                 lightbox: true
             }
         });
@@ -140,10 +140,10 @@ $tp = new TaskPermission();
                 doSortCount();
             });
         };
-        $('.ccm-faq-block-container i.fa-sort-desc', container).each(function () {
+        $('i.fa-sort-desc', container).each(function () {
             attachSortDesc($(this));
         });
-        $('.ccm-faq-block-container i.fa-sort-asc', container).each(function () {
+        $('i.fa-sort-asc', container).each(function () {
             attachSortAsc($(this));
         });
         $('.ccm-add-faq-entry', container).click(function () {
@@ -152,8 +152,8 @@ $tp = new TaskPermission();
             newClone.show().find('.redactor-content').redactor({
                 minHeight: '200',
                 'concrete5': {
-                    filemanager: <?=$fp->canAccessFileManager()?>,
-                    sitemap: <?=$tp->canAccessSitemap()?>,
+                    filemanager: <?php echo $fp->canAccessFileManager()?>,
+                    sitemap: <?php echo $tp->canAccessSitemap()?>,
                     lightbox: true
                 }
             });

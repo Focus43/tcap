@@ -1,4 +1,4 @@
-<?
+<?php
 namespace Concrete\Controller\SinglePage\Dashboard\System\Optimization;
 use Concrete\Core\Legacy\Loader;
 use Concrete\Core\Logging\Query\Logger;
@@ -42,6 +42,44 @@ class QueryLog extends DashboardPageController {
     {
         $this->set('message', t('Database query log cleared.'));
         $this->view();
+    }
+
+
+    public function csv() 
+    {
+        if (!Loader::helper('validation/token')->validate('csv')) {
+            $this->redirect('/dashboard/system/optimization/query_log');
+        } else {
+            $l = new LogList();
+            $entries = $l->get(0);
+            $fileName = "Database Query Log Results";
+
+            header("Content-Type: text/csv");
+            header("Cache-control: private");
+            header("Pragma: public");
+            $date = date('Ymd');
+            header("Content-Disposition: attachment; filename=" . $fileName . "_form_data_{$date}.csv");
+
+            $fp = fopen('php://output', 'w');
+
+            // write the columns
+            $row = array(
+                t('Times Run'),
+                t('Query')
+            );
+
+            fputcsv($fp, $row);
+
+            foreach($entries as $ent) { 
+                fputcsv($fp, array(
+                    $ent['queryTotal'],
+                    $ent['query'],
+                ));
+            }
+
+            fclose($fp);
+            die;
+        }
     }
 	
 }

@@ -129,7 +129,7 @@ class File implements \Concrete\Core\Permission\ObjectInterface
 
     public function getStorageLocationID()
     {
-        return $this->storageLocation;
+        return $this->getFileStorageLocationObject()->getID();
     }
 
     /**
@@ -141,7 +141,7 @@ class File implements \Concrete\Core\Permission\ObjectInterface
     }
 
     /**
-     * @return array \Concrete\Core\File\Version
+     * @return \Concrete\Core\File\Version[]
      */
     public function getFileVersions()
     {
@@ -176,11 +176,17 @@ class File implements \Concrete\Core\Permission\ObjectInterface
         }
 
         $f = static::getByID($fID);
-        $path = $f->getRelativePath();
 
-        CacheLocal::set('file_relative_path', $fID, $path);
-        return $path;
+        if ($f) {
+            $path = $f->getRelativePath();
+
+            CacheLocal::set('file_relative_path', $fID, $path);
+            return $path;
+        }
+
+        return false;
     }
+
 
     protected function save()
     {
@@ -471,6 +477,7 @@ class File implements \Concrete\Core\Permission\ObjectInterface
         if (!$hasUploader) {
             $u->refreshUserGroups();
         }
+
         return $fv;
     }
 
@@ -525,19 +532,20 @@ class File implements \Concrete\Core\Permission\ObjectInterface
             $fv->delete(true);
         }
 
-        // now from the DB
-        $em = $db->getEntityManager();
-        $em->remove($this);
-        $em->flush();
         $db->Execute("delete from FileSetFiles where fID = ?", array($this->fID));
         $db->Execute("delete from FileSearchIndexAttributes where fID = ?", array($this->fID));
         $db->Execute("delete from DownloadStatistics where fID = ?", array($this->fID));
         $db->Execute("delete from FilePermissionAssignments where fID = ?", array($this->fID));
+
+        // now from the DB
+        $em = $db->getEntityManager();
+        $em->remove($this);
+        $em->flush();
     }
 
     /**
      * returns the most recent FileVersion object
-     * @return FileVersion
+     * @return Version
      */
     public function getRecentVersion()
     {

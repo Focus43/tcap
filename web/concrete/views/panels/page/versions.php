@@ -1,4 +1,4 @@
-<?
+<?php
 defined('C5_EXECUTE') or die("Access Denied.");
 ?>
 <script type="text/javascript">
@@ -16,25 +16,28 @@ defined('C5_EXECUTE') or die("Access Denied.");
 		<td><span class="ccm-panel-page-versions-version-id"><%-cvID%></span></td>
 		<td class="ccm-panel-page-versions-details">
 			<p><span class="ccm-panel-page-versions-version-timestamp"><%-cvDateVersionCreated%></span></p>
-			<p><%-cvAuthorUserName%></p>
+			<p><?php echo t('Edit by')?> <%-cvAuthorUserName%></p>
 			<% if (cvComments) { %>
 				<p><small><%-cvComments%></small></p>
+			<% } %>
+			<% if (cvIsApproved == 1) { %>
+				<p><?php echo t('Approved by')?> <%-cvApproverUserName%></p>
 			<% } %>
 		</td>
 		<td>
 			<% if (cvIsApproved == 1) { %>
-				<i class="fa fa-ok" title="<?=t('This is the approved page version.')?>"></i>
+				<i class="fa fa-ok" title="<?php echo t('This is the approved page version.')?>"></i>
 			<% } %>
 			<a href="#" class="ccm-panel-page-versions-version-menu" data-launch-versions-menu="ccm-panel-page-versions-version-menu-<%-cvID%>"><i class="fa fa-share"></i></a>
 			<div class="ccm-popover-inverse popover fade" data-menu="ccm-panel-page-versions-version-menu-<%-cvID%>">
 				<div class="popover-inner">
 				<ul class="dropdown-menu">
-					<li><% if (cvIsApproved == 1) { %><span><?=t('Approve')?></span><% } else { %><a href="#" data-version-menu-task="approve" data-version-id="<%-cvID%>"><?=t('Approve')?></a><% } %></li>
-					<li><a href="#" data-version-menu-task="duplicate" data-version-id="<%-cvID%>"><?=t('Duplicate')?></a></li>
+					<li><% if (cvIsApproved == 1) { %><span><?php echo t('Approve')?></span><% } else { %><a href="#" data-version-menu-task="approve" data-version-id="<%-cvID%>"><?php echo t('Approve')?></a><% } %></li>
+					<li><a href="#" data-version-menu-task="duplicate" data-version-id="<%-cvID%>"><?php echo t('Duplicate')?></a></li>
 					<li class="divider"></li>
-					<li><a href="#" data-version-menu-task="new-page" data-version-id="<%-cvID%>"><?=t('New Page')?></a></li>
+					<li><a href="#" data-version-menu-task="new-page" data-version-id="<%-cvID%>"><?php echo t('New Page')?></a></li>
 					<% if (cpCanDeletePageVersions) { %>
-						<li><% if (cvIsApproved == 1) { %><span><?=t('Delete')?></span><% } else { %><a href="#" data-version-menu-task="delete" data-version-id="<%-cvID%>"><?=t('Delete')?></a><% } %></li>
+						<li><% if (cvIsApproved == 1) { %><span><?php echo t('Delete')?></span><% } else { %><a href="#" data-version-menu-task="delete" data-version-id="<%-cvID%>"><?php echo t('Delete')?></a><% } %></li>
 					<% } %>
 				</ul>
 				</div>
@@ -48,14 +51,14 @@ defined('C5_EXECUTE') or die("Access Denied.");
 		<td colspan="4">
 			<ul class="pager">
 				<% if (hasPreviousPage == '1') { %>
-					<li><a href="#" data-version-navigation="<%=previousPageNum%>"><?=t('&larr; Newer')?></a></li>
+					<li><a href="#" data-version-navigation="<%=previousPageNum%>"><?php echo t('&larr; Newer')?></a></li>
 				<% } else { %>
-					<li class="disabled"><a href="#"><?=t('&larr; Newer')?></a></li>
+					<li class="disabled"><a href="#"><?php echo t('&larr; Newer')?></a></li>
 				<% } %>
 				<% if (hasNextPage == '1') { %>
-					<li><a href="#" data-version-navigation="<%=nextPageNum%>"><?=t('Older &rarr;')?></a></li>
+					<li><a href="#" data-version-navigation="<%=nextPageNum%>"><?php echo t('Older &rarr;')?></a></li>
 				<% } else { %>
-					<li class="disabled"><a href="#"><?=t('Older &rarr;')?></a></li>
+					<li class="disabled"><a href="#"><?php echo t('Older &rarr;')?></a></li>
 				<% } %>
 			</ul>
 		</td>
@@ -116,12 +119,12 @@ var ConcretePageVersionList = {
             return;
         }
 		if (checkboxes.length > 0) {
-			var src = '<?=URL::to("/ccm/system/panels/details/page/versions")?>';
+			var src = '<?php echo URL::to("/ccm/system/panels/details/page/versions")?>';
 			var data = '';
 			$.each(checkboxes, function(i, cb) {
 				data += '&cvID[]=' + $(cb).val();
 			});
-			panel.openPanelDetail({'identifier': 'page-versions', 'data': data, 'url': src});
+			panel.openPanelDetail({'identifier': 'page-versions', 'data': data, 'url': src, target: null});
 
 		} else {
 			panel.closePanelDetail();
@@ -155,7 +158,7 @@ var ConcretePageVersionList = {
 			switch($(this).attr('data-version-menu-task')) {
 				case 'delete':
 
-					ConcretePageVersionList.sendRequest('<?=$controller->action("delete")?>', [{'name': 'cvID[]', 'value': cvID}], function(r) {
+					ConcretePageVersionList.sendRequest('<?php echo $controller->action("delete")?>', [{'name': 'cvID[]', 'value': cvID}], function(r) {
 						ConcreteAlert.notify({
 						'message': r.message
 						});
@@ -163,7 +166,7 @@ var ConcretePageVersionList = {
 					});
 					break;
 				case 'approve':
-					ConcretePageVersionList.sendRequest('<?=$controller->action("approve")?>', [{'name': 'cvID', 'value': cvID}], function(r) {
+					ConcretePageVersionList.sendRequest('<?php echo $controller->action("approve")?>', [{'name': 'cvID', 'value': cvID}], function(r) {
 						ConcreteAlert.notify({
 						'message': r.message
 						});
@@ -171,7 +174,7 @@ var ConcretePageVersionList = {
 					});
 					break;
 				case 'duplicate':
-					ConcretePageVersionList.sendRequest('<?=$controller->action("duplicate")?>', [{'name': 'cvID', 'value': cvID}], function(r) {
+					ConcretePageVersionList.sendRequest('<?php echo $controller->action("duplicate")?>', [{'name': 'cvID', 'value': cvID}], function(r) {
 						ConcreteAlert.notify({
 						'message': r.message
 						});
@@ -179,7 +182,7 @@ var ConcretePageVersionList = {
 					});
 					break;
 				case 'new-page':
-					ConcretePageVersionList.sendRequest('<?=$controller->action("new_page")?>', [{'name': 'cvID', 'value': cvID}], function(r) {
+					ConcretePageVersionList.sendRequest('<?php echo $controller->action("new_page")?>', [{'name': 'cvID', 'value': cvID}], function(r) {
 						window.location.href = r.redirectURL;
 					});
 					break;
@@ -201,7 +204,7 @@ var templateFooter = _.template(
     $('script.footer').html()
 );
 
-var templateData = <?=$response->getJSON()?>;
+var templateData = <?php echo $response->getJSON()?>;
 $('#ccm-panel-page-versions table tbody').html(
 	templateBody(templateData)
 );
@@ -229,7 +232,7 @@ $(function() {
 	});
 	var $checkboxes = $('#ccm-panel-page-versions tbody input[type=checkbox][data-version-active=false]');
 	$('#ccm-panel-page-versions thead input[type=checkbox]').on('change', function() {
-		$checkboxes.prop('checked', $(this).prop('checked'));
+		$checkboxes.prop('checked', $(this).prop('checked')).trigger('change');
 		Concrete.forceRefresh();
 	});
 
@@ -242,7 +245,7 @@ $(function() {
 		var checkboxes = $('#ccm-panel-page-versions tbody input[type=checkbox]:checked');
 		$('button[data-version-action]').addClass('disabled');
 		if (checkboxes.length > 1) {
-			$('button[data-version-action=compare').removeClass('disabled');
+			$('button[data-version-action=compare]').removeClass('disabled');
 		}
 		if (checkboxes.length > 0 && !checkboxes.filter('[data-version-active=true]').length) {
 			$('button[data-version-action=delete]').removeClass('disabled');
@@ -254,7 +257,7 @@ $(function() {
 	$('#ccm-panel-page-versions tfoot').on('click', 'a', function() {
 		var pageNum = $(this).attr('data-version-navigation');
 		if (pageNum) {
-			ConcretePageVersionList.sendRequest('<?=$controller->action("get_json")?>', [{'name': 'currentPage', 'value': $(this).attr('data-version-navigation')}], function(r) {
+			ConcretePageVersionList.sendRequest('<?php echo $controller->action("get_json")?>', [{'name': 'currentPage', 'value': $(this).attr('data-version-navigation')}], function(r) {
 				$('#ccm-panel-page-versions table tbody').html(
 					templateBody(r)
 		    	);
@@ -275,7 +278,7 @@ $(function() {
                 cvIDs.push({'name': 'cvID[]', 'value': $(cb).val()});
             });
             if(cvIDs.length > 0) {
-                ConcretePageVersionList.sendRequest('<?=$controller->action("delete")?>', cvIDs, function (r) {
+                ConcretePageVersionList.sendRequest('<?php echo $controller->action("delete")?>', cvIDs, function (r) {
                     ConcretePageVersionList.handleVersionRemovalResponse(r);
                 });
             }
@@ -288,12 +291,12 @@ $(function() {
 
 
 <section id="ccm-panel-page-versions" class="ccm-ui">
-	<header><a href="" data-panel-navigation="back" class="ccm-panel-back"><span class="fa fa-chevron-left"></span></a> <a href="" data-panel-navigation="back"><?=t('Versions')?></a></header>
+	<header><a href="" data-panel-navigation="back" class="ccm-panel-back"><span class="fa fa-chevron-left"></span></a> <a href="" data-panel-navigation="back"><?php echo t('Versions')?></a></header>
 	<table class="table">
 		<thead>
 			<tr>
 				<th><input class="ccm-flat-checkbox" type="checkbox" /></th>
-				<th colspan="3"><!--<button type="button" class="btn-link" data-version-action="compare" disabled><?=t('Compare')?></button>//--><button type="button" class="btn-link disabled" data-version-action="delete"><?=t('Delete')?></button></th>
+				<th colspan="3"><!--<button type="button" class="btn-link" data-version-action="compare" disabled><?php echo t('Compare')?></button>//--><button type="button" class="btn-link disabled" data-version-action="delete"><?php echo t('Delete')?></button></th>
 			</tr>
 		</thead>
 		<tbody></tbody>

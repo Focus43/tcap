@@ -8,7 +8,6 @@ use \Page as ConcretePage;
 use \Concrete\Core\Page\View\PageView;
 use Permissions;
 use User;
-use Loader;
 use Session;
 
 abstract class PageCache {
@@ -30,17 +29,26 @@ abstract class PageCache {
 
 	public static function getLibrary() {
 		if (!PageCache::$library) {
-			$class = '\\Concrete\\Core\\Cache\\Page\\' . Loader::helper('text')->camelcase(Config::get('concrete.cache.page.adapter')) . 'PageCache';
+			$adapter = Config::get('concrete.cache.page.adapter');
+			$class = overrideable_core_class(
+				'Core\\Cache\\Page\\' . camelcase($adapter) . 'PageCache',
+				DIRNAME_CLASSES . '/Cache/Page/' . camelcase($adapter) . 'PageCache.php'
+			);
 			PageCache::$library = new $class();
 		}
 		return PageCache::$library;
 	}
 
 	/**
-	 * Note: can't use the User object directly because it might query the database
+	 * Note: can't use the User object directly because it might query the database.
+	 * Also can't use the Session wrapper because it starts session which triggers
+	 * before package autoloaders and so certain access entities stored in session
+	 * will break.
 	 */
 	public function shouldCheckCache(Request $req) {
-		if (Session::get('uID') > 0) {
+		$session = \Config::get('concrete.session.name');
+		$r = \Cookie::get($session);
+		if ($r) {
 			return false;
 		}
 		return true;
@@ -54,7 +62,7 @@ abstract class PageCache {
 
 	public function getCacheHeaders(ConcretePage $c) {
 		$lifetime = $c->getCollectionFullPageCachingLifetimeValue();
-		$expires  = gmdate('D, d M Y H:i:', time() + $lifetime) . ' GMT';
+		$expires  = gmdate('D, d M Y H:i:s', time() + $lifetime) . ' GMT';
 
 		$headers  = array(
 			'Pragma' => 'public',
@@ -111,7 +119,7 @@ abstract class PageCache {
 		}
 
 		$blocks = $c->getBlocks();
-		array_merge($c->getGlobalBlocks(), $blocks);
+		$blocks = array_merge($c->getGlobalBlocks(), $blocks);
 
 		foreach($blocks as $b) {
 			if (!$b->cacheBlockOutput()) {

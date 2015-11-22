@@ -1,4 +1,4 @@
-<?
+<?php
 
 defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getByID($_REQUEST['cID']);
@@ -9,6 +9,7 @@ if ($cp->canViewPageVersions()) {
 	$req->setCustomRequestUser(-1);
 	$req->setCurrentPage($c);
 	$controller = $c->getPageController();
+	$controller->runTask('view', array());
 	$view = $controller->getViewObject();
 	$response = new Response();
 	$content = $view->render();

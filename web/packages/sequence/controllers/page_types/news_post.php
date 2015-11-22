@@ -5,7 +5,7 @@
     use Concrete\Package\Sequence\Controller AS PackageController;
     use Zend\Http\Header\Date;
 
-    class NewsPost extends \Concrete\Package\Sequence\Libraries\BaseController {
+    class NewsPost extends \Concrete\Package\Sequence\Controller\BaseController {
 
         protected $_includeThemeAssets = true;
 

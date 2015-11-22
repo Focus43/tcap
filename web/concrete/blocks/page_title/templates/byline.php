@@ -1,20 +1,19 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied.");
 $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service\Date */
 $page = Page::getCurrentPage();
-$date = Core::make('helper/date')->formatDate($page->getCollectionDatePublic(), true);
+$date = $dh->formatDate($page->getCollectionDatePublic(), true);
 $user = UserInfo::getByID($page->getCollectionUserID());
 ?>
 <div class="ccm-block-page-title-byline">
-    <h1 class="page-title"><?=$title?></h1>
+    <h1 class="page-title"><?php echo h($title)?></h1>
 
     <span class="page-date">
-    <? print $date; ?>
+    <?php print $date; ?>
     </span>
 
-    <? if (is_object($user)): ?>
+    <?php if (is_object($user)): ?>
     <span class="page-author">
-    <? print $user->getUserDisplayName(); ?>
+    <?php print $user->getUserDisplayName(); ?>
     </span>
-    <? endif; ?>
-
+    <?php endif; ?>
 </div>

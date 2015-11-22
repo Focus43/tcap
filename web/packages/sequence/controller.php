@@ -37,7 +37,7 @@
 
         protected $pkgHandle 			= self::PACKAGE_HANDLE;
         protected $appVersionRequired 	= '5.7';
-        protected $pkgVersion 			= '0.304';
+        protected $pkgVersion 			= '0.308';
 
 
         /**
@@ -133,7 +133,8 @@
          * @return void
          */
         private function installAndUpdate(){
-            $this->setupAttributeTypeAssociations()
+            $this->setupAttributeTypes()
+                ->setupAttributeTypeAssociations()
                 ->setupCollectionAttributes()
                 ->setupFileAttributes()
                 ->setupFileSets()
@@ -145,6 +146,20 @@
                 ->setupBlockTypeSets()
                 ->setupBlocks()
                 ->setupThumbnailTypes();
+        }
+
+
+        /**
+         * @return Controller
+         */
+        private function setupAttributeTypes(){
+            $atPageSelector = $this->attributeType('sortable_list');
+            if( !($atPageSelector instanceof \Concrete\Core\Attribute\Type) ){
+                \Concrete\Core\Attribute\Type::add('sortable_list', t('Sortable List'), $this->packageObject());
+                $this->attributeKeyCategory('collection')->associateAttributeKeyType( $this->attributeType('sortable_list') );
+            }
+
+            return $this;
         }
 
 
@@ -166,7 +181,7 @@
          */
         private function setupCollectionAttributes(){
             if( ! is_object(CollectionAttributeKey::getByHandle(self::COLLECTION_ATTR_SECTIONS)) ){
-                CollectionAttributeKey::add($this->attributeType('number'), array(
+                CollectionAttributeKey::add($this->attributeType('sortable_list'), array(
                     'akHandle' =>  self::COLLECTION_ATTR_SECTIONS,
                     'akName'    => 'Page Sections'
                 ), $this->packageObject());
@@ -486,5 +501,18 @@
             return $this->{"at_{$handle}"};
         }
 
+
+        /**
+         * @return mixed \Concrete\Core\Attribute\Key\Category || null
+         */
+        private function attributeKeyCategory( $handle ){
+            if( is_null($this->{"akc_{$handle}"}) ){
+                $attributeCategory = \Concrete\Core\Attribute\Key\Category::getByHandle($handle);
+                if( is_object($attributeCategory) && $attributeCategory->getAttributeKeyCategoryID() >= 1 ){
+                    $this->{"akc_{$handle}"} = $attributeCategory;
+                }
+            }
+            return $this->{"akc_{$handle}"};
+        }
     }
 }

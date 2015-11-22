@@ -1,6 +1,4 @@
-<?php use Concrete\Core\Validation\CSRF\Token;
-
-defined('C5_EXECUTE') or die("Access Denied.");
+<?php defined('C5_EXECUTE') or die("Access Denied.");
 
 $footerSiteTitle = new GlobalArea('Footer Site Title');
 $footerSocial = new GlobalArea('Footer Social');
@@ -11,18 +9,18 @@ $displayFirstSection = $footerSiteTitleBlocks > 0 || $footerSocialBlocks > 0 || 
 ?>
 
 <footer id="footer-theme">
-    <? if ($displayFirstSection) { ?>
+    <?php if ($displayFirstSection) { ?>
     <section>
     <div class="container">
         <div class="row">
             <div class="col-sm-9">
-                <?
+                <?php
                 $a = new GlobalArea('Footer Site Title');
                 $a->display();
                 ?>
             </div>
             <div class="col-sm-3">
-                <?
+                <?php
                 $a = new GlobalArea('Footer Social');
                 $a->display();
                 ?>
@@ -30,24 +28,24 @@ $displayFirstSection = $footerSiteTitleBlocks > 0 || $footerSocialBlocks > 0 || 
         </div>
     </div>
     </section>
-    <? } ?>
+    <?php } ?>
     <section>
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-            <?
+            <?php
             $a = new GlobalArea('Footer Legal');
             $a->display();
             ?>
             </div>
             <div class="col-sm-3">
-                <?
+                <?php
                 $a = new GlobalArea('Footer Navigation');
                 $a->display();
                 ?>
             </div>
             <div class="col-sm-3">
-                <?
+                <?php
                 $a = new GlobalArea('Footer Contact');
                 $a->display();
                 ?>
@@ -61,27 +59,9 @@ $displayFirstSection = $footerSiteTitleBlocks > 0 || $footerSocialBlocks > 0 || 
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <span><?=t('Built with <a href="http://www.concrete5.org" class="concrete5">concrete5</a> CMS.')?></span>
+                <span><?php echo t('Built with <a href="http://www.concrete5.org" class="concrete5">concrete5</a> CMS.')?></span>
                 <span class="pull-right">
-                    <?php
-                    if (!id(new User)->isLoggedIn()) {
-                        ?>
-                        <a href="<?=URL::to('/login')?>">
-                            <?= t('Log in') ?>
-                        </a>
-                        <?php
-                    } else {
-                        $token = new Token();
-                        ?>
-                        <form action="<?= URL::to('/login', 'logout') ?>">
-                            <?php id(new Token())->output('logout'); ?>
-                            <a href="#" onclick="$(this).closest('form').submit();return false">
-                                <?= t('Log out') ?>
-                            </a>
-                        </form>
-                        <?php
-                    }
-                    ?>
+                    <?php echo Core::make('helper/navigation')->getLogInOutLink()?>
                 </span>
             </div>
         </div>
@@ -89,4 +69,4 @@ $displayFirstSection = $footerSiteTitleBlocks > 0 || $footerSocialBlocks > 0 || 
 </footer>
 
 
-<? $this->inc('elements/footer_bottom.php');?>
+<?php $this->inc('elements/footer_bottom.php');?>

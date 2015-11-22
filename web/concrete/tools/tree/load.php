@@ -1,4 +1,4 @@
-<?
+<?php
 defined('C5_EXECUTE') or die("Access Denied.");
 use \Concrete\Core\Tree\Tree;
 use \Concrete\Core\Tree\Node\Node as TreeNode;
@@ -10,12 +10,15 @@ if (!is_object($tree)) {
 	exit;
 }
 
-if ($_REQUEST['treeNodeSelectedIDs']) {
-	// starting multiple node stuff
-    $node = TreeNode::getByID($nID);
-    if (is_object($node) && $node->getTreeID() == $tree->getTreeID()) {
-        $tree->setSelectedTreeNodeIDs($_REQUEST['treeNodeSelectedIDs']);
+if (is_array($_REQUEST['treeNodeSelectedIDs'])) {
+    $selectedIDs = array();
+    foreach($_REQUEST['treeNodeSelectedIDs'] as $nID) {
+        $node = TreeNode::getByID($nID);
+        if (is_object($node) && $node->getTreeID() == $tree->getTreeID()) {
+            $selectedIDs[] = $node->getTreeNodeID();
+        }
     }
+    $tree->setSelectedTreeNodeIDs($selectedIDs);
 }
 
 $tree->setRequest($_REQUEST);

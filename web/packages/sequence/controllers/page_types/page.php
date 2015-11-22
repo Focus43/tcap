@@ -3,16 +3,19 @@
     use FileSet;
     use Concrete\Package\Sequence\Controller AS PackageController;
 
-    class Page extends \Concrete\Package\Sequence\Libraries\BaseController {
+    class Page extends \Concrete\Package\Sequence\Controller\BaseController {
 
         protected $_includeThemeAssets = true;
 
         public function on_start(){
             parent::on_start();
             $this->set('isEditMode', $this->getPageObject()->isEditMode());
-            $this->set('areaCount', $this->getPageObject()->getAttribute(PackageController::COLLECTION_ATTR_SECTIONS));
             $this->set('textHelper', $this->getHelper('helper/text'));
             $this->set('mastheadImages', $this->getMastheadImages());
+
+
+            $sections = $this->getPageObject()->getAttribute(PackageController::COLLECTION_ATTR_SECTIONS);
+            $this->set('pageSections', $sections);
         }
 
         /**
