@@ -74,6 +74,22 @@ img {@include img-responsive(inline-block);padding-bottom:0.75rem;
       &:empty {display:none;}
       img, img.responsive {padding:0;}
     }
+
+    // Modified mast-header: setting to max-height 50%, background orange
+    &:first-of-type {padding-top:66px;/*max-height:60%;*/background:none;
+      .tabular {display:table;width:100%;height:100%;background:$theme-highlight-color;
+        .cellular {display:table-cell;width:100%;height:100%;vertical-align:middle;text-align:center;color:$theme-dark-color;
+          .homepage-intro {padding:2.5rem;width:100%;max-width:$screen-md;margin:0 auto;text-align:left;display:inline-block;
+            a {color:$theme-dark-color !important;text-decoration:underline;}
+            ul:last-of-type {margin-bottom:0;}
+          }
+        }
+      }
+
+      @media screen and (min-width:$screen-xs){
+        max-height:60%;
+      }
+    }
   }
 
   footer {font-size:14px;display:block;text-align:center;padding:1rem;background:#000;
@@ -206,6 +222,10 @@ html.touch {
 .ccm-toolbar-visible {
   #c-level-1 {
     header {top:49px !important;}
+    section {
+      // give the nav bar room to breath at the top
+      //&:first-of-type {margin-top:116px;}
+    }
   }
 
   &.edit-mode-mobile {

@@ -24,7 +24,14 @@ angular.module('sequence.elements').
                 // Initialize Isotope instance
                 scope.isotopeInstance = new Isotope(container, {
                     itemSelector: '.isotope-node',
-                    layoutMode: attrs.isotope || 'masonry'
+                    layoutMode: attrs.isotope || 'masonry',
+                    // Banner wants the first two categories "Influencers"
+                    // and "Investment Team" to be visible by default, and
+                    // since we don't support a way to dynamically choose
+                    // the defaults (originally it was just "Show All"),
+                    // when this initializes, we're filtering by the first
+                    // two groups here
+                    filter: '[influencers],[investment-team]'
                 });
 
                 // Filters

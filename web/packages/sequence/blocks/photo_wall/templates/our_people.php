@@ -11,12 +11,12 @@ foreach($opts AS $optObj){ /** $optObj \Concrete\Attribute\Select\Option */
 
 <div isotope>
     <ul class="text-center" isotope-filters>
-        <li><a class="active" data-filter="*">Show All</a></li>
         <?php
             foreach($userInvolvementLevels AS $levelString){
                 echo '<li><a data-filter="['.$textHelper->handle($levelString).']">'.$levelString.'</a></li>' . "\n";
             }
         ?>
+        <li><a data-filter="*">Show All</a></li>
     </ul>
     <div class="grid-wrapper">
         <div isotope-grid>
