@@ -22,7 +22,11 @@ $tp = new TaskPermission();
     <div class="row">
         <div class="form-group col-sm-6">
             <label>Category</label>
-            <?php echo $form->select("category[]", $categoryOptions, $portfolioObj->getCategory(), array('multiple' => 'multiple')); ?>
+            <?php foreach($categoryOptions AS $id => $label): ?>
+                <label check-enclose style="display:block;padding:0.25rem 0;">
+                    <?php echo $form->checkbox('category[]', $id, in_array($id, $portfolioObj->getMemberCategories())); echo '&nbsp;' . $label; ?>
+                </label>
+            <?php endforeach; ?>
         </div>
         <div class="form-group col-sm-6">
             <label>Tools Used</label>

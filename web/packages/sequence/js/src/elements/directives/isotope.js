@@ -20,7 +20,6 @@ angular.module('sequence.elements').
                     _el.style.padding = 0;
                 })( element );
 
-
                 // Initialize Isotope instance
                 scope.isotopeInstance = new Isotope(container, {
                     itemSelector: '.isotope-node',
@@ -29,9 +28,10 @@ angular.module('sequence.elements').
                     // and "Investment Team" to be visible by default, and
                     // since we don't support a way to dynamically choose
                     // the defaults (originally it was just "Show All"),
-                    // when this initializes, we're filtering by the first
-                    // two groups here
-                    filter: '[influencers],[investment-team]'
+                    // we use a default-filters attribute on the directive DOM
+                    // node (so its hardcoded on the block view template, or
+                    // anywhere this directive is used)
+                    filter: attrs.defaultFilters ? attrs.defaultFilters : null
                 });
 
                 // Filters

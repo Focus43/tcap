@@ -1,5 +1,5 @@
 <?php
-namespace Concrete\Package\Sequence\Block\POrtfolio;
+namespace Concrete\Package\Sequence\Block\Portfolio;
 
 use Loader;
 use FileList;
@@ -37,7 +37,7 @@ class Controller extends \Concrete\Core\Block\BlockController {
 
     public function view(){
         $this->set('portfolioList', $this->portfolioList());
-        $this->set('categoryList', $this->getCategoryList());
+        $this->set('categoryList', SequencePortfolio::getCategoriesAvailableList());
         $this->set('chosenPortfolioItems', $this->chosenPortfolioItems());
     }
 
@@ -69,10 +69,6 @@ class Controller extends \Concrete\Core\Block\BlockController {
             }
         }
         return $this->_portfolioList;
-    }
-
-    public function getCategoryList() {
-        return SequencePortfolio::getCategoryOptions();
     }
 
     public function save( $args ){

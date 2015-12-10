@@ -9,7 +9,7 @@ foreach($opts AS $optObj){ /** $optObj \Concrete\Attribute\Select\Option */
 }
 ?>
 
-<div isotope>
+<div isotope default-filters="[influencers],[investment-team]">
     <ul class="text-center" isotope-filters>
         <?php
             foreach($userInvolvementLevels AS $levelString){

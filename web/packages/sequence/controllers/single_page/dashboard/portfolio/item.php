@@ -6,10 +6,8 @@ namespace Concrete\Package\Sequence\Controller\SinglePage\Dashboard\Portfolio {
 
     class Item extends DashboardPageController {
 
-        protected static $categoryOptions = array("Strategic Design", "Case Study", "Branding");
-
         public function view( $id = null ) {
-            $this->set('categoryOptions', self::$categoryOptions);
+            $this->set('categoryOptions', SequencePortfolio::getCategoriesAvailableList());
             $this->set('availableFileSets', $this->availableFileSets());
             if ( $id ) {
                 $portfolio = SequencePortfolio::getByID($id);

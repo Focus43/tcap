@@ -79,23 +79,60 @@
         public function getDescription(){
             return $this->description;
         }
+
         /**
-         * @return string
+         * In the DB, this is stored as a comma-separated string. Doctrine
+         * knows to convert to an array automatically.
+         * @return array
          */
-        public function getCategory(){
-            return implode(",", (array) $this->category);
+        public function getMemberCategories(){
+            return $this->category ? $this->category : array();
         }
+
         /**
+         * Get a concatenated list of the topics, defaults to being comma
+         * separated.
+         * @param string $glue
          * @return string
          */
-        public function getCategoryString(){
-            $categoryOptions = self::getCategoryOptions();
-            $categoryString = "";
-            foreach ( (array) $this->category as $key ) {
-                $categoryString .= $categoryOptions[$key] . ", ";
+        public function getCategoriesString( $glue = ', ' ){
+            $nodeLabels = array();
+            if(!empty($this->category)): foreach($this->category AS $categoryID){
+                /** @var $topic \Concrete\Core\Tree\Node\Type\Topic */
+                $topic = \Concrete\Core\Tree\Node\Type\Topic::getByID($categoryID);
+                if( is_object($topic) ){
+                    array_push($nodeLabels, $topic->getTreeNodeDisplayName());
+                }
+            } endif;
+
+            return join($glue, $nodeLabels);
+        }
+
+        /**
+         * Get a list of all categories as an array, whereas the categoryID
+         * is the key and => value is the label.
+         * @return array
+         */
+        public static function getCategoriesAvailableList(){
+            $topicTree = \Concrete\Core\Tree\Type\Topic::getByName('PortfolioCategories');
+            if( $topicTree instanceof \Concrete\Core\Tree\Tree ){
+                /** @var $rootNode \Concrete\Core\Tree\Node\Node */
+                $rootNode = $topicTree->getRootTreeNodeObject();
+                $rootNode->populateDirectChildrenOnly();
+                /** @var $kids array */
+                $kids = $rootNode->getChildNodes();
+                if( !empty($kids) ){
+                    $iterable = array();
+                    /** @var $topicObj \Concrete\Core\Tree\Node\Type\Topic */
+                    foreach($kids AS $topicObj){
+                        $iterable[$topicObj->getTreeNodeID()] = $topicObj->getTreeNodeDisplayName();
+                    }
+                    return $iterable;
+                }
             }
-            return substr($categoryString, 0, -2);
+            return array();
         }
+
         /**
          * @return string
          */
@@ -182,26 +219,6 @@
                 ->setParameter('isFeatured', true)
                 ->getQuery()
                 ->getResult();
-        }
-
-        /**
-         * @return array
-         */
-        public static function getCategoryOptions( ){
-            // temporary hack for category list
-            return array("Strategic Design", "Case Study", "Branding");
-        }
-        /**
-         * @return string
-         */
-        public function getCategoriesString( ){
-            $categoryOptions = self::getCategoryOptions();
-            $categories = $this->category;
-            $categoriesString = "";
-            foreach ( $categories as $key ) {
-                $categoriesString .= " [ {$categoryOptions[$key]} ] ";
-            }
-            return $categoriesString;
         }
     }
 }

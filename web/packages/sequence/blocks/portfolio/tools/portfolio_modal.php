@@ -39,7 +39,7 @@ $fileSetObj = FileSet::getByID((int) $portfolioObj->getGalleryFileSetID());
             </div>
         </div>
         <div class="col-sm-12 col-md-4 portfolio-details">
-            <h4><?php echo $portfolioObj->getTitle(); ?> <small>Details</small></h4>
+            <h4><?php echo $portfolioObj->getTitle(); ?></h4>
             <?php echo $portfolioObj->getDescription(); ?>
 
             <div accordion data-speed="0.25">
@@ -63,7 +63,7 @@ $fileSetObj = FileSet::getByID((int) $portfolioObj->getGalleryFileSetID());
                     <div class="accordion-header"><span class="icn-inbox"></span> Category</div>
                     <div class="accordion-body">
                         <div class="accordion-content">
-                            <p><?php echo $portfolioObj->getCategoryString(); ?></p>
+                            <p><?php echo $portfolioObj->getCategoriesString(); ?></p>
                         </div>
                     </div>
                 </div>
