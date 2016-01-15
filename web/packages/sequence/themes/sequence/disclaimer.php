@@ -1,5 +1,5 @@
 <?php
-  setcookie("agreed",'yes', time() + (10), "/"); // 86400 = 1 day
+  setcookie("agreed",'yes', time() + (300), "/"); // 86400 = 1 day
 ?>
 <!DOCTYPE HTML>
 <html ng-app="sequence" ng-controller="CtrlRoot" ng-class="rootClasses" lang="<?php echo LANGUAGE; ?>" class="pt-full no-disclaimer <?php echo $isEditMode ? 'cms-edit-mode' : ''; ?>">
