@@ -1,5 +1,7 @@
 <?php
-  setcookie("agreed",'yes', time() + (300), "/"); // 86400 = 1 day
+ // setcookie('agreed','yes', time() + (300), "/"); // 300 = 5min
+ $ch = \Core::make('cookie');
+ $ch->set('disc', 'yes', time() + (120), "/", $_SERVER['HTTP_HOST']);
 ?>
 <!DOCTYPE HTML>
 <html ng-app="sequence" ng-controller="CtrlRoot" ng-class="rootClasses" lang="<?php echo LANGUAGE; ?>" class="pt-full no-disclaimer <?php echo $isEditMode ? 'cms-edit-mode' : ''; ?>">

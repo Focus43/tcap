@@ -1,8 +1,11 @@
 <?php 
-  if(!isset($_COOKIE['agreed'])){
-    header('Location: http://tcap.pc7j-2hvd.accessdomain.com/disclaimer');
+  // Get cookie 'helper'.
+  $ch = \Core::make('cookie');
+  $cookie = $ch->get('disc');
+  if($cookie != 'yes'){
+    header('Location: /disclaimer');
     exit;
-  }  
+  } 
 ?>
 <!DOCTYPE HTML>
 <html ng-app="sequence" ng-controller="CtrlRoot" ng-class="rootClasses" lang="<?php echo LANGUAGE; ?>" class="<?php echo $isEditMode ? 'cms-edit-mode' : ''; ?>">

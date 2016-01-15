@@ -1,8 +1,11 @@
 <?php 
-  if(!isset($_COOKIE['agreed'])){
+  // Get cookie 'helper'.
+  $ch = \Core::make('cookie');
+  $cookie = $ch->get('disc');
+  if($cookie != 'yes'){
     header('Location: /disclaimer');
     exit;
-  }  
+  } 
 ?>
 <!DOCTYPE HTML>
 <html ng-app="sequence" ng-controller="CtrlRoot" ng-class="rootClasses" lang="<?php echo LANGUAGE; ?>" class="pt-news-post no-disclaimer <?php echo $isEditMode ? 'cms-edit-mode' : ''; ?>">
