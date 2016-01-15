@@ -1,14 +1,14 @@
+<?php 
+  if(!isset($_COOKIE['agreed'])){
+    header('Location: http://tcap.pc7j-2hvd.accessdomain.com/disclaimer');
+    exit;
+  }  
+?>
 <!DOCTYPE HTML>
 <html ng-app="sequence" ng-controller="CtrlRoot" ng-class="rootClasses" lang="<?php echo LANGUAGE; ?>" class="<?php echo $isEditMode ? 'cms-edit-mode' : ''; ?>">
 <?php $this->inc('elements/head.php'); ?>
 
 <body<?php if($pagePermissionObj->canWrite()){ echo ' can-admin'; } ?>>
-
-<?php if( ! $pagePermissionObj->canWrite() ): ?>
-<script type="text/ng-template" id="<?php echo URL::route(array('disclaimer', 'sequence')); ?>">
-    <?php Loader::packageElement('partials/disclaimer', 'sequence'); ?>
-</script>
-<?php endif; ?>
 
 <div id="c-level-1" class="<?php echo $c->getPageWrapperClass(); ?>">
 

@@ -1,3 +1,9 @@
+<?php 
+  if(!isset($_COOKIE['agreed'])){
+    header('Location: /disclaimer');
+    exit;
+  }  
+?>
 <!DOCTYPE HTML>
 <html ng-app="sequence" ng-controller="CtrlRoot" ng-class="rootClasses" lang="<?php echo LANGUAGE; ?>" class="pt-news-post no-disclaimer <?php echo $isEditMode ? 'cms-edit-mode' : ''; ?>">
 <?php $this->inc('elements/head.php'); ?>

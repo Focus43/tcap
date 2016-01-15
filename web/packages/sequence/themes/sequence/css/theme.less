@@ -106,7 +106,49 @@ body {
     background:rgba(red(@theme-highlight-color), green(@theme-highlight-color), blue(@theme-highlight-color), 0.85);
   }
 }
-
+//disclaimer page
+.page-template-disclaimer{
+  nav{display: none;}
+  aside {display: none;}
+  header a:first-child img{
+    margin: 0 auto;
+  }
+  .container{
+    padding: 0 200px;
+  }
+  .agree-banner{
+    margin-top: 50px;
+    background: #f58220;
+    padding: 50px 0;
+    p{
+      color: #000;
+      font-size: 1.3em;
+      text-transform: capitalize;
+    }
+  }
+  footer{
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  
+}
+@media screen and (max-width: 768px){
+  .page-template-disclaimer{
+    .container{
+      padding: 0 20px;
+    }
+    h2{
+      font-size: 1.3em;
+      line-height: 1.4em;
+    }
+  }
+  .agree-banner{
+    p{
+      margin-top: 20px;
+    }
+  }
+}
 @media screen and (min-width:768px){
   #c-level-1 {
     // Header
