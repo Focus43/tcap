@@ -1,12 +1,4 @@
-<?php 
-  // Get cookie 'helper'.
-  $ch = \Core::make('cookie');
-  $cookie = $ch->get('disc');
-  if($cookie != 'yes'){
-    header('Location: /disclaimer');
-    exit;
-  } 
-?>
+<?php $this->inc('elements/disclaimer_check.php'); ?>
 <!DOCTYPE HTML>
 <html ng-app="sequence" ng-controller="CtrlRoot" ng-class="rootClasses" lang="<?php echo LANGUAGE; ?>" class="pt-news-post no-disclaimer <?php echo $isEditMode ? 'cms-edit-mode' : ''; ?>">
 <?php $this->inc('elements/head.php'); ?>
