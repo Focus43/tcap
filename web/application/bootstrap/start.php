@@ -17,10 +17,13 @@ $app = new Application();
 $app->detectEnvironment(
     array(
         'local' => array(
-            'hostname'
+            'local'
+        ),
+        'stage' => array(
+            'staging.titlecardcapital.com'
         ),
         'production' => array(
-            'live.site'
+            'titlecardcapital.com'
         )
     ));
 

@@ -14,22 +14,12 @@ __MACOSX
 # ignore composer files
 composer.phar
 
-# dont ignore the config anymore
-#/web/application/config/*
-
 # ignore everything but the index.html
 /web/application/files/*
 !/web/application/files/index.html
 
-#don't ignore the vondor anymore
-#/web/concrete/vendor
-
 # ignore updates folder
 /web/updates/*
-
-# ignore packages folder
-#/web/packages/*
-#/web/concrete/packages/*
 
 # more stuff
 /web/application/languages/*
