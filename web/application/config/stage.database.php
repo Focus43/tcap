@@ -6,7 +6,7 @@ return array(
             'driver' => 'c5_pdo_mysql',
             'server' => '127.0.0.1',
             'database' => 'tcap_stage',
-            'username' => 'tcap_stage',
+            'username' => 'tcap_admin',
             'password' => 'Focus43#2016',
             'charset' => 'utf8'
         )
