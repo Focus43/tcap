@@ -20,11 +20,12 @@ $app->detectEnvironment(
             'local'
         ),
         'stage' => array(
-            'staging.titlecardcapital.com'
+            'stage01.focusfortythree.com'
         ),
         'production' => array(
-            'titlecardcapital.com'
+            'prod01.focusfortythree.com'
         )
-    ));
+    )
+);
 
 return $app;
