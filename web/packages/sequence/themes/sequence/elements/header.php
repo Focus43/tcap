@@ -13,7 +13,7 @@
     <figure slideable>
         <?php if($homeLinkOnly === true): ?>
             <a href="/">
-                <img src="<?php echo SEQUENCE_IMAGE_PATH; ?>TitleCard_LogoWO_Center" class="img-responsive" />
+                <img src="<?php echo SEQUENCE_IMAGE_PATH; ?>TitleCard_LogoWO_Center.svg" class="img-responsive" />
             </a>
         <?php else: $a = new GlobalArea('Header Left'); $a->display($c); endif; ?>
     </figure>
