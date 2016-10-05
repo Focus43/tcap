@@ -17,7 +17,7 @@ $app = new Application();
 $app->detectEnvironment(
     array(
         'local' => array(
-            'local'
+            'vagrant-ubuntu-vivid-64'
         ),
         'stage' => array(
             'stage01.focusfortythree.com'
@@ -25,6 +25,7 @@ $app->detectEnvironment(
         'production' => array(
             'prod01.focusfortythree.com'
         )
-    ));
+    )
+);
 
 return $app;
